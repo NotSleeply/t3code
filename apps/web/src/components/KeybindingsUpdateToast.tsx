@@ -4,6 +4,7 @@ import { primaryServerConfigAtom, primaryServerConfigEventAtom } from "../state/
 import { KeybindingsConfigWarning } from "./KeybindingsConfigWarning";
 import { createKeybindingsUpdateToastController } from "./KeybindingsUpdateToast.logic";
 import { stackedThreadToast, toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 /** Toasts each keybindings reload the primary server reports. */
 export function startKeybindingsUpdateToasts(): () => void {
@@ -15,8 +16,8 @@ export function startKeybindingsUpdateToasts(): () => void {
     if (decision._tag === "Success") {
       toastManager.add({
         type: "success",
-        title: "Keybindings updated",
-        description: "Keybindings configuration reloaded successfully.",
+        title: t("Keybindings updated"),
+        description: t("Keybindings configuration reloaded successfully."),
       });
       return;
     }
@@ -25,7 +26,7 @@ export function startKeybindingsUpdateToasts(): () => void {
     toastManager.add(
       stackedThreadToast({
         type: "warning",
-        title: "Invalid keybindings configuration",
+        title: t("Invalid keybindings configuration"),
         description: (
           <KeybindingsConfigWarning
             message={decision.message}

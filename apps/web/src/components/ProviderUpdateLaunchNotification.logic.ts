@@ -11,6 +11,7 @@ import {
   squashAtomCommandFailure,
   type AtomCommandResult,
 } from "@t3tools/client-runtime/state/runtime";
+import { t } from "~/i18n";
 
 export type ProviderUpdateCandidate = ServerProvider & {
   readonly versionAdvisory: NonNullable<ServerProvider["versionAdvisory"]> & {
@@ -239,7 +240,7 @@ export function getProviderUpdateRunToastView(runs: ReadonlyArray<ProviderUpdate
   if (failureLines.length === 0) {
     return {
       type: "success",
-      title: settled.length === 1 ? "Provider updated" : `${settled.length} providers updated`,
+      title: settled.length === 1 ? t("Provider updated") : `${settled.length} providers updated`,
       description: getProviderUpdatedDescription(settled.length),
     };
   }
@@ -249,8 +250,8 @@ export function getProviderUpdateRunToastView(runs: ReadonlyArray<ProviderUpdate
       failureLines.length < settled.length
         ? `${failureLines.length} of ${settled.length} provider updates failed`
         : settled.length === 1
-          ? "Provider update failed"
-          : "Provider updates failed",
+          ? t("Provider update failed")
+          : t("Provider updates failed"),
     description: failureLines.join("\n"),
   };
 }
@@ -374,7 +375,7 @@ export function getProviderUpdateSidebarPillView(
           ? `${unchangedProviderName} still needs an update`
           : `${unchangedProviders.length} providers still need updates`,
       description: `${formatProviderList(unchangedProviders)} ${
-        unchangedProviders.length === 1 ? "still appears" : "still appear"
+        unchangedProviders.length === 1 ? t("still appears") : t("still appear")
       } outdated. Review provider settings for details.`,
       dismissible: true,
     });

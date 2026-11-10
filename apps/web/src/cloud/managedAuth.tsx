@@ -16,6 +16,7 @@ import { environmentCatalog } from "../connection/catalog";
 import { runtime } from "../lib/runtime";
 import { appAtomRegistry } from "../rpc/atomRegistry";
 import { resolveRelayClerkTokenOptions } from "./publicConfig";
+import { t } from "~/i18n";
 
 export function deactivateManagedRelayAuthentication(): void {
   setManagedRelaySession(appAtomRegistry, null);
@@ -54,7 +55,7 @@ const managedRelayAccountService = createCloudAccountService<ClerkInstance>({
       ),
     ]);
     for (const result of results) {
-      reportAtomCommandResult(result, { label: "cloud account cleanup" });
+      reportAtomCommandResult(result, { label: t("cloud account cleanup") });
     }
   },
   activate: ({ source, accountId }) =>

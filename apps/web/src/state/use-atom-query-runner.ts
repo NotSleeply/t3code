@@ -6,6 +6,7 @@ import {
 } from "@t3tools/client-runtime/state/runtime";
 import { AsyncResult, type Atom } from "effect/reactivity";
 import { useContext } from "react";
+import { t } from "~/i18n";
 
 export function useAtomQueryRunner<T, A, E>(
   family: (target: T) => Atom.Atom<AsyncResult.AsyncResult<A, E>>,
@@ -20,7 +21,7 @@ export function useAtomQueryRunner<T, A, E>(
   return (target: T) => {
     const atom = family(target);
     return executeAtomQuery(registry, atom, {
-      label: explicitLabel ?? atom.label?.[0] ?? "atom query",
+      label: explicitLabel ?? atom.label?.[0] ?? t("atom query"),
       reportFailure,
       reportDefect,
       refresh,

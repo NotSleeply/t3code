@@ -41,11 +41,12 @@ import {
 } from "@t3tools/client-runtime/thread-pull-requests";
 
 import { inferReviewCommentFenceLanguage, type ReviewCommentContext } from "~/reviewCommentContext";
+import { t } from "~/i18n";
 
 export const PULL_REQUEST_MERGE_METHOD_LABELS: Record<PullRequestMergeMethod, string> = {
-  merge: "Merge",
-  squash: "Squash and merge",
-  rebase: "Rebase and merge",
+  merge: t("Merge"),
+  squash: t("Squash and merge"),
+  rebase: t("Rebase and merge"),
 };
 
 export function allowsSinglePullRequestMerge(input: {
@@ -833,7 +834,9 @@ function reviewThreadContext(
     startIndex: lineIndex,
     endIndex: lineIndex,
     rangeLabel:
-      thread.line === null ? "file" : `L${thread.line}${thread.side === "left" ? " (before)" : ""}`,
+      thread.line === null
+        ? "file"
+        : `L${thread.line}${thread.side === "left" ? t("(before)") : ""}`,
     // Strip bot bookkeeping comments before bounding finding text.
     text: bounded(
       thread.comments

@@ -1,4 +1,5 @@
 import { cn } from "~/lib/utils";
+import { t } from "~/i18n";
 
 export function BrowserMockup({ className }: { className?: string }) {
   return (

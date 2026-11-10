@@ -6,13 +6,14 @@ import {
 } from "@t3tools/contracts";
 import * as Option from "effect/Option";
 import * as Schema from "effect/Schema";
+import { t } from "~/i18n";
 
 const parseSimlockDeviceHostDraft = Schema.decodeUnknownOption(SimlockDeviceHostConfig);
 
 export const newSimlockDeviceHost = (id: string): SimlockDeviceHostConfigType => ({
   kind: "simlock",
   id,
-  label: "Simlock",
+  label: t("Simlock"),
   gatewayUrl: "",
   agentToken: "",
   maxLeases: 2,

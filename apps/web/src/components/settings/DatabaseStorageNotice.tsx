@@ -28,6 +28,7 @@ import {
 import { Button } from "../ui/button";
 import { toastManager } from "../ui/toast";
 import { SettingsRow, SettingsSection } from "./settingsLayout";
+import { t } from "~/i18n";
 
 const DismissedEnvironmentIds = Schema.Array(Schema.String);
 const reclaimPermissionsAtom = environmentAtomList(
@@ -68,14 +69,14 @@ export function DatabaseStorageNotice({
     }));
   if (visible.length === 0) return null;
   return (
-    <SettingsSection id="storage-database" title="Database">
+    <SettingsSection id="storage-database" title={t("Database")}>
       <SettingsRow
-        title="Reclaim freed database space"
-        description={`These databases still hold space freed by history cleanup.${
+        title={t("Reclaim freed database space")}
+        description={t("These databases still hold space freed by history cleanup.{0}", [
           visible.every((recommendation) => recommendation.reclaimable)
             ? ""
-            : " Run the command on each machine to reclaim it. It restarts the background service. Quit the desktop app first if it hosts the environment."
-        }`}
+            : " Run the command on each machine to reclaim it. It restarts the background service. Quit the desktop app first if it hosts the environment.",
+        ])}
       />
       {visible.map(({ environmentId, status, label, reclaimable }) => {
         const dismiss = (
@@ -84,7 +85,7 @@ export function DatabaseStorageNotice({
             size="xs"
             onClick={() => setDismissed((current) => [...current, environmentId])}
           >
-            Dismiss
+            {t("Dismiss")}
           </Button>
         );
         return reclaimable ? (
@@ -98,7 +99,7 @@ export function DatabaseStorageNotice({
         ) : (
           <SettingsRow
             key={environmentId}
-            title={`${formatGiB(status.reclaimableBytes)} on ${label}`}
+            title={t("{0} on {1}", [formatGiB(status.reclaimableBytes), label])}
             description={<code className="select-text break-all">{status.compactCommand}</code>}
             control={
               <div className="flex flex-wrap items-center gap-1.5">
@@ -107,7 +108,7 @@ export function DatabaseStorageNotice({
                   size="xs"
                   onClick={() => copyToClipboard(status.compactCommand, undefined)}
                 >
-                  Copy command
+                  {t("Copy command")}
                 </Button>
                 {dismiss}
               </div>
@@ -160,7 +161,7 @@ function ReclaimRow({
   };
   return (
     <SettingsRow
-      title={`${amount} on ${label}`}
+      title={t("{0} on {1}", [amount, label])}
       description={
         status.reclaimFailure === undefined
           ? `Restarts T3 Code there. It will be offline for about ${minutes} min.`
@@ -180,17 +181,19 @@ function ReclaimRow({
           <AlertDialog open={confirming} onOpenChange={setConfirming}>
             <AlertDialogPopup>
               <AlertDialogHeader>
-                <AlertDialogTitle>
-                  Reclaim {amount} on {label}?
-                </AlertDialogTitle>
+                <AlertDialogTitle>{t("Reclaim {0} on {1}?", [amount, label])}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  T3 Code on {label} stops, rebuilds its database, and starts again. It will be
-                  offline for about {minutes} min. Running agents stop when it restarts.
+                  {t(
+                    "T3 Code on {0} stops, rebuilds its database, and starts again. It will be offline for about {1} min. Running agents stop when it restarts.",
+                    [label, minutes],
+                  )}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogClose render={<Button variant="outline" />}>Cancel</AlertDialogClose>
-                <Button onClick={() => void start()}>Restart and reclaim</Button>
+                <AlertDialogClose render={<Button variant="outline" />}>
+                  {t("Cancel")}
+                </AlertDialogClose>
+                <Button onClick={() => void start()}>{t("Restart and reclaim")}</Button>
               </AlertDialogFooter>
             </AlertDialogPopup>
           </AlertDialog>

@@ -22,6 +22,7 @@ import { connectionAtomRuntime } from "../connection/runtime";
 import { appAtomRegistry } from "../rpc/atomRegistry";
 import { environmentSession } from "./session";
 import { formatEnvironmentQueryError, useEnvironmentQuery } from "./query";
+import { t } from "~/i18n";
 
 export const deviceEnvironment = createDeviceEnvironmentAtoms(connectionAtomRuntime);
 
@@ -173,7 +174,7 @@ export const NO_DEVICE_PROBE_ATOM = Atom.make(AsyncResult.initial<void, never>()
  * credential. Each open checks again; edits and manual checks use the command.
  */
 export const deviceEasAccountCheck = createEnvironmentRpcQueryAtomFamily(connectionAtomRuntime, {
-  label: "environment-data:device:eas-account-check",
+  label: t("environment-data:device:eas-account-check"),
   tag: WS_METHODS.deviceEasAccount,
   staleTimeMs: 0,
   idleTtlMs: 0,
@@ -183,7 +184,7 @@ export const deviceEasAccountCheck = createEnvironmentRpcQueryAtomFamily(connect
 export const deviceSimlockIdentityCheck = createEnvironmentRpcQueryAtomFamily(
   connectionAtomRuntime,
   {
-    label: "environment-data:device:simlock-identity-check",
+    label: t("environment-data:device:simlock-identity-check"),
     tag: WS_METHODS.deviceSimlockIdentity,
     staleTimeMs: 0,
     idleTtlMs: 0,

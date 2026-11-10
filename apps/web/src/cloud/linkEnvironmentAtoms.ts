@@ -13,6 +13,7 @@ import {
   unlinkEnvironmentFromCloud,
   updateCloudPreferences,
 } from "./linkEnvironment";
+import { t } from "~/i18n";
 
 const cloudLinkScheduler = createAtomCommandScheduler();
 const cloudLinkConcurrency = {
@@ -21,7 +22,7 @@ const cloudLinkConcurrency = {
 };
 
 export const linkEnvironment = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:cloud:link-environment",
+  label: t("web:cloud:link-environment"),
   scheduler: cloudLinkScheduler,
   concurrency: cloudLinkConcurrency,
   execute: (input: {
@@ -32,7 +33,7 @@ export const linkEnvironment = createRuntimeCommand(connectionAtomRuntime, {
 });
 
 export const unlinkEnvironment = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:cloud:unlink-environment",
+  label: t("web:cloud:unlink-environment"),
   scheduler: cloudLinkScheduler,
   concurrency: cloudLinkConcurrency,
   execute: (input: { readonly target: CloudLinkTarget; readonly clerkToken: string | null }) =>
@@ -40,7 +41,7 @@ export const unlinkEnvironment = createRuntimeCommand(connectionAtomRuntime, {
 });
 
 export const updateEnvironmentPreferences = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:cloud:update-environment-preferences",
+  label: t("web:cloud:update-environment-preferences"),
   scheduler: cloudLinkScheduler,
   concurrency: cloudLinkConcurrency,
   execute: (input: {
@@ -51,11 +52,11 @@ export const updateEnvironmentPreferences = createRuntimeCommand(connectionAtomR
 });
 
 export const checkReachability = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:cloud:check-reachability",
+  label: t("web:cloud:check-reachability"),
   execute: (input: { readonly target: CloudLinkTarget }) => checkCloudReachability(input),
 });
 
 export const readLinkState = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:cloud:read-link-state",
+  label: t("web:cloud:read-link-state"),
   execute: (input: { readonly target: CloudLinkTarget }) => readCloudLinkState(input),
 });

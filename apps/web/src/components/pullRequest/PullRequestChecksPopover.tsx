@@ -25,6 +25,7 @@ import {
   pullRequestChecksStatePresentation,
   summarizePullRequestChecks,
 } from "./pullRequestPresentation";
+import { t } from "~/i18n";
 
 // Fetch only on open to avoid per-row requests.
 function LazyChecksBody({
@@ -45,7 +46,7 @@ function LazyChecksBody({
   if (detailQuery.data === null) {
     return (
       <p className="text-muted-foreground text-xs">
-        {detailQuery.isPending ? "Loading checks…" : "No checks reported"}
+        {detailQuery.isPending ? t("Loading checks…") : t("No checks reported")}
       </p>
     );
   }
@@ -66,7 +67,7 @@ function ChecksBody({
   const visibleChecks = [...attention, ...running, ...(showAll || !canCollapse ? completed : [])];
   const hasDetails = visibleChecks.some((check) => check.url !== null);
   if (checks.length === 0) {
-    return <p className="text-muted-foreground text-xs">No checks reported</p>;
+    return <p className="text-muted-foreground text-xs">{t("No checks reported")}</p>;
   }
   return (
     <>
@@ -75,8 +76,8 @@ function ChecksBody({
           className={cn(
             "grid gap-x-2 gap-y-1 pe-3",
             hasDetails
-              ? "grid-cols-[auto_minmax(0,1fr)_auto_auto]"
-              : "grid-cols-[auto_minmax(0,1fr)_auto]",
+              ? t("grid-cols-[auto_minmax(0,1fr)_auto_auto]")
+              : t("grid-cols-[auto_minmax(0,1fr)_auto]"),
           )}
         >
           {visibleChecks.map(
@@ -101,11 +102,14 @@ function ChecksBody({
                       if (!check.url) return;
                       void openLink(check.url).catch((error: unknown) => {
                         console.error(error);
-                        toastManager.add({ type: "error", title: "Unable to open check details" });
+                        toastManager.add({
+                          type: "error",
+                          title: t("Unable to open check details"),
+                        });
                       });
                     }}
                   >
-                    Details
+                    {t("Details")}
                   </button>
                 )}
               </li>
@@ -120,7 +124,7 @@ function ChecksBody({
           aria-expanded={showAll}
           onClick={() => setShowAll(!showAll)}
         >
-          {showAll ? "Show less" : "Show all"}
+          {showAll ? t("Show less") : t("Show all")}
         </Button>
       ) : null}
     </>
@@ -183,10 +187,10 @@ export function PullRequestChecksPopover({
           <>
             {checks !== undefined && incompleteCount > 0 ? (
               <span className="tabular-nums">
-                {checks.length - incompleteCount}/{checks.length} checks
+                {t("{0}/{1} checks", [checks.length - incompleteCount, checks.length])}
               </span>
             ) : failedCount > 0 ? (
-              <span className="tabular-nums">{failedCount} failed</span>
+              <span className="tabular-nums">{t("{0} failed", [failedCount])}</span>
             ) : null}
           </>
         ) : null}
@@ -196,7 +200,7 @@ export function PullRequestChecksPopover({
         {summary === null ? null : <p className="mb-2 text-muted-foreground text-xs">{summary}</p>}
         {stale ? (
           <p className="text-muted-foreground text-xs">
-            Check details are out of date. Refresh the pull request to update them.
+            {t("Check details are out of date. Refresh the pull request to update them.")}
           </p>
         ) : checks !== undefined ? (
           <ChecksBody checks={checks} threadRef={threadRef} />

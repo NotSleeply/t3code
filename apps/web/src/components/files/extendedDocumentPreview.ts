@@ -8,6 +8,7 @@ import { decodeHTMLAttribute, decodeHTMLStrict as decodeEntities } from "entitie
 import type JSZip from "jszip";
 
 import { type OfficeWorkerResult, type NotebookCell } from "./officePreviewProtocol";
+import { t } from "~/i18n";
 
 const ODS_PREVIEW_MAX_ROWS = 500;
 const ODS_PREVIEW_MAX_COLUMNS = 50;
@@ -374,7 +375,7 @@ export async function openDocument(
   const rendered = [];
   for (const [index, page] of pages.entries()) {
     rendered.push({
-      title: page.attrs["draw:name"] || `Page ${index + 1}`,
+      title: page.attrs[t("draw:name")] || `Page ${index + 1}`,
       html: await odfHtml(page, archive),
     });
   }

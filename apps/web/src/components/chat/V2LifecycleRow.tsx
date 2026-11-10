@@ -64,6 +64,7 @@ import { TimelineSystemDivider } from "./TimelineSystemDivider";
 import { subagentResumedSince } from "./V2LifecycleRow.logic";
 import { Button, InlineButton } from "../ui/button";
 import { T3Wordmark } from "../T3Wordmark";
+import { t } from "~/i18n";
 
 export type { HandoffTimelineRun } from "@t3tools/client-runtime/handoff";
 
@@ -78,7 +79,7 @@ export function V2LifecycleRow(props: {
   if (item.type === "run_interrupt_result") {
     return (
       <TimelineSystemDivider
-        label="Run interrupted"
+        label={t("Run interrupted")}
         detail={item.message}
         icon={CircleStopIcon}
         wrapDetail
@@ -121,10 +122,10 @@ export function V2LifecycleRow(props: {
           <Button
             size="xs"
             variant="outline"
-            aria-label={`Open ${item.title ?? "created thread"}`}
+            aria-label={t("Open {0}", [item.title ?? "created thread"])}
             onClick={() => props.onOpenThread(item.targetThreadId)}
           >
-            Open chat
+            {t("Open chat")}
           </Button>
         </div>
       );
@@ -133,13 +134,13 @@ export function V2LifecycleRow(props: {
       <WorkLogRow
         data-v2-item-type={item.type}
         icon={<T3Wordmark className="size-4 text-icon-muted" aria-hidden />}
-        label={<>Created thread{item.title ? ` · ${item.title}` : ""}</>}
+        label={<>{t("Created thread{0}", [item.title ? ` · ${item.title}` : ""])}</>}
         trailing={
           <InlineButton
-            aria-label={`Open ${item.title ?? "created thread"}`}
+            aria-label={t("Open {0}", [item.title ?? "created thread"])}
             onClick={() => props.onOpenThread(item.targetThreadId)}
           >
-            Open chat
+            {t("Open chat")}
           </InlineButton>
         }
       />
@@ -172,14 +173,14 @@ const STATUS_VISUALS: Record<
   OrchestrationV2TurnItem["status"],
   { dotClass: string; label: string }
 > = {
-  pending: { dotClass: "bg-info", label: "Queued" },
-  running: { dotClass: "bg-info", label: "Running" },
-  waiting: { dotClass: "bg-info", label: "Waiting" },
-  idle: { dotClass: "bg-muted-foreground/50", label: "Idle · resumable" },
-  completed: { dotClass: "bg-success", label: "Completed" },
-  failed: { dotClass: "bg-destructive", label: "Failed" },
-  cancelled: { dotClass: "bg-muted-foreground/60", label: "Stopped" },
-  interrupted: { dotClass: "bg-muted-foreground/60", label: "Stopped" },
+  pending: { dotClass: "bg-info", label: t("Queued") },
+  running: { dotClass: "bg-info", label: t("Running") },
+  waiting: { dotClass: "bg-info", label: t("Waiting") },
+  idle: { dotClass: "bg-muted-foreground/50", label: t("Idle · resumable") },
+  completed: { dotClass: "bg-success", label: t("Completed") },
+  failed: { dotClass: "bg-destructive", label: t("Failed") },
+  cancelled: { dotClass: "bg-muted-foreground/60", label: t("Stopped") },
+  interrupted: { dotClass: "bg-muted-foreground/60", label: t("Stopped") },
 };
 
 function subagentStatusVisual(status: OrchestrationV2TurnItem["status"]) {
@@ -465,7 +466,9 @@ function SubagentTimelineLink(props: {
             {props.title}
           </span>
           {remote !== undefined ? (
-            <span className="shrink-0 text-xs text-muted-foreground">on {remote.label}</span>
+            <span className="shrink-0 text-xs text-muted-foreground">
+              {t("on {0}", [remote.label])}
+            </span>
           ) : null}
         </span>
         <span
@@ -516,7 +519,7 @@ function SubagentTimelineLink(props: {
             <button
               type="button"
               data-v2-item-type="subagent"
-              aria-label={`Open ${props.title}`}
+              aria-label={t("Open {0}", [props.title])}
               aria-description={statusLabel}
               onClick={open}
               className={cn(
@@ -600,7 +603,7 @@ function EnvironmentHandoffRow({
 
 /** Marks where `/clear` or an automation started a new provider session in this thread. */
 export function FreshSessionRow() {
-  return <TimelineSystemDivider label="New session" icon={EraserIcon} />;
+  return <TimelineSystemDivider label={t("New session")} icon={EraserIcon} />;
 }
 
 /** A same-harness model or effort change. Shows only what changed. */

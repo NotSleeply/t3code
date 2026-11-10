@@ -133,6 +133,7 @@ import { composerCodeBlockHighlight } from "./composerCodeBlockHighlight";
 import { importPastedComposerText } from "./composerInlineTokenPaste";
 import { didComposerSelectionChangeVisibly } from "./composerSelection";
 import type { ComposerDraftContextRecords } from "./composerContextPresentation";
+import { t } from "~/i18n";
 
 export interface ComposerPromptEditorHandle {
   focus: () => void;
@@ -276,7 +277,7 @@ function ComposerMentionNodeView({ node }: NodeViewProps) {
       dir="ltr"
       render={<button type="button" />}
       onClick={() => actions.openMention(path)}
-      aria-label={`Preview ${path}`}
+      aria-label={t("Preview {0}", [path])}
       contentEditable={false}
       spellCheck={false}
       data-composer-mention-chip="true"

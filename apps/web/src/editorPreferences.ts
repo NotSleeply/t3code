@@ -17,6 +17,7 @@ import { getLocalStorageItem, setLocalStorageItem, useLocalStorage } from "./hoo
 import { shellEnvironment } from "./state/shell";
 import { useAtomCommand } from "./state/use-atom-command";
 import { readEnvironmentScope } from "./state/session";
+import { t } from "~/i18n";
 
 const LAST_EDITOR_KEY = "t3code:last-editor";
 
@@ -98,7 +99,7 @@ export function useOpenInPreferredEditor(
         Cause.fail(
           new EnvironmentAuthorizationError({
             requiredScope: AuthOrchestrationOperateScope,
-            message: "This connection cannot open an editor on this environment.",
+            message: t("This connection cannot open an editor on this environment."),
           }),
         ),
       );

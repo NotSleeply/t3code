@@ -2,6 +2,7 @@ import type { EnvironmentMachineKind } from "@t3tools/contracts";
 import { CloudIcon, LaptopIcon, MonitorIcon, ServerIcon, type LucideProps } from "lucide-react";
 import type { FunctionComponent, SVGProps } from "react";
 import { LinuxIcon } from "./Icons";
+import { t } from "~/i18n";
 
 function LucideLike(props: SVGProps<SVGSVGElement>) {
   return (
@@ -49,13 +50,13 @@ const ICON_BY_KIND: Record<EnvironmentMachineKind, FunctionComponent<LucideProps
 };
 
 export const ENVIRONMENT_MACHINE_KIND_LABELS: Record<EnvironmentMachineKind, string> = {
-  server: "Server",
-  cloud: "Cloud VM",
-  linux: "Linux/WSL",
-  desktop: "Desktop",
-  laptop: "Laptop",
-  "mac-mini": "Mini PC",
-  "mac-studio": "Workstation",
+  server: t("Server"),
+  cloud: t("Cloud VM"),
+  linux: t("Linux/WSL"),
+  desktop: t("Desktop"),
+  laptop: t("Laptop"),
+  "mac-mini": t("Mini PC"),
+  "mac-studio": t("Workstation"),
 };
 
 export function environmentMachineIcon(

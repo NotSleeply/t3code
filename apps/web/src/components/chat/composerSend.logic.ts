@@ -1,5 +1,6 @@
 import type { EnvironmentId, ThreadContextRecord } from "@t3tools/contracts";
 import { collectInlineContextIds } from "../../lib/composerContextReferences";
+import { t } from "~/i18n";
 
 /** Attached threads the prompt still links to; replacing linked text leaves stale records. */
 export function referencedThreadContexts(draft: {
@@ -19,8 +20,10 @@ export function loadBalancingSendWarning(input: {
 }) {
   if (input.pending) {
     return {
-      title: "Checking machine resources",
-      description: "Resource checks are still running. You can choose a machine in the composer.",
+      title: t("Checking machine resources"),
+      description: t(
+        "Resource checks are still running. You can choose a machine in the composer.",
+      ),
     };
   }
   const noMachineReadsEveryThread =
@@ -29,10 +32,14 @@ export function loadBalancingSendWarning(input: {
       input.threadContexts.every((record) => record.environmentId === environmentId),
     );
   return {
-    title: "Choose a machine to continue",
+    title: t("Choose a machine to continue"),
     description: noMachineReadsEveryThread
-      ? "No machine can read every attached thread. Choose a machine in the composer or remove the threads."
-      : "No eligible machine has available resources. Choose a machine in the composer to override.",
+      ? t(
+          "No machine can read every attached thread. Choose a machine in the composer or remove the threads.",
+        )
+      : t(
+          "No eligible machine has available resources. Choose a machine in the composer to override.",
+        ),
   };
 }
 

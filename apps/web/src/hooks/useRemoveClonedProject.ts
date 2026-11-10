@@ -9,6 +9,7 @@ import { waitForProjectRemoval } from "../state/entities";
 import { projectEnvironment } from "../state/projects";
 import { useAtomCommand } from "../state/use-atom-command";
 import { stackedThreadToast, toastManager } from "../components/ui/toast";
+import { t } from "~/i18n";
 
 export function useRemoveClonedProject() {
   const router = useRouter();
@@ -26,8 +27,8 @@ export function useRemoveClonedProject() {
       toastManager.add(
         stackedThreadToast({
           type: "error",
-          title: "Failed to remove project",
-          description: error instanceof Error ? error.message : "An error occurred.",
+          title: t("Failed to remove project"),
+          description: error instanceof Error ? error.message : t("An error occurred."),
         }),
       );
       return false;

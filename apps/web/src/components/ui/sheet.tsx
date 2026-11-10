@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { ControlledOpenContext, renderRetainedPopup } from "~/components/ui/dialog";
+import { t } from "~/i18n";
 
 function Sheet<Payload>(props: SheetPrimitive.Root.Props<Payload>) {
   return (
@@ -41,11 +42,11 @@ function SheetViewport({
     <SheetPrimitive.Viewport
       className={cn(
         "fixed inset-0 z-(--z-sheet) grid",
-        side === "bottom" && "grid grid-rows-[1fr_auto] pt-12",
-        side === "top" && "grid grid-rows-[auto_1fr] pb-12",
+        side === "bottom" && t("grid grid-rows-[1fr_auto] pt-12"),
+        side === "top" && t("grid grid-rows-[auto_1fr] pb-12"),
         side === "left" && "flex justify-start",
         side === "right" && "flex justify-end",
-        variant === "inset" && "sm:p-4",
+        variant === "inset" && t("sm:p-4"),
         className,
       )}
       data-slot="sheet-viewport"
@@ -82,7 +83,7 @@ function SheetPopup({
       <SheetBackdrop
         className={
           instant
-            ? "transition-none! data-ending-style:opacity-100! data-starting-style:opacity-100!"
+            ? t("transition-none! data-ending-style:opacity-100! data-starting-style:opacity-100!")
             : undefined
         }
         style={transitionStyle}
@@ -94,7 +95,7 @@ function SheetPopup({
             side === "bottom" &&
               "row-start-2 border-t data-ending-style:translate-y-8 data-starting-style:translate-y-8",
             side === "top" &&
-              "data-ending-style:-translate-y-8 data-starting-style:-translate-y-8 border-b",
+              t("data-ending-style:-translate-y-8 data-starting-style:-translate-y-8 border-b"),
             side === "left" &&
               "data-ending-style:-translate-x-8 data-starting-style:-translate-x-8 w-[calc(100%-(--spacing(12)))] max-w-md border-e",
             side === "right" &&
@@ -102,7 +103,9 @@ function SheetPopup({
             variant === "inset" &&
               "before:hidden sm:rounded-2xl sm:border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:**:data-[slot=sheet-footer]:rounded-b-[calc(var(--radius-2xl)-1px)]",
             instant &&
-              "transition-none! will-change-auto! data-ending-style:translate-x-0! data-starting-style:translate-x-0! data-ending-style:translate-y-0! data-starting-style:translate-y-0! data-ending-style:opacity-100! data-starting-style:opacity-100!",
+              t(
+                "transition-none! will-change-auto! data-ending-style:translate-x-0! data-starting-style:translate-x-0! data-ending-style:translate-y-0! data-starting-style:translate-y-0! data-ending-style:opacity-100! data-starting-style:opacity-100!",
+              ),
             className,
           )}
           data-slot="sheet-popup"
@@ -113,7 +116,7 @@ function SheetPopup({
           {children}
           {showCloseButton && (
             <SheetPrimitive.Close
-              aria-label="Close"
+              aria-label={t("Close")}
               className="absolute end-2 top-2"
               render={<Button size="icon" variant="ghost" />}
             >

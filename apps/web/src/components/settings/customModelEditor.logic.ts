@@ -4,6 +4,7 @@ import {
   type ProviderOptionDescriptor,
 } from "@t3tools/contracts";
 import { type CustomModelDefinition, createModelCapabilities } from "@t3tools/shared/model";
+import { t } from "~/i18n";
 
 export interface EditorChoice {
   readonly key: string;
@@ -37,76 +38,76 @@ export interface DescriptorPreset {
 }
 
 const EFFORT_CHOICES = [
-  { id: "low", label: "Low" },
-  { id: "medium", label: "Medium", isDefault: true },
-  { id: "high", label: "High" },
-  { id: "xhigh", label: "Extra High" },
+  { id: "low", label: t("Low") },
+  { id: "medium", label: t("Medium"), isDefault: true },
+  { id: "high", label: t("High") },
+  { id: "xhigh", label: t("Extra High") },
 ] as const;
 
 export const DESCRIPTOR_PRESETS_BY_KIND: Partial<
   Record<ProviderDriverKind, ReadonlyArray<DescriptorPreset>>
 > = {
   [ProviderDriverKind.make("codex")]: [
-    { id: "reasoningEffort", label: "Reasoning", type: "select", choices: EFFORT_CHOICES },
+    { id: "reasoningEffort", label: t("Reasoning"), type: "select", choices: EFFORT_CHOICES },
     {
       id: "serviceTier",
-      label: "Speed",
+      label: t("Speed"),
       type: "select",
       choices: [
-        { id: "default", label: "Standard", isDefault: true },
-        { id: "fast", label: "Fast" },
+        { id: "default", label: t("Standard"), isDefault: true },
+        { id: "fast", label: t("Fast") },
       ],
     },
   ],
   [ProviderDriverKind.make("claudeAgent")]: [
     {
       id: "effort",
-      label: "Reasoning",
+      label: t("Reasoning"),
       type: "select",
       choices: [
-        { id: "low", label: "Low" },
-        { id: "medium", label: "Medium" },
-        { id: "high", label: "High", isDefault: true },
-        { id: "xhigh", label: "Extra High" },
-        { id: "max", label: "Max" },
+        { id: "low", label: t("Low") },
+        { id: "medium", label: t("Medium") },
+        { id: "high", label: t("High"), isDefault: true },
+        { id: "xhigh", label: t("Extra High") },
+        { id: "max", label: t("Max") },
       ],
     },
-    { id: "fastMode", label: "Fast Mode", type: "boolean" },
-    { id: "thinking", label: "Thinking", type: "boolean" },
+    { id: "fastMode", label: t("Fast Mode"), type: "boolean" },
+    { id: "thinking", label: t("Thinking"), type: "boolean" },
   ],
   [ProviderDriverKind.make("cursor")]: [
-    { id: "reasoning", label: "Reasoning", type: "select", choices: EFFORT_CHOICES },
-    { id: "fastMode", label: "Fast Mode", type: "boolean" },
-    { id: "thinking", label: "Thinking", type: "boolean" },
+    { id: "reasoning", label: t("Reasoning"), type: "select", choices: EFFORT_CHOICES },
+    { id: "fastMode", label: t("Fast Mode"), type: "boolean" },
+    { id: "thinking", label: t("Thinking"), type: "boolean" },
   ],
   [ProviderDriverKind.make("grok")]: [
-    { id: "reasoningEffort", label: "Reasoning", type: "select", choices: EFFORT_CHOICES },
+    { id: "reasoningEffort", label: t("Reasoning"), type: "select", choices: EFFORT_CHOICES },
   ],
   [ProviderDriverKind.make("pi")]: [
     {
       id: "thinking",
-      label: "Thinking",
+      label: t("Thinking"),
       type: "select",
       choices: [
-        { id: "off", label: "Off" },
-        { id: "minimal", label: "Minimal" },
-        { id: "low", label: "Low" },
-        { id: "medium", label: "Medium", isDefault: true },
-        { id: "high", label: "High" },
-        { id: "xhigh", label: "Extra High" },
-        { id: "max", label: "Max" },
+        { id: "off", label: t("Off") },
+        { id: "minimal", label: t("Minimal") },
+        { id: "low", label: t("Low") },
+        { id: "medium", label: t("Medium"), isDefault: true },
+        { id: "high", label: t("High") },
+        { id: "xhigh", label: t("Extra High") },
+        { id: "max", label: t("Max") },
       ],
     },
   ],
   [ProviderDriverKind.make("opencode")]: [
-    { id: "variant", label: "Reasoning", type: "select", choices: EFFORT_CHOICES },
+    { id: "variant", label: t("Reasoning"), type: "select", choices: EFFORT_CHOICES },
     {
       id: "agent",
-      label: "Agent",
+      label: t("Agent"),
       type: "select",
       choices: [
-        { id: "build", label: "Build", isDefault: true },
-        { id: "plan", label: "Plan" },
+        { id: "build", label: t("Build"), isDefault: true },
+        { id: "plan", label: t("Plan") },
       ],
     },
   ],

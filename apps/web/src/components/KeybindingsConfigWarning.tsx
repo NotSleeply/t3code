@@ -9,6 +9,7 @@ import { useOpenInPreferredEditor } from "../editorPreferences";
 import { useEnvironmentScope } from "../state/session";
 import { Button } from "./ui/button";
 import { stackedThreadToast, toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 export function KeybindingsConfigWarning({
   message,
@@ -40,13 +41,14 @@ export function KeybindingsConfigWarning({
             toastManager.add(
               stackedThreadToast({
                 type: "error",
-                title: "Unable to open keybindings file",
-                description: error instanceof Error ? error.message : "Unknown error opening file.",
+                title: t("Unable to open keybindings file"),
+                description:
+                  error instanceof Error ? error.message : t("Unknown error opening file."),
               }),
             );
           }}
         >
-          Open keybindings.json
+          {t("Open keybindings.json")}
         </Button>
       </span>
     </>

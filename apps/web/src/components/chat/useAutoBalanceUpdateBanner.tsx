@@ -24,6 +24,7 @@ import { InlineButton } from "../ui/button";
 import { Popover, PopoverPopup, PopoverTrigger } from "../ui/popover";
 import type { ComposerBannerStackItem } from "./ComposerBannerStack";
 import { ComposerServerUpdateIcon } from "./ComposerServerUpdateStatus";
+import { t } from "~/i18n";
 
 export function useAutoBalanceUpdateBanner(
   environments: readonly EnvironmentPresentation[],
@@ -92,7 +93,7 @@ export function useAutoBalanceUpdateBanner(
         <PopoverTrigger
           render={<InlineButton />}
           className="max-w-full"
-          aria-label={`${title}. View machines`}
+          aria-label={t("{0}. View machines", [title])}
         >
           <span className="min-w-0 truncate">{title}</span>
         </PopoverTrigger>
@@ -105,14 +106,14 @@ export function useAutoBalanceUpdateBanner(
                   <ServerUpdateProgress state={machine.state} />
                 ) : !machine.remoteUpdate ? (
                   <>
-                    <div className="text-muted-foreground">Manual update required</div>
+                    <div className="text-muted-foreground">{t("Manual update required")}</div>
                     <ServerUpdateAction {...machine} />
                   </>
                 ) : (
                   <div className="text-muted-foreground">
                     {machine.connected
                       ? `Ready to update to ${machine.targetVersion}`
-                      : "Reconnect this machine to update"}
+                      : t("Reconnect this machine to update")}
                   </div>
                 )}
               </div>
@@ -130,14 +131,14 @@ export function useAutoBalanceUpdateBanner(
           variant="ghost"
           label={
             failed > 0
-              ? "Retry"
+              ? t("Retry")
               : targets.length === machines.length
-                ? "Update all"
+                ? t("Update all")
                 : `Update ${targets.length} ${targets.length === 1 ? "machine" : "machines"}`
           }
         />
       ) : undefined,
-    dismissLabel: "Dismiss update notice",
+    dismissLabel: t("Dismiss update notice"),
     ...(running
       ? {}
       : {

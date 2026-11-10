@@ -10,11 +10,12 @@ import {
   type ProjectGroupingSettings,
 } from "@t3tools/client-runtime/state/project-grouping";
 import type { Project } from "./types";
+import { t } from "~/i18n";
 
 export const PROJECT_GROUPING_MODE_LABELS: Record<SidebarProjectGroupingMode, string> = {
-  repository: "Group by repository",
-  repository_path: "Group by repository path",
-  separate: "Keep separate",
+  repository: t("Group by repository"),
+  repository_path: t("Group by repository path"),
+  separate: t("Keep separate"),
 };
 
 export function withProjectGroupingOverride(

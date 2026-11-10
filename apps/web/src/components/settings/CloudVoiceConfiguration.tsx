@@ -65,6 +65,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { SecretInput } from "./SecretInput";
 import { SecretSourceSelect } from "./SecretSourceInput";
+import { t } from "~/i18n";
 
 // Per dialog instance, not an Atom.family: key presence must be read fresh each time it opens.
 function useCloudRead<A, E>(
@@ -118,13 +119,13 @@ function ModelPicker({
       >
         <ComboboxInput
           id="voice-cloud-model"
-          aria-label="OpenRouter model"
-          placeholder="Search transcription models"
+          aria-label={t("OpenRouter model")}
+          placeholder={t("Search transcription models")}
           autoFocus
           size="sm"
         />
         <ComboboxPopup>
-          <ComboboxEmpty>No transcription model matches.</ComboboxEmpty>
+          <ComboboxEmpty>{t("No transcription model matches.")}</ComboboxEmpty>
           <ComboboxList className="max-h-64">
             {(model: CloudSpeechModel) => (
               <ComboboxItem key={model.id} value={model}>
@@ -139,7 +140,10 @@ function ModelPicker({
       </Combobox>
       {delisted ? (
         <p className="text-sm text-destructive" role="alert">
-          OpenRouter no longer lists {current}. Dictation stays off until you choose another model.
+          {t(
+            "OpenRouter no longer lists {0}. Dictation stays off until you choose another model.",
+            [current],
+          )}
         </p>
       ) : selected ? (
         <p className="truncate text-xs text-muted-foreground">{selected.id}</p>
@@ -257,7 +261,7 @@ export function CloudVoiceConfiguration({
           <SecretSourceSelect
             value={sourceId}
             sources={sources}
-            label={`${company} API key`}
+            label={t("{0} API key", [company])}
             disabled={busy}
             onValueChange={(next) => {
               setSourceId(next);
@@ -272,7 +276,7 @@ export function CloudVoiceConfiguration({
               key={sourceId}
               id="voice-cloud-key"
               name="reference"
-              aria-label={`${company} API key reference`}
+              aria-label={t("{0} API key reference", [company])}
               autoFocus={!routed}
               placeholder={source?.referencePlaceholder}
               value={draft}
@@ -285,9 +289,9 @@ export function CloudVoiceConfiguration({
             <SecretInput
               id="voice-cloud-key"
               name="key"
-              aria-label={`${company} API key`}
+              aria-label={t("{0} API key", [company])}
               autoFocus={!routed}
-              placeholder="Enter API key"
+              placeholder={t("Enter API key")}
               value={draft}
               configured={saved === true}
               disabled={busy}
@@ -338,18 +342,18 @@ export function CloudVoiceConfiguration({
         {!remove && (
           <DialogPanel>
             {!connected ? (
-              <p>Connect to {environment.label} with dictation access to continue.</p>
+              <p>{t("Connect to {0} with dictation access to continue.", [environment.label])}</p>
             ) : AsyncResult.isFailure(presence) && saved === undefined ? (
               <Button size="sm" variant="outline" onClick={refresh}>
-                Retry loading API key
+                {t("Retry loading API key")}
               </Button>
             ) : routed &&
               AsyncResult.isSuccess(presence) &&
               presence.value &&
               saved === undefined ? (
-              <p>Update {environment.label} to use OpenRouter dictation.</p>
+              <p>{t("Update {0} to use OpenRouter dictation.", [environment.label])}</p>
             ) : saved === undefined ? (
-              <p role="status">Checking for an API key…</p>
+              <p role="status">{t("Checking for an API key…")}</p>
             ) : routed ? (
               <form
                 id={formId}
@@ -360,7 +364,7 @@ export function CloudVoiceConfiguration({
                 }}
               >
                 <div className="grid gap-2">
-                  <Label htmlFor="voice-cloud-model">Model</Label>
+                  <Label htmlFor="voice-cloud-model">{t("Model")}</Label>
                   {listedModels ? (
                     <ModelPicker
                       models={listedModels}
@@ -371,22 +375,23 @@ export function CloudVoiceConfiguration({
                     />
                   ) : AsyncResult.isFailure(models) ? (
                     <Button size="sm" variant="outline" type="button" onClick={refreshModels}>
-                      Retry loading models
+                      {t("Retry loading models")}
                     </Button>
                   ) : (
                     <p role="status" className="text-sm text-muted-foreground">
-                      Loading transcription models…
+                      {t("Loading transcription models…")}
                     </p>
                   )}
                 </div>
                 {editingKey ? (
                   <div className="grid gap-2">{keyField}</div>
                 ) : !saved ? (
-                  <p>Ask an administrator on {environment.label} to add an API key.</p>
+                  <p>{t("Ask an administrator on {0} to add an API key.", [environment.label])}</p>
                 ) : (
                   <p className="text-sm text-muted-foreground">
-                    Uses the API key saved on {environment.label}. This choice applies only to this
-                    device.
+                    {t("Uses the API key saved on {0}. This choice applies only to this device.", [
+                      environment.label,
+                    ])}
                   </p>
                 )}
               </form>
@@ -402,10 +407,10 @@ export function CloudVoiceConfiguration({
                 {keyField}
               </form>
             ) : !saved ? (
-              <p>Ask an administrator on {environment.label} to add an API key.</p>
+              <p>{t("Ask an administrator on {0} to add an API key.", [environment.label])}</p>
             ) : (
               <p className="text-sm text-muted-foreground">
-                This choice applies only to this device. Choose Off to stop sharing.
+                {t("This choice applies only to this device. Choose Off to stop sharing.")}
               </p>
             )}
           </DialogPanel>
@@ -425,12 +430,12 @@ export function CloudVoiceConfiguration({
                 disabled={busy}
                 onClick={() => setRemove(true)}
               >
-                Remove key…
+                {t("Remove key…")}
               </Button>
             </div>
           )}
           <Button type="button" size="sm" variant="outline" disabled={busy} onClick={close}>
-            Cancel
+            {t("Cancel")}
           </Button>
           {connected &&
             (remove ? (
@@ -441,7 +446,7 @@ export function CloudVoiceConfiguration({
                 disabled={busy}
                 onClick={() => void saveKey(null, false)}
               >
-                Remove key
+                {t("Remove key")}
               </Button>
             ) : routed ? (
               saved !== undefined && (saved || canManage) ? (
@@ -462,7 +467,7 @@ export function CloudVoiceConfiguration({
                   close();
                 }}
               >
-                Use {name}
+                {t("Use {0}", [name])}
               </Button>
             ) : null)}
         </DialogFooter>

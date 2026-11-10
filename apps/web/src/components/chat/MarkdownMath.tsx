@@ -3,6 +3,7 @@ import { lazy, memo, Suspense, useLayoutEffect, useRef, useState } from "react";
 import { observeResize } from "../../lib/observeResize";
 
 import { RenderErrorBoundary } from "../RenderErrorBoundary";
+import { t } from "~/i18n";
 
 const MathTypeset = lazy(() => import("./MathTypeset"));
 
@@ -37,8 +38,12 @@ export const MarkdownMath = memo(function MarkdownMath(props: {
     <span
       className={
         props.display
-          ? "chat-markdown-math-display my-[0.65rem] block in-[.chat-markdown-table-container]:max-w-none in-[.chat-markdown-table-container]:overflow-visible"
-          : "inline-block max-w-full align-middle whitespace-nowrap wrap-normal break-normal in-[.chat-markdown-table-container]:max-w-none in-[.chat-markdown-table-container]:overflow-visible"
+          ? t(
+              "chat-markdown-math-display my-[0.65rem] block in-[.chat-markdown-table-container]:max-w-none in-[.chat-markdown-table-container]:overflow-visible",
+            )
+          : t(
+              "inline-block max-w-full align-middle whitespace-nowrap wrap-normal break-normal in-[.chat-markdown-table-container]:max-w-none in-[.chat-markdown-table-container]:overflow-visible",
+            )
       }
       data-markdown-math={props.display ? "display" : "inline"}
       data-markdown-copy={props.display ? `${source}\n\n` : source}
@@ -47,8 +52,8 @@ export const MarkdownMath = memo(function MarkdownMath(props: {
         props.focusable === false
           ? undefined
           : props.display
-            ? "Display equation"
-            : "Inline equation"
+            ? t("Display equation")
+            : t("Inline equation")
       }
     >
       <span
@@ -59,8 +64,8 @@ export const MarkdownMath = memo(function MarkdownMath(props: {
           !scrollable
             ? undefined
             : props.display
-              ? "Scroll display equation"
-              : "Scroll inline equation"
+              ? t("Scroll display equation")
+              : t("Scroll inline equation")
         }
       >
         <span

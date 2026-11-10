@@ -26,6 +26,7 @@ import {
 import { appAtomRegistry } from "./rpc/atomRegistry";
 import { formatEnvironmentQueryError } from "./state/query";
 import { serverEnvironment } from "./state/server";
+import { t } from "~/i18n";
 
 export interface TextGeneratorPreset {
   readonly id: "openai" | "openrouter" | "anthropic" | "custom";
@@ -36,20 +37,25 @@ export interface TextGeneratorPreset {
 }
 
 export const TEXT_GENERATOR_PRESETS: ReadonlyArray<TextGeneratorPreset> = [
-  { id: "openai", label: "OpenAI", kind: "openaiCompatible", baseUrl: "https://api.openai.com/v1" },
+  {
+    id: "openai",
+    label: t("OpenAI"),
+    kind: "openaiCompatible",
+    baseUrl: "https://api.openai.com/v1",
+  },
   {
     id: "openrouter",
-    label: "OpenRouter",
+    label: t("OpenRouter"),
     kind: "openaiCompatible",
     baseUrl: "https://openrouter.ai/api/v1",
   },
   {
     id: "anthropic",
-    label: "Anthropic",
+    label: t("Anthropic"),
     kind: "anthropic",
     baseUrl: "https://api.anthropic.com/v1",
   },
-  { id: "custom", label: "Custom (OpenAI-compatible)", kind: "openaiCompatible", baseUrl: "" },
+  { id: "custom", label: t("Custom (OpenAI-compatible)"), kind: "openaiCompatible", baseUrl: "" },
 ];
 
 export function textGeneratorDisplayName(config: TextGeneratorConfig): string {

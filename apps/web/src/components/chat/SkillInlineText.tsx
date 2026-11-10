@@ -9,6 +9,7 @@ import { SKILL_CHIP_ICON_SVG } from "../composerInlineChip";
 import { ContextChipPopover } from "../contextChipParts";
 import { Button } from "../ui/button";
 import { ModelMentionChip } from "./ModelMentionChip";
+import { t } from "~/i18n";
 
 function SkillInlineText(props: {
   text: string;
@@ -133,10 +134,10 @@ export function SkillChipPopover(props: {
     >
       <div className="space-y-3 p-2 text-sm">
         <p className="font-medium">{props.label}</p>
-        <p>{props.description || "No description is available for this skill."}</p>
+        <p>{props.description || t("No description is available for this skill.")}</p>
         {props.onViewInstructions ? (
           <Button variant="outline" size="sm" onClick={props.onViewInstructions}>
-            View instructions
+            {t("View instructions")}
           </Button>
         ) : null}
       </div>

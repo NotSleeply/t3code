@@ -17,6 +17,7 @@ import {
   usePullRequestReviewStore,
 } from "./pullRequestReviewStore";
 import { pullRequestCompletionScope } from "./PullRequestMarkdownTextarea";
+import { t } from "~/i18n";
 
 export function PullRequestComposer({
   environmentId,
@@ -104,12 +105,12 @@ export function PullRequestComposer({
         sideOffset={8}
         width="lg"
         initialFocus={mode === "review" ? reviewRef : commentRef}
-        aria-label={`${capitalizeTerm(term)} composer`}
+        aria-label={t("{0} composer", [capitalizeTerm(term)])}
       >
         <div className="mb-3 flex items-center justify-between gap-2">
           {canComment && verdicts.length > 0 ? (
             <ToggleGroup
-              aria-label="Composer mode"
+              aria-label={t("Composer mode")}
               variant="segmented"
               value={[mode]}
               onValueChange={(next) => {
@@ -117,7 +118,7 @@ export function PullRequestComposer({
                 if (value === "comment" || value === "review") setRequestedMode(value);
               }}
             >
-              <Toggle value="comment">Comment</Toggle>
+              <Toggle value="comment">{t("Comment")}</Toggle>
               <Toggle value="review">
                 {pendingComments.length > 0 ? `Review (${pendingComments.length})` : "Review"}
               </Toggle>
@@ -132,8 +133,8 @@ export function PullRequestComposer({
               <Button
                 size="icon-xs"
                 variant="ghost"
-                aria-label="Discard pending line comments"
-                title="Discard pending line comments"
+                aria-label={t("Discard pending line comments")}
+                title={t("Discard pending line comments")}
                 disabled={reviewPending}
                 onClick={() => clearComments(reviewKey)}
               >
@@ -142,7 +143,7 @@ export function PullRequestComposer({
             ) : null}
             <PopoverClose
               render={<Button size="icon-xs" variant="ghost" />}
-              aria-label="Close composer"
+              aria-label={t("Close composer")}
             >
               <XIcon className="size-3.5" />
             </PopoverClose>

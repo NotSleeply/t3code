@@ -1,6 +1,7 @@
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card";
 
 import { cn } from "~/lib/utils";
+import { t } from "~/i18n";
 
 const PreviewCard = PreviewCardPrimitive.Root;
 

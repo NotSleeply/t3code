@@ -33,6 +33,7 @@ import {
   type Painted,
 } from "./sheet-paint";
 import { externalUrl } from "./links";
+import { t } from "~/i18n";
 
 const isSupersededError = Schema.is(SupersededError);
 
@@ -111,7 +112,7 @@ export default function Spreadsheet(props: {
       />
       <div
         role="tablist"
-        aria-label="Sheets"
+        aria-label={t("Sheets")}
         className="flex h-9 shrink-0 items-center gap-1 overflow-x-auto border-t border-border px-2"
         onKeyDown={(event) => {
           const current = opened.tabs.findIndex(

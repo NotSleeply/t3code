@@ -1,6 +1,7 @@
 import { cn } from "~/lib/utils";
 
 import { CommandBlock } from "./CommandBlock";
+import { t } from "~/i18n";
 
 /**
  * Setup steps for another computer: install `t3`, then run `command`. Both installers are shown
@@ -15,16 +16,16 @@ export function InstallT3Commands({
 }) {
   return (
     <div className={cn("space-y-2", className)}>
-      <p className="text-xs text-muted-foreground">macOS, Linux</p>
+      <p className="text-xs text-muted-foreground">{t("macOS, Linux")}</p>
       <CommandBlock command="curl -fsSL https://t3.codes/install.sh | sh" />
-      <p className="text-xs text-muted-foreground">Windows (PowerShell)</p>
+      <p className="text-xs text-muted-foreground">{t("Windows (PowerShell)")}</p>
       <CommandBlock command="irm https://t3.codes/install.ps1 | iex" />
-      <p className="text-xs text-muted-foreground">Then</p>
+      <p className="text-xs text-muted-foreground">{t("Then")}</p>
       <CommandBlock command={command} />
       <p className="text-xs text-muted-foreground">
-        Skip the install if you already have <code className="font-mono">t3</code>. If{" "}
-        <code className="font-mono">t3</code> is not found after installing, add the folder the
-        installer names to your PATH.
+        {t("Skip the install if you already have")} <code className="font-mono">t3</code>
+        {t(". If")} <code className="font-mono">t3</code>{" "}
+        {t("is not found after installing, add the folder the installer names to your PATH.")}
       </p>
     </div>
   );

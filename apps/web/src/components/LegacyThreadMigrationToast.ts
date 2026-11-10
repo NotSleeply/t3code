@@ -1,6 +1,7 @@
 import { appAtomRegistry } from "../rpc/atomRegistry";
 import { primaryServerLegacyThreadMigrationAtom } from "../state/server";
 import { toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 type MigrationToastId = ReturnType<typeof toastManager.add>;
 
@@ -15,7 +16,7 @@ export function startLegacyThreadMigrationToast(): () => void {
         if (toastId !== null) return;
         toastId = toastManager.add({
           type: "loading",
-          title: "Restoring your threads…",
+          title: t("Restoring your threads…"),
           description: `Migrating ${migration.totalThreadCount.toLocaleString()} ${
             migration.totalThreadCount === 1 ? "thread" : "threads"
           } from the previous version. You can keep working while this finishes.`,

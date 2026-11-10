@@ -5,6 +5,7 @@ import { toastManager } from "./components/ui/toast";
 import { appAtomRegistry } from "./rpc/atomRegistry";
 import { environmentPresentations } from "./state/presentation";
 import { serverEnvironment } from "./state/server";
+import { t } from "~/i18n";
 
 type ProviderAuthDelivery = NonNullable<ReturnType<typeof readCodexAuthDelivery>>;
 
@@ -53,15 +54,15 @@ async function completeProviderAuth(delivery: ProviderAuthDelivery): Promise<voi
     if (result._tag === "Failure") {
       toastManager.add({
         type: "error",
-        title: "ChatGPT sign-in couldn't finish",
-        description: "Return to the provider and try again.",
+        title: t("ChatGPT sign-in couldn't finish"),
+        description: t("Return to the provider and try again."),
       });
     }
   } catch {
     toastManager.add({
       type: "error",
-      title: "ChatGPT sign-in couldn't finish",
-      description: "Reconnect to the environment and try again.",
+      title: t("ChatGPT sign-in couldn't finish"),
+      description: t("Reconnect to the environment and try again."),
     });
   }
 }

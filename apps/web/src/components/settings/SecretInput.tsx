@@ -1,5 +1,6 @@
 import { DraftInput, type DraftInputProps } from "../ui/draft-input";
 import { Input, type InputProps } from "../ui/input";
+import { t } from "~/i18n";
 
 type SecretInputProps = Omit<InputProps, "type" | "autoComplete" | "defaultValue" | "value"> & {
   /** Pass only the replacement draft as `value`. */
@@ -20,8 +21,8 @@ export function SecretInput({
     autoComplete: "off",
     spellCheck: false,
     placeholder: configured
-      ? "Stored secret, enter a new value to replace"
-      : (placeholder ?? "Not set"),
+      ? t("Stored secret, enter a new value to replace")
+      : (placeholder ?? t("Not set")),
   };
   if (onCommit) {
     return (

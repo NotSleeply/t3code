@@ -7,6 +7,7 @@ import {
   type TextPreviewRequest,
   type TextPreviewResult,
 } from "./largeTextProtocol";
+import { t } from "~/i18n";
 
 const chunks: { start: number; blob: Blob }[] = [];
 const offsets: Uint32Array[] = [new Uint32Array(65536)];
@@ -183,7 +184,7 @@ self.addEventListener("message", (event: MessageEvent<TextPreviewRequest>) => {
     reply({
       type: "error",
       operation: input.type,
-      message: cause instanceof Error ? cause.message : "Could not read this file.",
+      message: cause instanceof Error ? cause.message : t("Could not read this file."),
     }),
   );
 });

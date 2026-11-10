@@ -15,6 +15,7 @@ import { readEnvironment } from "../state/environments";
 import { projectEnvironment } from "../state/projects";
 import { readEnvironmentScope, useEnvironmentsWithScope } from "../state/session";
 import { useOrchestrationCommand } from "../state/use-orchestration-command";
+import { t } from "~/i18n";
 
 export type ProjectGroupUpdate = Partial<{
   title: string;
@@ -148,7 +149,7 @@ export function reportProjectFailure(title: string, result: AtomCommandResult<un
     stackedThreadToast({
       type: "error",
       title,
-      description: error instanceof Error ? error.message : "An error occurred.",
+      description: error instanceof Error ? error.message : t("An error occurred."),
     }),
   );
 }

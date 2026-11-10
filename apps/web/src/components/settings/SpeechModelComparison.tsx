@@ -3,6 +3,7 @@ import { CheckIcon } from "lucide-react";
 
 import { cn } from "../../lib/utils";
 import { languageLabel } from "./SpeechLanguageSelect";
+import { t } from "~/i18n";
 
 const commonLanguages = [
   "en",
@@ -101,7 +102,8 @@ export function ModelBenchmarks({
             {score ? (
               <>
                 <strong className="font-medium text-foreground">{score.grade}</strong> (
-                {score.errorPercent}% error)
+                {score.errorPercent}
+                {t("% error)")}
               </>
             ) : (
               "not benchmarked"
@@ -110,7 +112,7 @@ export function ModelBenchmarks({
         );
       })}
       <span>
-        Speed:{" "}
+        {t("Speed:")}{" "}
         {tier === "cpu" && data && data.secondsPer30s.cpu === undefined ? (
           "update server"
         ) : seconds == null ? (

@@ -8,6 +8,7 @@ import { workspaceAreaProps } from "../../lib/workspaceFocus";
 import { cn } from "~/lib/utils";
 
 import { RightPanelResizeHandle } from "./RightPanelResizeHandle";
+import { t } from "~/i18n";
 
 export type PreviewPanelMode = "inline" | "sheet" | "sidebar" | "embedded";
 
@@ -129,8 +130,10 @@ function PreviewPanelShellFrame(
             : "shrink-0 border-l border-border"
           : "w-full",
         collapsible &&
-          "[[data-panel-animations=true]_&]:transition-[width] [[data-panel-animations=true]_&]:duration-(--panel-animation-duration) [[data-panel-animations=true]_&]:ease-out",
-        collapsible && open && "[[data-panel-animations=true]_&]:starting:w-0!",
+          t(
+            "[[data-panel-animations=true]_&]:transition-[width] [[data-panel-animations=true]_&]:duration-(--panel-animation-duration) [[data-panel-animations=true]_&]:ease-out",
+          ),
+        collapsible && open && t("[[data-panel-animations=true]_&]:starting:w-0!"),
         collapsible && !open && "pointer-events-none",
       )}
       style={
@@ -140,9 +143,9 @@ function PreviewPanelShellFrame(
               width: maximized
                 ? "100%"
                 : collapsible && !open
-                  ? "0px"
+                  ? t("0px")
                   : `var(${RESIZABLE_WIDTH_PROPERTY})`,
-              transitionDuration: suppressWidthTransition ? "0ms" : undefined,
+              transitionDuration: suppressWidthTransition ? t("0ms") : undefined,
             } as CSSProperties)
           : undefined
       }

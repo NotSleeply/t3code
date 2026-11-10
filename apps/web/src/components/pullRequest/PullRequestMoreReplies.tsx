@@ -1,4 +1,5 @@
 import type { PullRequestReplyAvailability } from "./pullRequestDetail.logic";
+import { t } from "~/i18n";
 
 export function PullRequestMoreReplies({
   moreReplies,
@@ -20,7 +21,7 @@ export function PullRequestMoreReplies({
           rel="noopener noreferrer"
           className="hover:text-foreground hover:underline"
         >
-          View on host
+          {t("View on host")}
         </a>
       ) : null}
     </div>

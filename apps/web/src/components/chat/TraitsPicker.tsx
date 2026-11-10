@@ -40,6 +40,7 @@ import { Badge } from "../ui/badge";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../ui/tooltip";
 import { ComposerControl, ComposerControlIcon, type ComposerControlSize } from "./ComposerControl";
 import { useComposerMenuState } from "./useComposerMenuState";
+import { t } from "~/i18n";
 
 type ProviderOptions = ReadonlyArray<ProviderOptionSelection>;
 
@@ -55,9 +56,9 @@ export function readPromptUltrathink(prompt: string): PromptUltrathink {
 }
 
 const SAVED_OPTION_LABELS: Readonly<Record<string, string>> = {
-  agent: "Agent",
-  effort: "Effort",
-  reasoningEffort: "Reasoning effort",
+  agent: t("Agent"),
+  effort: t("Effort"),
+  reasoningEffort: t("Reasoning effort"),
   variant: "Reasoning",
 };
 
@@ -106,7 +107,7 @@ type TraitsPersistence =
 function DefaultBadge() {
   return (
     <Badge variant="outline" size="sm" className="min-w-0">
-      Default
+      {t("Default")}
     </Badge>
   );
 }

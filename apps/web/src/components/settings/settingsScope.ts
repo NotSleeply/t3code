@@ -5,6 +5,7 @@ import type {
   SidebarProjectSnapshot,
 } from "../../sidebarProjectGrouping";
 import type { EnvironmentPresentation } from "../../state/environments";
+import { t } from "~/i18n";
 
 export interface SettingsScopeSearch {
   project?: string | undefined;
@@ -66,7 +67,7 @@ export function resolveSettingsScope(
   ): ResolvedSettingsScope => ({
     kind: "unavailable",
     reason,
-    label: "Unavailable selection",
+    label: t("Unavailable selection"),
     message,
     members: [],
     environmentIds: [],
@@ -127,7 +128,7 @@ export function resolveSettingsScope(
       kind: "project",
       group,
       environmentId: environment?.environmentId ?? null,
-      label: `${group.displayName} / ${environment?.label ?? "All checkouts"}`,
+      label: `${group.displayName} / ${environment?.label ?? t("All checkouts")}`,
       members,
       environmentIds: [...new Set(members.map((member) => member.environmentId))],
     };
@@ -143,7 +144,7 @@ export function resolveSettingsScope(
   }
   return {
     kind: "all",
-    label: "All environments",
+    label: t("All environments"),
     members: [],
     environmentIds: environments.map((candidate) => candidate.environmentId),
   };

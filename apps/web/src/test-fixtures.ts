@@ -14,6 +14,7 @@ import {
 import * as DateTime from "effect/DateTime";
 
 import type { ChatMessage, Thread } from "./types";
+import { t } from "~/i18n";
 
 const DEFAULT_TIMESTAMP = "2026-01-01T00:00:00.000Z";
 
@@ -30,7 +31,7 @@ export function makeThreadProjectionFixture(): OrchestrationV2ThreadProjection {
     thread: {
       id,
       projectId: ProjectId.make("project-test"),
-      title: "Thread",
+      title: t("Thread"),
       providerInstanceId,
       modelSelection: { instanceId: providerInstanceId, model: "gpt-5.4" },
       runtimeMode: "full-access",
@@ -95,7 +96,7 @@ export function makeThreadFixture(overrides: ThreadFixtureOverrides = {}): Threa
   const shell = presentThreadShell(environmentId, {
     id,
     projectId,
-    title: overrides.title ?? "Thread",
+    title: overrides.title ?? t("Thread"),
     providerInstanceId,
     modelSelection,
     runtimeMode: overrides.runtimeMode ?? "full-access",
@@ -163,7 +164,7 @@ export function makeStreamingTimelineFixture(text = "") {
       ...base("history-user-item", historyRunId, 0),
       type: "user_message",
       messageId: MessageId.make("history-user"),
-      text: "Inspect",
+      text: t("Inspect"),
       attachments: [],
       inputIntent: "turn_start",
       createdBy: "user",
@@ -181,7 +182,7 @@ export function makeStreamingTimelineFixture(text = "") {
       ...base("history-assistant-item", historyRunId, 3),
       type: "assistant_message",
       messageId: MessageId.make("history-assistant"),
-      text: "Done",
+      text: t("Done"),
       streaming: false,
       updatedAt: DateTime.makeUnsafe(time(4)),
     },
@@ -189,7 +190,7 @@ export function makeStreamingTimelineFixture(text = "") {
       ...base("live-user-item", runId, 5),
       type: "user_message",
       messageId: MessageId.make("live-user"),
-      text: "Continue",
+      text: t("Continue"),
       attachments: [],
       inputIntent: "turn_start",
       createdBy: "user",

@@ -11,6 +11,7 @@ import { appAtomRegistry } from "../rpc/atomRegistry";
 import { serverEnvironment } from "../state/server";
 import { formatShortTimestamp } from "../timestampFormat";
 import { toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 export { snoozeWakeLabel, type SnoozePreset };
 
@@ -39,8 +40,8 @@ export function pickSnoozePreset(
   if (!picked) {
     toastManager.add({
       type: "warning",
-      title: "Could not snooze thread",
-      description: "That snooze time has passed. Choose another time.",
+      title: t("Could not snooze thread"),
+      description: t("That snooze time has passed. Choose another time."),
     });
   }
   return picked;

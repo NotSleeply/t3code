@@ -5,25 +5,27 @@ import { RotateCcwIcon, SettingsIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../ui/tooltip";
 import { VoiceInputPill } from "./VoiceInputPill";
+import { t } from "~/i18n";
 
 const VOICE_ERROR_LABELS: Record<string, string> = {
-  [MICROPHONE_PERMISSION_ERROR]: "Microphone access needed",
-  "Microphone access is required for voice input.": "Microphone access needed",
-  "This draft is no longer available.": "Draft unavailable",
-  "Another voice recording is already active.": "Another recording active",
-  "Voice transcription is not available.": "Voice input unavailable",
-  "Voice transcription is still finishing. Try again shortly.": "Transcription still busy",
-  "Voice transcription is not available for this language.": "Language unsupported",
-  "Could not prepare voice transcription.": "Couldn’t prepare dictation",
-  "Could not start voice recording.": "Couldn’t start recording",
-  "Voice recording was interrupted.": "Recording interrupted",
-  "Could not finish voice recording.": "Couldn’t finish recording",
-  "Could not transcribe this recording.": "Transcription failed",
-  "Voice transcription on this environment failed.": "Transcription failed",
-  "The draft changed while voice input was running. The transcript was not added.": "Draft changed",
-  "No speech was detected.": "No speech detected",
-  "Microphone processing failed.": "Microphone processing failed",
-  "The microphone disconnected.": "Microphone disconnected",
+  [MICROPHONE_PERMISSION_ERROR]: t("Microphone access needed"),
+  "Microphone access is required for voice input.": t("Microphone access needed"),
+  "This draft is no longer available.": t("Draft unavailable"),
+  "Another voice recording is already active.": t("Another recording active"),
+  "Voice transcription is not available.": t("Voice input unavailable"),
+  "Voice transcription is still finishing. Try again shortly.": t("Transcription still busy"),
+  "Voice transcription is not available for this language.": t("Language unsupported"),
+  "Could not prepare voice transcription.": t("Couldn’t prepare dictation"),
+  "Could not start voice recording.": t("Couldn’t start recording"),
+  "Voice recording was interrupted.": t("Recording interrupted"),
+  "Could not finish voice recording.": t("Couldn’t finish recording"),
+  "Could not transcribe this recording.": t("Transcription failed"),
+  "Voice transcription on this environment failed.": t("Transcription failed"),
+  "The draft changed while voice input was running. The transcript was not added.":
+    t("Draft changed"),
+  "No speech was detected.": t("No speech detected"),
+  "Microphone processing failed.": t("Microphone processing failed"),
+  "The microphone disconnected.": t("Microphone disconnected"),
 };
 
 function voiceErrorLabel(error: string | null): string {
@@ -55,7 +57,7 @@ export function VoiceInputErrorPill(props: {
               type="button"
               size="icon-sm-pill"
               variant="ghost"
-              aria-label="Dismiss voice input error"
+              aria-label={t("Dismiss voice input error")}
               onPointerDown={(event) => event.preventDefault()}
               onClick={props.onDismiss}
             >
@@ -64,8 +66,9 @@ export function VoiceInputErrorPill(props: {
           }
         />
         <TooltipPopup side="top">
-          Dismiss voice input error
-          {props.cancelShortcutLabel ? ` (${props.cancelShortcutLabel})` : ""}
+          {t("Dismiss voice input error {0}", [
+            props.cancelShortcutLabel ? ` (${props.cancelShortcutLabel})` : "",
+          ])}
         </TooltipPopup>
       </Tooltip>
       <Tooltip>
@@ -74,14 +77,14 @@ export function VoiceInputErrorPill(props: {
             <span
               tabIndex={0}
               role="status"
-              aria-label={props.error ?? "Voice input failed"}
+              aria-label={props.error ?? t("Voice input failed")}
               className="min-w-0 flex-1 truncate text-sm text-destructive"
             />
           }
         >
           {voiceErrorLabel(props.error)}
         </TooltipTrigger>
-        <TooltipPopup side="top">{props.error ?? "Voice input failed"}</TooltipPopup>
+        <TooltipPopup side="top">{props.error ?? t("Voice input failed")}</TooltipPopup>
       </Tooltip>
       {props.errorAction ? (
         <Tooltip>

@@ -40,6 +40,7 @@ import { Input } from "../ui/input";
 import { Radio, RadioGroup } from "../ui/radio-group";
 import { WizardFooter, WizardHeader, WizardPanel, WizardPopup, WizardSteps } from "../ui/wizard";
 import { WorkLogRow } from "./WorkLog";
+import { t } from "~/i18n";
 
 const accessLabel = (access: AuthMcpClientAccess) => accessConfig[access].label;
 
@@ -88,7 +89,7 @@ function PendingLinkRequest(props: {
   const [declining, setDeclining] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const answer = useAtomCommand(peerLinkEnvironment.answerRequest, {
-    label: "decline link request",
+    label: t("decline link request"),
     reportFailure: false,
     reportDefect: false,
   });
@@ -140,7 +141,7 @@ function PendingLinkRequest(props: {
             disabled={declining}
             onClick={() => void decline()}
           >
-            Decline
+            {t("Decline")}
           </Button>
           <Button type="button" size="xs" disabled={declining} onClick={() => setOpen(true)}>
             {picksMachine(item) ? "Choose machine…" : "Review link…"}
@@ -148,7 +149,7 @@ function PendingLinkRequest(props: {
         </div>
       ) : (
         <p className="text-xs text-muted-foreground">
-          Only a session that manages access here can answer this.
+          {t("Only a session that manages access here can answer this.")}
         </p>
       )}
       <LinkRequestDialog
@@ -223,7 +224,7 @@ function LinkRequestDialog(props: {
   // Enter then a click can both run before a re-render; this guard is synchronous.
   const inFlight = useRef(false);
   const answer = useAtomCommand(peerLinkEnvironment.answerRequest, {
-    label: "answer link request",
+    label: t("answer link request"),
     // The failure cause holds the request, and with it the code; keep it out of the console.
     reportFailure: false,
     reportDefect: false,
@@ -331,7 +332,9 @@ function LinkRequestDialog(props: {
       <WizardPopup>
         <WizardHeader
           title={pickMachine ? "Link a machine" : `Link ${targetName}`}
-          description="Agents here can then launch, message and wait on threads there. Revoke it in that machine's Connections."
+          description={t(
+            "Agents here can then launch, message and wait on threads there. Revoke it in that machine's Connections.",
+          )}
         >
           {steps.length > 1 && !useExisting ? (
             <WizardSteps
@@ -373,7 +376,9 @@ function LinkRequestDialog(props: {
                 ) : null}
                 {asksAddress ? (
                   <label className="block space-y-1.5">
-                    <span className="block text-xs font-medium text-foreground">Address</span>
+                    <span className="block text-xs font-medium text-foreground">
+                      {t("Address")}
+                    </span>
                     <Input
                       value={address}
                       onChange={(event) => setAddress(event.target.value)}
@@ -384,8 +389,10 @@ function LinkRequestDialog(props: {
                     />
                     {target.kind === "machine" ? (
                       <span className="block text-xs text-muted-foreground">
-                        This app has no address for {target.label} that another machine can reach.
-                        Enter its https or Tailscale address.
+                        {t(
+                          "This app has no address for {0} that another machine can reach. Enter its https or Tailscale address.",
+                          [target.label],
+                        )}
                       </span>
                     ) : null}
                   </label>
@@ -401,20 +408,22 @@ function LinkRequestDialog(props: {
                     {canMint ? null : (
                       <label className="block space-y-1.5">
                         <span className="block text-xs font-medium text-foreground">
-                          Pairing code
+                          {t("Pairing code")}
                         </span>
                         <Input
                           value={pairingCode}
                           onChange={(event) => setPairingCode(event.target.value)}
-                          placeholder="Paste the code"
+                          placeholder={t("Paste the code")}
                           disabled={busy}
                           autoComplete="one-time-code"
                           nativeInput
                           spellCheck={false}
                         />
                         <span className="block text-xs text-muted-foreground">
-                          Create a link on {targetName}: Settings → Connections → Create link, then
-                          paste its code here.
+                          {t(
+                            "Create a link on {0}: Settings → Connections → Create link, then paste its code here.",
+                            [targetName],
+                          )}
                         </span>
                       </label>
                     )}
@@ -425,8 +434,10 @@ function LinkRequestDialog(props: {
             )}
             {useExisting ? (
               <p className="text-xs text-muted-foreground">
-                This environment is already linked to {targetName}. The agent can use that link as
-                it is; change its access in Settings → Connections.
+                {t("This environment is already linked to")} {targetName}
+                {t(
+                  ". The agent can use that link as it is; change its access in Settings → Connections.",
+                )}
               </p>
             ) : null}
             {error !== null ? (
@@ -447,11 +458,11 @@ function LinkRequestDialog(props: {
                 setError(null);
               }}
             >
-              Back
+              {t("Back")}
             </Button>
           ) : (
             <Button variant="outline" type="button" disabled={busy} onClick={close}>
-              Cancel
+              {t("Cancel")}
             </Button>
           )}
           <Button
@@ -478,7 +489,7 @@ function MachinePicker(props: {
   return (
     <div className="space-y-2">
       <span id={labelId} className="block text-xs font-medium">
-        Machine
+        {t("Machine")}
       </span>
       <RadioGroup
         aria-labelledby={labelId}
@@ -502,7 +513,7 @@ function MachinePicker(props: {
         ))}
         <label className="flex cursor-pointer items-center gap-2.5 rounded-lg border px-3 py-2 text-sm">
           <Radio value={ANOTHER_ADDRESS} />
-          <span className="min-w-0 flex-1 font-medium">Another address…</span>
+          <span className="min-w-0 flex-1 font-medium">{t("Another address…")}</span>
         </label>
       </RadioGroup>
     </div>

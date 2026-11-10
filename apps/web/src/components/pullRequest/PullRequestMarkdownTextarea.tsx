@@ -27,6 +27,7 @@ import { Popover, PopoverPopup } from "../ui/popover";
 import { Textarea, type TextareaProps } from "../ui/textarea";
 import { PULL_REQUEST_STATE_PRESENTATION } from "./pullRequestIcons";
 import { PullRequestActorAvatar, resolvePullRequestState } from "./pullRequestPresentation";
+import { t } from "~/i18n";
 
 /** The repository whose users `@` completes and whose issues and change requests `#` does. */
 export interface PullRequestCompletionScope {
@@ -100,12 +101,12 @@ function ReferenceStateIcon({ candidate }: { candidate: PullRequestReferenceCand
       ? resolvePullRequestState({ state: candidate.state, isDraft: false })
       : candidate.state === "open"
         ? {
-            label: "Open issue",
+            label: t("Open issue"),
             Icon: CircleDotIcon,
             toneClassName: PULL_REQUEST_STATE_PRESENTATION.open.toneClassName,
           }
         : {
-            label: "Closed issue",
+            label: t("Closed issue"),
             Icon: CircleCheckIcon,
             toneClassName: PULL_REQUEST_STATE_PRESENTATION.merged.toneClassName,
           };
@@ -143,13 +144,13 @@ function CompletionRow({ completion }: { completion: PullRequestCompletion }) {
 
 const EMPTY_STATE = {
   mention: {
-    label: "Mention a user",
+    label: t("Mention a user"),
     pending: "Searching users...",
     failed: "Couldn't search users on the host",
     none: "No matching users",
   },
   reference: {
-    label: "Reference an issue or change request",
+    label: t("Reference an issue or change request"),
     pending: "Searching...",
     failed: "Couldn't search the host",
     none: "No matching issues or change requests",

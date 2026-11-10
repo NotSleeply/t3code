@@ -20,6 +20,7 @@ import type { makeThreadErrorSetter } from "../ChatView.logic";
 import { draftSendState } from "./chatViewSend";
 import type { useTimelineFollow } from "./useTimelineFollow";
 import type { useUsageLimitsPanel } from "./useUsageLimitsPanel";
+import { t } from "~/i18n";
 
 interface ComposerResumeInput {
   readonly environmentId: EnvironmentId;
@@ -128,7 +129,7 @@ export function useComposerResume(input: ComposerResumeInput) {
           message: {
             messageId: newMessageId(),
             role: "user",
-            text: "Continue where you left off.",
+            text: t("Continue where you left off."),
             attachments: [],
           },
           runtimeMode,

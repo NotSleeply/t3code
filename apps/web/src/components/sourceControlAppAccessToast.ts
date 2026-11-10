@@ -4,6 +4,7 @@ import { runAtomCommand } from "@t3tools/client-runtime/state/runtime";
 import { appAtomRegistry } from "../rpc/atomRegistry";
 import { sourceControlEnvironment } from "../state/sourceControl";
 import { toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 /**
  * After a clone, suggests installing the forge app on the repository's owner when the server is
@@ -19,7 +20,7 @@ export async function suggestAppAccessForRemote(
     appAtomRegistry,
     sourceControlEnvironment.checkAppAccess,
     { environmentId, input: target.input },
-    { label: "check app access", reportFailure: false, reportDefect: false },
+    { label: t("check app access"), reportFailure: false, reportDefect: false },
   );
   if (result._tag !== "Success" || result.value.status !== "not-covered") return;
   const owner = target.input.repository.split("/")[0] ?? target.input.repository;

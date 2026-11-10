@@ -8,6 +8,7 @@ import { readLocalApi } from "../localApi";
 import { appAtomRegistry } from "../rpc/atomRegistry";
 import { sourceControlEnvironment } from "../state/sourceControl";
 import { toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 // Separate keys so a count written by another tab can never undo a dismissal.
 const SENT_KEY = "t3code:github-star-prompt:sent";
@@ -42,8 +43,8 @@ function showStarPrompt(environmentId: EnvironmentId) {
       dismiss();
       toastManager.update(id, {
         type: "success",
-        title: "Thanks for the star!",
-        description: "It really helps T3 Code grow.",
+        title: t("Thanks for the star!"),
+        description: t("It really helps T3 Code grow."),
         timeout: 5_000,
         actionProps: undefined,
         data: {},
@@ -57,8 +58,8 @@ function showStarPrompt(environmentId: EnvironmentId) {
     toastManager.update(id, { actionProps: { children: "Open GitHub", onClick: openInBrowser } });
   };
   const id = toastManager.add({
-    title: "Enjoying T3 Code?",
-    description: "Give us a star on GitHub to let us know!",
+    title: t("Enjoying T3 Code?"),
+    description: t("Give us a star on GitHub to let us know!"),
     timeout: 0,
     onClose: dismiss,
     actionProps: { children: "Star on GitHub", onClick: () => void starInPlace() },
@@ -123,7 +124,7 @@ async function alreadyStarred(environmentId: EnvironmentId) {
     appAtomRegistry,
     sourceControlEnvironment.checkStarred,
     starInput(environmentId),
-    { label: "check GitHub star", reportFailure: false, reportDefect: false },
+    { label: t("check GitHub star"), reportFailure: false, reportDefect: false },
   );
   return result._tag === "Success" ? result.value : undefined;
 }
@@ -133,7 +134,7 @@ async function starRepository(environmentId: EnvironmentId) {
     appAtomRegistry,
     sourceControlEnvironment.star,
     starInput(environmentId),
-    { label: "star on GitHub", reportFailure: false, reportDefect: false },
+    { label: t("star on GitHub"), reportFailure: false, reportDefect: false },
   );
   return result._tag === "Success" && result.value;
 }

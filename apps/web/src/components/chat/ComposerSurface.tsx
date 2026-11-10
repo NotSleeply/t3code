@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 
 import { cn } from "~/lib/utils";
+import { t } from "~/i18n";
 
 function Shell({
   contextRow = false,

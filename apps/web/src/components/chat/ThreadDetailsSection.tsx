@@ -1,6 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "../../lib/utils";
+import { t } from "~/i18n";
 
 export function ThreadDetailsSection({
   headingId,
@@ -26,7 +27,7 @@ export function ThreadDetailsSection({
       // collapses, and a divider only follows a section that has content.
       className={cn(
         "px-2 pt-2 pb-2.5 has-[>div:last-child:empty]:hidden",
-        separated && "border-border/65 [section:not(:has(>div:last-child:empty))~&]:border-t",
+        separated && t("border-border/65 [section:not(:has(>div:last-child:empty))~&]:border-t"),
       )}
     >
       <div

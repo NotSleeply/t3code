@@ -6,6 +6,7 @@ import * as Signature from "effect/crypto/Signature";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Schema from "effect/Schema";
+import { t } from "~/i18n";
 
 export interface BrowserDpopKey {
   readonly privateKey: CryptoKey;
@@ -149,7 +150,7 @@ export const loadOrCreateProofKey = Effect.fn("dpop.loadOrCreateProofKey")(funct
         .pipe(
           Effect.mapError(
             (cause) =>
-              new DpopProof.DpopProofError({ message: "Could not sign DPoP proof.", cause }),
+              new DpopProof.DpopProofError({ message: t("Could not sign DPoP proof."), cause }),
           ),
         ),
   } satisfies DpopProof.DpopProofKey;

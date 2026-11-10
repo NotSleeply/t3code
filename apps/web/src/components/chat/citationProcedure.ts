@@ -6,6 +6,7 @@ import { environmentThreadDetails, threadEnvironment } from "../../state/threads
 import { toastManager } from "../ui/toast";
 import type { AssistantCitationRequest } from "./AssistantCitationSource";
 import type { MessagesTimelineRow } from "./MessagesTimeline.logic";
+import { t } from "~/i18n";
 
 /** Whether the cited response is in the loaded history, after paging toward it. */
 export type CitedHistory =
@@ -38,15 +39,16 @@ const MAX_CITATION_PAGES = 20;
 
 const COULD_NOT_LOAD = {
   _tag: "failed",
-  title: "Could not load the cited response",
-  description:
+  title: t("Could not load the cited response"),
+  description: t(
     "Load earlier turns, then click the citation to try again. Your saved quote is unchanged.",
+  ),
 } as const;
 
 const UNAVAILABLE = {
   _tag: "failed",
-  title: "The cited response is unavailable",
-  description: "It may have been removed. The selected text is still saved in your citation.",
+  title: t("The cited response is unavailable"),
+  description: t("It may have been removed. The selected text is still saved in your citation."),
 } as const;
 
 /**
@@ -68,8 +70,8 @@ export async function loadCitedHistory(input: {
     if (thread.message === "other") {
       return {
         _tag: "failed",
-        title: "The citation does not refer to an assistant response",
-        description: "The selected text is still saved in your citation.",
+        title: t("The citation does not refer to an assistant response"),
+        description: t("The selected text is still saved in your citation."),
       };
     }
     if (!thread.hasMoreHistory) return UNAVAILABLE;
@@ -202,11 +204,11 @@ const citedHistoryAtom = Atom.family(
             get.registry,
             threadEnvironment.loadEarlierHistory,
             { environmentId, input: { threadId, throughEntryId: messageId } },
-            { label: "load cited thread history", reportFailure: false },
+            { label: t("load cited thread history"), reportFailure: false },
           );
           return result._tag === "Success"
             ? result.value
-            : { _tag: "error", message: "Could not load history." };
+            : { _tag: "error", message: t("Could not load history.") };
         },
       }).then((outcome) => {
         if (outcome._tag === "aborted") return;

@@ -137,6 +137,7 @@ import { useThreadFindPositionReader } from "./useThreadFindPositionReader";
 import { ThreadActivityAnnouncer } from "./ThreadActivityAnnouncer";
 import { useStableHandoffRuns, useIncrementalTimelineRows, useStableRows } from "./useTimelineRows";
 import { useClientSettings } from "../../hooks/useSettings";
+import { t } from "~/i18n";
 
 function timelineListStateFor(identity: string): {
   readonly identity: string;
@@ -1087,7 +1088,7 @@ const ConversationTimeline = memo(function ConversationTimeline({
             icon={parentThreadLink.sideChat ? MessagesSquareIcon : BotIcon}
             {...(parentThreadLink.open === undefined
               ? {}
-              : { actionLabel: "Open parent thread", onAction: parentThreadLink.open })}
+              : { actionLabel: t("Open parent thread"), onAction: parentThreadLink.open })}
           />
         </div>
       </div>
@@ -1262,7 +1263,9 @@ const ConversationTimeline = memo(function ConversationTimeline({
           className="flex h-full items-center justify-center ps-(--chat-lane-inset-start) pe-(--chat-lane-inset-end)"
           style={{ paddingBottom: emptyPlaceholderInset }}
         >
-          <p className="text-sm text-muted-foreground">Send a message to start the conversation.</p>
+          <p className="text-sm text-muted-foreground">
+            {t("Send a message to start the conversation.")}
+          </p>
         </div>
       </>
     );
@@ -1364,7 +1367,7 @@ function TimelineHistoryControl(props: MessagesTimelineHistoryControls) {
           <button
             type="button"
             disabled={props.loading}
-            aria-label="Load earlier turns"
+            aria-label={t("Load earlier turns")}
             onClick={() => props.onLoadEarlier()}
             className="flex w-full cursor-pointer items-center gap-3 py-1.5 text-muted-foreground text-xs hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring disabled:cursor-default"
           >
@@ -1536,7 +1539,7 @@ function ContextCompactionTimelineRow({
         label
       )}
       {row.failure ? (
-        <span className="min-w-0 truncate opacity-80">&middot; {row.failure}</span>
+        <span className="min-w-0 truncate opacity-80">{t("&middot; {0}", [row.failure])}</span>
       ) : null}
     </span>
   );
@@ -1603,7 +1606,7 @@ function useDeferredWorkLoading(
 
 function WorkHistorySkeleton() {
   return (
-    <div role="status" aria-label="Loading work history" className="space-y-2 px-1 pb-1 pt-3">
+    <div role="status" aria-label={t("Loading work history")} className="space-y-2 px-1 pb-1 pt-3">
       {[0, 1, 2].map((index) => (
         <div key={index} className="flex items-center gap-2" aria-hidden="true">
           <Skeleton className="size-3 shrink-0" />
@@ -1676,7 +1679,7 @@ function AttemptFoldTimelineRow({ row }: { row: Extract<TimelineRow, { kind: "at
           {row.label}
           {error ? ` · ${error}` : ""}
         </span>
-        <span className="text-2xs text-muted-foreground">Cut off by a steer</span>
+        <span className="text-2xs text-muted-foreground">{t("Cut off by a steer")}</span>
       </button>
       {loading ? <WorkHistorySkeleton /> : null}
     </div>

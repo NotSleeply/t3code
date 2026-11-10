@@ -21,6 +21,7 @@ import { useAtomCommand } from "../../state/use-atom-command";
 import { Button, InlineButton } from "../ui/button";
 import { Spinner } from "../ui/spinner";
 import { RedactedSensitiveText } from "./RedactedSensitiveText";
+import { t } from "~/i18n";
 
 type SignInState =
   | { readonly status: "idle" }
@@ -162,10 +163,10 @@ export function SourceControlAppSignInSettings({
     subtitle =
       account !== null && !tokenOverrides ? (
         <span className="flex min-w-0 items-center gap-1">
-          Signed in as
+          {t("Signed in as")}
           <RedactedSensitiveText
             value={account}
-            ariaLabel="Signed-in GitHub account"
+            ariaLabel={t("Signed-in GitHub account")}
             revealTooltip="Show account"
             hideTooltip="Hide account"
           />
@@ -177,7 +178,7 @@ export function SourceControlAppSignInSettings({
       );
     action = (
       <Button size="xs" variant="outline" disabled={!canSignIn} onClick={() => void signOut()}>
-        Sign out
+        {t("Sign out")}
       </Button>
     );
   } else if (waiting !== null) {
@@ -191,7 +192,7 @@ export function SourceControlAppSignInSettings({
           void cancel({ environmentId, input: { provider: definition.kind, host } });
         }}
       >
-        Cancel
+        {t("Cancel")}
       </Button>
     );
   } else {
@@ -231,7 +232,7 @@ export function SourceControlAppSignInSettings({
             <Button
               size="icon-xs"
               variant="ghost"
-              aria-label="Copy code"
+              aria-label={t("Copy code")}
               onClick={() => copyToClipboard(waiting.userCode, undefined)}
             >
               <MorphIcon className="size-3.5" icon={isCopied ? Check : Copy} />
@@ -245,12 +246,12 @@ export function SourceControlAppSignInSettings({
               }
               onClick={() => copyToClipboard(waiting.userCode, undefined)}
             >
-              Copy code & open GitHub
+              {t("Copy code & open GitHub")}
               <ExternalLinkIcon aria-hidden className="size-3.5" />
             </Button>
             <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span aria-hidden className="size-1.5 rounded-full bg-warning" />
-              Waiting for approval · code expires at {expiryTime(waiting.expiresAt)}
+              {t("Waiting for approval · code expires at")} {expiryTime(waiting.expiresAt)}
             </p>
           </div>
         </div>
@@ -259,10 +260,10 @@ export function SourceControlAppSignInSettings({
       {signedIn ? (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
           <span className="min-w-0 flex-1">
-            Reaches repositories in accounts and organizations that installed the app.
+            {t("Reaches repositories in accounts and organizations that installed the app.")}
           </span>
-          <ExternalLink href={appSignIn.installUrl}>Install on an organization</ExternalLink>
-          <ExternalLink href={appSignIn.revokeUrl}>Manage on GitHub</ExternalLink>
+          <ExternalLink href={appSignIn.installUrl}>{t("Install on an organization")}</ExternalLink>
+          <ExternalLink href={appSignIn.revokeUrl}>{t("Manage on GitHub")}</ExternalLink>
         </div>
       ) : null}
 

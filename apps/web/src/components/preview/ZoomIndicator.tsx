@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "~/lib/utils";
+import { t } from "~/i18n";
 
 const HIDE_AFTER_MS = 1500;
 const ZOOM_EPSILON = 0.001;
@@ -39,7 +40,7 @@ export function ZoomIndicator({ zoomFactor }: Props) {
       aria-hidden={!visible}
       className={cn(
         "pointer-events-none absolute top-3 right-3 z-20 select-none rounded-full border border-border/70 bg-popover/95 px-2.5 py-1 text-xs font-medium text-foreground shadow-md/10 backdrop-blur transition-all duration-200 ease-out",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1",
+        visible ? "opacity-100 translate-y-0" : t("opacity-0 -translate-y-1"),
       )}
     >
       {percent}

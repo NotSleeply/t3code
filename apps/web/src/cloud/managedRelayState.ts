@@ -27,6 +27,7 @@ import { AsyncResult, Atom } from "effect/reactivity";
 
 import { runtime } from "../lib/runtime";
 import { appAtomRegistry } from "../rpc/atomRegistry";
+import { t } from "~/i18n";
 
 const managedRelayAtomRuntime = Atom.runtime(
   Layer.effect(
@@ -44,7 +45,7 @@ const managedRelayMutationScheduler = createAtomCommandScheduler();
 export const deregisterManagedRelayEnvironmentCommand = createRuntimeCommand(
   managedRelayAtomRuntime,
   {
-    label: "web:managed-relay:deregister-environment",
+    label: t("web:managed-relay:deregister-environment"),
     scheduler: managedRelayMutationScheduler,
     concurrency: {
       mode: "serial",
@@ -63,7 +64,7 @@ const accountSerial = {
 export const createManagedRelayT3ChatLinkRequestCommand = createRuntimeCommand(
   managedRelayAtomRuntime,
   {
-    label: "web:managed-relay:create-t3chat-link-request",
+    label: t("web:managed-relay:create-t3chat-link-request"),
     scheduler: managedRelayMutationScheduler,
     concurrency: accountSerial,
     execute: (input: { readonly accountId: string }, registry) =>
@@ -72,7 +73,7 @@ export const createManagedRelayT3ChatLinkRequestCommand = createRuntimeCommand(
 );
 
 export const unlinkManagedRelayT3ChatCommand = createRuntimeCommand(managedRelayAtomRuntime, {
-  label: "web:managed-relay:unlink-t3chat",
+  label: t("web:managed-relay:unlink-t3chat"),
   scheduler: managedRelayMutationScheduler,
   concurrency: accountSerial,
   execute: (input: { readonly accountId: string }, registry) =>

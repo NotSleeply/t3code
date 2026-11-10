@@ -8,6 +8,7 @@ import { writeTextToClipboard } from "~/hooks/useCopyToClipboard";
 import { readLocalApi } from "~/localApi";
 
 import { toastManager } from "../ui/toast";
+import { t } from "~/i18n";
 
 export type PullRequestLinkContextMenuAction = "copy-link" | "open-external";
 
@@ -18,7 +19,7 @@ function pullRequestLinkContextMenuItems(
   openLabel: string,
 ): readonly ContextMenuItem<PullRequestLinkContextMenuAction>[] {
   return [
-    { id: "copy-link", label: "Copy link", icon: "copy" },
+    { id: "copy-link", label: t("Copy link"), icon: "copy" },
     { id: "open-external", label: openLabel },
   ];
 }
@@ -46,7 +47,7 @@ export async function showPullRequestLinkContextMenu({
   } catch {
     toastManager.add({
       type: "error",
-      title: action === "copy-link" ? "Could not copy the link" : "Could not open the link",
+      title: action === "copy-link" ? t("Could not copy the link") : t("Could not open the link"),
     });
   }
 }

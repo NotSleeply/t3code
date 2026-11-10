@@ -13,6 +13,7 @@ import {
   type WordSpan,
   type WordLink,
 } from "./word-protocol";
+import { t } from "~/i18n";
 
 type Opened = {
   pages: readonly WordPageSize[];
@@ -98,7 +99,7 @@ export default function WordDocument(props: {
     <OfficePages
       pages={opened.pages}
       paint={opened.paint}
-      label="Page"
+      label={t("Page")}
       scrollRef={scroll}
       onError={onError}
       overlay={(index) => (

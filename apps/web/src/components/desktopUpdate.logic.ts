@@ -1,4 +1,5 @@
 import type { DesktopUpdateActionResult, DesktopUpdateState } from "@t3tools/contracts";
+import { t } from "~/i18n";
 
 export type DesktopUpdateButtonAction = "download" | "install" | "none";
 
@@ -161,6 +162,6 @@ export function getDesktopUpdateIdleTooltip(
 ) {
   const disabledReason = getDesktopUpdateDisabledReason(state, managedDenial);
   return disabledReason
-    ? { title: "Updates unavailable", detail: disabledReason }
-    : { title: "Check for updates", detail: null };
+    ? { title: t("Updates unavailable"), detail: disabledReason }
+    : { title: t("Check for updates"), detail: null };
 }

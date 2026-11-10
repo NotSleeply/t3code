@@ -16,6 +16,7 @@ import {
   supportsDesktopAppUpdate,
 } from "~/versionSkew";
 import type { ServerUpdateOutcome, ServerUpdateTarget } from "../ServerUpdateAction";
+import { t } from "~/i18n";
 
 export interface UpdateEverythingMachine {
   readonly environmentId: EnvironmentId;
@@ -463,7 +464,7 @@ export function describeUpdateCapsule(
     return { tone: "default", label: `Restart in ${seconds}s`, action: "later" };
   }
   if (run.phase === "installing") {
-    return { tone: "default", label: "Restarting…", action: null };
+    return { tone: "default", label: t("Restarting…"), action: null };
   }
   const active = machines.filter(({ status }) => isActive(status) && status !== "waiting");
   const slowest = active.toSorted((a, b) => a.machine.startedAt - b.machine.startedAt)[0];
@@ -504,7 +505,7 @@ export function describeUpdateCapsule(
 }
 
 export const RUN_STATUS_LABELS: Record<UpdateRunMachineStatus, string> = {
-  providers: "updating providers",
+  providers: t("updating providers"),
   waiting: "waiting",
   downloading: "downloading",
   restarting: "restarting",
@@ -576,7 +577,7 @@ export function getUpdateEverythingToastView(
   }
   return {
     type: "error",
-    title: parts.length === 0 ? "Update failed" : `Updated ${joinList(parts)}`,
+    title: parts.length === 0 ? t("Update failed") : `Updated ${joinList(parts)}`,
     description: [...result.failures, ...restarting].join("\n"),
   };
 }

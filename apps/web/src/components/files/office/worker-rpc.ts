@@ -4,6 +4,7 @@
 // (as the markdown worker's queue does), transferable payloads, and a worker that fails every pending call when it dies.
 
 import * as Schema from "effect/Schema";
+import { t } from "~/i18n";
 
 /** What one method takes and returns. */
 export type Method<Input, Output> = { readonly input: Input; readonly output: Output };
@@ -99,10 +100,10 @@ export function createWorkerClient<M extends Methods>(worker: Worker) {
   });
 
   worker.addEventListener("error", (event) =>
-    fail(new WorkerClosedError({ message: event.message || "The Office engine stopped" })),
+    fail(new WorkerClosedError({ message: event.message || t("The Office engine stopped") })),
   );
   worker.addEventListener("messageerror", () =>
-    fail(new WorkerClosedError({ message: "The Office engine sent an unreadable reply" })),
+    fail(new WorkerClosedError({ message: t("The Office engine sent an unreadable reply") })),
   );
 
   return {
@@ -114,7 +115,7 @@ export function createWorkerClient<M extends Methods>(worker: Worker) {
       if (state.failure) return Promise.reject(state.failure);
 
       if (options.signal?.aborted)
-        return Promise.reject(new WorkerClosedError({ message: "The call was aborted" }));
+        return Promise.reject(new WorkerClosedError({ message: t("The call was aborted") }));
 
       const id = ++state.next;
 
@@ -123,7 +124,7 @@ export function createWorkerClient<M extends Methods>(worker: Worker) {
           () =>
             fail(
               new WorkerClosedError({
-                message: "This document took too long to preview. Open it in another app.",
+                message: t("This document took too long to preview. Open it in another app."),
               }),
             ),
           30_000,
@@ -131,7 +132,7 @@ export function createWorkerClient<M extends Methods>(worker: Worker) {
         const abort = () => {
           clearTimeout(timeout);
           pending.delete(id);
-          reject(new WorkerClosedError({ message: "The call was aborted" }));
+          reject(new WorkerClosedError({ message: t("The call was aborted") }));
           worker.postMessage({ cancel: id } satisfies Cancel, []);
         };
 
@@ -164,7 +165,7 @@ export function createWorkerClient<M extends Methods>(worker: Worker) {
     },
     /** Stops the worker, which frees its engine's memory, and fails every pending call. */
     close() {
-      fail(new WorkerClosedError({ message: "The Office engine was closed" }));
+      fail(new WorkerClosedError({ message: t("The Office engine was closed") }));
     },
   };
 }
@@ -282,7 +283,7 @@ export function serveWorker<M extends Methods>(handlers: {
       const [old] = queue.splice(replaced, 1);
 
       if (old)
-        reply({ id: old.id, ok: false, superseded: true, message: "Replaced by a newer call" });
+        reply({ id: old.id, ok: false, superseded: true, message: t("Replaced by a newer call") });
     }
 
     queue.push(event.data);

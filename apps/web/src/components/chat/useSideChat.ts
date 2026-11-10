@@ -16,6 +16,7 @@ import { readThreadShell, waitForThreadShell } from "../../state/entities";
 import { threadEnvironment } from "../../state/threads";
 import { useAtomCommand } from "../../state/use-atom-command";
 import { useOrchestrationCommand } from "../../state/use-orchestration-command";
+import { t } from "~/i18n";
 
 /**
  * Starts side chats from `threadRef`, or offers none when it is null. `open` forks the
@@ -53,7 +54,7 @@ export function useSideChat(input: {
     const targetThreadId = newThreadId();
     const fork = await forkSideChat({
       environmentId: threadRef.environmentId,
-      input: { sourceThreadId: threadRef.threadId, targetThreadId, title: "Side chat" },
+      input: { sourceThreadId: threadRef.threadId, targetThreadId, title: t("Side chat") },
     });
     if (fork._tag === "Failure") {
       reportFailure(fork, "Could not start a side chat.");

@@ -56,6 +56,7 @@ import type { ChatComposerHandle } from "./ChatComposer";
 import { fileAttachmentCapabilityBlockReason } from "./composerAttachmentFiles";
 import { prepareQueuedEditAttachments, recoverQueuedMessageEdit } from "./queuedMessageEdit";
 import type { EditQueuedRunRequest } from "./QueuedRunsControl";
+import { t } from "~/i18n";
 
 interface EditingQueuedRun {
   readonly threadId: ThreadId;
@@ -277,7 +278,7 @@ export function useQueuedRunEdit(input: {
           toastManager.add(
             stackedThreadToast({
               type: recovery === "kept" ? "info" : "warning",
-              title: "Queued message is no longer queued",
+              title: t("Queued message is no longer queued"),
               description:
                 recovery === "kept"
                   ? `Your unsaved edit${where} was kept in the composer.`

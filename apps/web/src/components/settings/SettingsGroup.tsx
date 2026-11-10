@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 
 import { cn } from "../../lib/utils";
+import { t } from "~/i18n";
 
 export function SettingsGroup({
   variant = "grouped",
@@ -22,7 +23,7 @@ export function SettingsGroup({
           : "space-y-1",
         variant === "grouped" &&
           divided &&
-          "[&>*+*]:border-t [&>*+*]:border-border/50 [&>[data-slot=settings-row]]:rounded-none",
+          t("[&>*+*]:border-t [&>*+*]:border-border/50 [&>[data-slot=settings-row]]:rounded-none"),
         className,
       )}
     />

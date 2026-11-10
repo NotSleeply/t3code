@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { HtmlRenderDocument } from "../files/BrowserDocumentFrame";
 import { Button } from "../ui/button";
 import { Dialog, DialogPopup, DialogTitle } from "../ui/dialog";
+import { t } from "~/i18n";
 
 export function HtmlRenderDialog(props: {
   readonly src: string;
@@ -23,11 +24,11 @@ export function HtmlRenderDialog(props: {
         className="row-start-1"
         initialFocus={closeButtonRef}
       >
-        <DialogTitle className="sr-only">Expanded {props.title} preview</DialogTitle>
+        <DialogTitle className="sr-only">{t("Expanded {0} preview", [props.title])}</DialogTitle>
         <div className="relative w-[92vw]">
           <Button
             ref={closeButtonRef}
-            aria-label="Close"
+            aria-label={t("Close")}
             size="icon-xs"
             variant="media-close"
             className="absolute right-0 -top-10 z-20"
@@ -49,7 +50,7 @@ export function HtmlRenderDialog(props: {
             <span className="truncate">{props.title}</span>
             <div className="flex shrink-0 items-center gap-1">
               <Button
-                aria-label="Zoom out"
+                aria-label={t("Zoom out")}
                 size="icon-sm"
                 variant="overlay"
                 disabled={zoom === 0.5}
@@ -58,7 +59,7 @@ export function HtmlRenderDialog(props: {
                 <MinusIcon />
               </Button>
               <Button
-                aria-label="Reset zoom"
+                aria-label={t("Reset zoom")}
                 size="sm"
                 variant="overlay"
                 onClick={() => setZoom(1)}
@@ -66,7 +67,7 @@ export function HtmlRenderDialog(props: {
                 {Math.round(zoom * 100)}%
               </Button>
               <Button
-                aria-label="Zoom in"
+                aria-label={t("Zoom in")}
                 size="icon-sm"
                 variant="overlay"
                 disabled={zoom === 2}

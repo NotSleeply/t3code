@@ -18,6 +18,7 @@ import {
 } from "./threadDetailsCardLayout";
 import { observeResize } from "../../lib/observeResize";
 import { requestWorkspaceFocus } from "../../lib/workspaceFocus";
+import { t } from "~/i18n";
 
 export function ThreadDetailsCard({
   threadRef,
@@ -153,7 +154,8 @@ export function ThreadDetailsCard({
           // Skip the return transition to avoid overlapping the rising preview.
           className={cn(
             "absolute z-20",
-            topInset > 0 && "transition-[top] duration-150 ease-out motion-reduce:transition-none",
+            topInset > 0 &&
+              t("transition-[top] duration-150 ease-out motion-reduce:transition-none"),
           )}
           style={{
             right: placement.right,

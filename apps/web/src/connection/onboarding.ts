@@ -7,11 +7,12 @@ import type { DesktopSshEnvironmentTarget } from "@t3tools/contracts";
 import * as Effect from "effect/Effect";
 
 import { connectionAtomRuntime } from "./runtime";
+import { t } from "~/i18n";
 
 const onboardingScheduler = createAtomCommandScheduler();
 
 export const connectPairing = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:connection:connect-pairing",
+  label: t("web:connection:connect-pairing"),
   scheduler: onboardingScheduler,
   concurrency: {
     mode: "singleFlight",
@@ -24,7 +25,7 @@ export const connectPairing = createRuntimeCommand(connectionAtomRuntime, {
 });
 
 export const connectSshEnvironment = createRuntimeCommand(connectionAtomRuntime, {
-  label: "web:connection:connect-ssh",
+  label: t("web:connection:connect-ssh"),
   scheduler: onboardingScheduler,
   concurrency: {
     mode: "serial",

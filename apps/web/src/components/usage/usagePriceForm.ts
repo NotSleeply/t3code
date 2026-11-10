@@ -1,10 +1,11 @@
 import type { UsageModelPriceOverride } from "@t3tools/contracts";
+import { t } from "~/i18n";
 
 export const USAGE_PRICE_FIELDS = [
-  { key: "inputCostPerMillionTokens", label: "Input", optional: false },
-  { key: "outputCostPerMillionTokens", label: "Output", optional: false },
-  { key: "cacheReadCostPerMillionTokens", label: "Cache read", optional: true },
-  { key: "cacheWriteCostPerMillionTokens", label: "Cache write", optional: true },
+  { key: "inputCostPerMillionTokens", label: t("Input"), optional: false },
+  { key: "outputCostPerMillionTokens", label: t("Output"), optional: false },
+  { key: "cacheReadCostPerMillionTokens", label: t("Cache read"), optional: true },
+  { key: "cacheWriteCostPerMillionTokens", label: t("Cache write"), optional: true },
 ] as const;
 
 export type UsagePriceForm = { model: string } & Record<

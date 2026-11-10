@@ -1,6 +1,7 @@
 import { boundedArchive, prepareOffice } from "./officeArchive";
 import { PREVIEW_PAGE_ROWS } from "./largeTextProtocol";
 import type { OfficeWorkerRequest, OfficeWorkerResult } from "./officePreviewProtocol";
+import { t } from "~/i18n";
 
 let workbook: string[][][] = [];
 function reply(result: OfficeWorkerResult) {
@@ -46,7 +47,7 @@ self.addEventListener("message", (event: MessageEvent<OfficeWorkerRequest>) => {
   void handle(event.data).catch((cause: unknown) =>
     reply({
       type: "error",
-      message: cause instanceof Error ? cause.message : "Could not parse this file.",
+      message: cause instanceof Error ? cause.message : t("Could not parse this file."),
     }),
   );
 });

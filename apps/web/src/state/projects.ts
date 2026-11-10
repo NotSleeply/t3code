@@ -10,6 +10,7 @@ import { parseScopedProjectKey } from "@t3tools/client-runtime/environment";
 import { AVAILABLE_CONNECTION_STATE } from "@t3tools/client-runtime/connection";
 import { AsyncResult, Atom } from "effect/reactivity";
 import { serverEnvironment } from "./server";
+import { t } from "~/i18n";
 
 export const environmentProjects = createEnvironmentProjectAtoms({
   catalogValueAtom: environmentCatalog.catalogValueAtom,
@@ -20,7 +21,7 @@ export const projectEnvironment = createProjectEnvironmentAtoms(connectionAtomRu
   projectAtom: environmentProjects.projectAtom,
 });
 export const projectContentSearch = createEnvironmentRpcQueryAtomFamily(connectionAtomRuntime, {
-  label: "environment-data:projects:search-contents",
+  label: t("environment-data:projects:search-contents"),
   tag: WS_METHODS.projectsSearchContents,
   staleTimeMs: 5_000,
   idleTtlMs: 60_000,

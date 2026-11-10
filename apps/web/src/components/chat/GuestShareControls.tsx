@@ -40,6 +40,7 @@ import { buildExpandedImagePreview, type ExpandedImagePreview } from "./Expanded
 import { GuestMessageAttachments } from "./GuestMessageAttachments";
 import { GuestMessageName, guestBubbleClassName } from "./guestMessageStyle";
 import { guestShareDialogThreadAtom } from "./guestShareDialogState";
+import { t } from "~/i18n";
 
 function useThreadGuestShare(threadRef: ScopedThreadRef | null): ThreadGuestShare | null {
   return useQuietThreadProjection(threadRef)?.projection.thread.guestShare ?? null;
@@ -110,10 +111,11 @@ function GuestShareDialog({
     >
       <DialogPopup className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>Share with guest</DialogTitle>
+          <DialogTitle>{t("Share with guest")}</DialogTitle>
           <DialogDescription>
-            The guest sees the thread as you do, including command output and the agent&apos;s
-            reasoning. Each message they send waits for you.
+            {t(
+              "The guest sees the thread as you do, including command output and the agent's reasoning. Each message they send waits for you.",
+            )}
           </DialogDescription>
         </DialogHeader>
         <DialogPanel>
@@ -121,7 +123,7 @@ function GuestShareDialog({
             <div className="flex items-center gap-2">
               <Input
                 readOnly
-                aria-label="Guest link"
+                aria-label={t("Guest link")}
                 value={state.url}
                 onFocus={(event) => event.currentTarget.select()}
               />
@@ -146,7 +148,7 @@ function GuestShareDialog({
         <DialogFooter>
           {state.status === "created" ? (
             <Button size="sm" onClick={onClose}>
-              Done
+              {t("Done")}
             </Button>
           ) : (
             <>
@@ -156,7 +158,7 @@ function GuestShareDialog({
                 onClick={onClose}
                 disabled={state.status === "creating"}
               >
-                Cancel
+                {t("Cancel")}
               </Button>
               <Button
                 size="sm"
@@ -177,7 +179,7 @@ function GuestShareDialog({
 export function GuestShareIndicator({ threadRef }: { readonly threadRef: ScopedThreadRef }) {
   const share = useThreadGuestShare(threadRef);
   const closeGuestShare = useOrchestrationCommand(threadEnvironment.closeGuestShare, {
-    label: "stop guest share",
+    label: t("stop guest share"),
   });
   const [closing, setClosing] = useState(false);
   if (share === null) return null;
@@ -198,7 +200,7 @@ export function GuestShareIndicator({ threadRef }: { readonly threadRef: ScopedT
           setClosing(false);
         }}
       >
-        Stop sharing
+        {t("Stop sharing")}
       </Button>
     </div>
   );
@@ -207,7 +209,7 @@ export function GuestShareIndicator({ threadRef }: { readonly threadRef: ScopedT
 function GuestShareStatus({ share }: { readonly share: ThreadGuestShare }) {
   const nowMinute = useNowMinute();
   // The share stays on the thread after it expires, until the owner clears it.
-  if (share.expiresAt.slice(0, 16) <= nowMinute) return <span>Guest link expired</span>;
+  if (share.expiresAt.slice(0, 16) <= nowMinute) return <span>{t("Guest link expired")}</span>;
   return (
     <span>{share.guestName !== null ? `${share.guestName} is a guest` : "Guest link active"}</span>
   );
@@ -229,7 +231,7 @@ export function GuestPendingMessages({
   const share = useThreadGuestShare(threadRef);
   const canOperate = useEnvironmentScope(threadRef.environmentId, AuthOrchestrationOperateScope);
   const resolveGuestMessage = useOrchestrationCommand(threadEnvironment.resolveGuestMessage, {
-    label: "resolve guest message",
+    label: t("resolve guest message"),
   });
   const [busyIds, setBusyIds] = useState<ReadonlySet<GuestMessageId>>(new Set());
   const pending = share?.messages.filter((message) => message.status === "pending") ?? [];
@@ -271,7 +273,10 @@ export function GuestPendingMessages({
   return (
     <ol
       className="chat-content-lane flex flex-col gap-4 pb-4"
-      aria-label={`${pending.length} guest message${pending.length === 1 ? "" : "s"} waiting`}
+      aria-label={t("{0} guest message{1} waiting", [
+        pending.length,
+        pending.length === 1 ? "" : "s",
+      ])}
       aria-live="polite"
     >
       {pending.map((message) => {
@@ -303,18 +308,18 @@ export function GuestPendingMessages({
                   size="xs"
                   variant="ghost-muted"
                   disabled={busy}
-                  aria-label={`Dismiss message from ${guestName}`}
+                  aria-label={t("Dismiss message from {0}", [guestName])}
                   onClick={() => void resolve(message.id, "dismiss")}
                 >
-                  Dismiss
+                  {t("Dismiss")}
                 </Button>
                 <Button
                   size="xs"
                   disabled={busy}
-                  aria-label={`Send message from ${guestName}`}
+                  aria-label={t("Send message from {0}", [guestName])}
                   onClick={() => void resolve(message.id, "send")}
                 >
-                  Send
+                  {t("Send")}
                 </Button>
               </div>
             ) : null}

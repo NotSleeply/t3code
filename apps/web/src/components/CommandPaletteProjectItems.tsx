@@ -12,6 +12,7 @@ import {
 import { EnvironmentMachineIcon } from "./EnvironmentMachineIcon";
 import { ProjectFavicon } from "./ProjectFavicon";
 import { COMMAND_PALETTE_META_ICON_CLASS, CommandPaletteMetaDot } from "./ThreadCommandSubtitle";
+import { t } from "~/i18n";
 
 export interface CommandPaletteProjectLocation {
   readonly kind: "local" | "remote";
@@ -21,7 +22,7 @@ export interface CommandPaletteProjectLocation {
 
 const UNKNOWN_PROJECT_LOCATION: CommandPaletteProjectLocation = {
   kind: "remote",
-  label: "Remote",
+  label: t("Remote"),
   machine: "server",
 };
 
@@ -110,7 +111,7 @@ function ProjectLocationDescription(props: {
     <span className="flex min-w-0 items-center gap-1">
       {props.current ? (
         <>
-          <span className="shrink-0">Current</span>
+          <span className="shrink-0">{t("Current")}</span>
           <CommandPaletteMetaDot />
         </>
       ) : null}

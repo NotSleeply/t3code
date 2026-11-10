@@ -11,6 +11,7 @@ import { useEnvironmentQuery } from "../state/query";
 import { sourceControlEnvironment } from "../state/sourceControl";
 import { T3AppIcon } from "./T3AppIcon";
 import { InlineButton } from "./ui/button";
+import { t } from "~/i18n";
 
 /**
  * Says when the server's forge app sign-in cannot reach `repository`, so requests there fall back
@@ -53,14 +54,15 @@ export function SourceControlAppAccessNotice(props: {
     >
       <T3AppIcon className="size-4 shrink-0" />
       <p className="min-w-0 flex-1">
-        {appSignIn.appName} isn't installed on <span className="text-foreground">{owner}</span>, so
-        requests here use your own GitHub login and its lower rate limit.
+        {appSignIn.appName} {t("isn't installed on")}{" "}
+        <span className="text-foreground">{owner}</span>
+        {t(", so requests here use your own GitHub login and its lower rate limit.")}
       </p>
       <InlineButton
         className="shrink-0"
         render={<a href={appSignIn.installUrl} target="_blank" rel="noreferrer noopener" />}
       >
-        Install on {owner}
+        {t("Install on")} {owner}
         <ExternalLinkIcon aria-hidden className="size-3" />
       </InlineButton>
     </div>

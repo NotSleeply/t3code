@@ -35,6 +35,7 @@ import {
 import { Input } from "./ui/input";
 import { Spinner } from "./ui/spinner";
 import { toastManager } from "./ui/toast";
+import { t } from "~/i18n";
 
 interface PullRequestThreadDialogProps {
   open: boolean;
@@ -205,11 +206,13 @@ export function PullRequestThreadDialog({
         <DialogHeader>
           <DialogTitle className="flex items-center">
             <SourceControlIcon className="me-2 size-4" />
-            Checkout {terminology.singular}
+            {t("Checkout")} {terminology.singular}
           </DialogTitle>
           <DialogDescription>
-            Resolve a {sourceControlPresentation.providerName} {terminology.singular}, then create
-            the draft thread in the main repo or in a dedicated worktree.
+            {t(
+              "Resolve a {0} {1}, then create the draft thread in the main repo or in a dedicated worktree.",
+              [sourceControlPresentation.providerName, terminology.singular],
+            )}
           </DialogDescription>
         </DialogHeader>
         <DialogPanel>
@@ -219,7 +222,7 @@ export function PullRequestThreadDialog({
             </span>
             <Input
               ref={referenceInputRef}
-              placeholder={`${terminology.shortLabel} URL, checkout command, or #42`}
+              placeholder={t("{0} URL, checkout command, or #42", [terminology.shortLabel])}
               value={reference}
               onChange={(event) => {
                 setReferenceDirty(true);
@@ -246,8 +249,12 @@ export function PullRequestThreadDialog({
                 <div className="min-w-0">
                   <p className="truncate font-medium text-sm">{resolvedPullRequest.title}</p>
                   <p className="truncate text-muted-foreground text-xs">
-                    #{resolvedPullRequest.number} · {resolvedPullRequest.headBranch} to{" "}
-                    {resolvedPullRequest.baseBranch}
+                    {t("#{0} · {1} to{2} {3}", [
+                      resolvedPullRequest.number,
+                      resolvedPullRequest.headBranch,
+                      " ",
+                      resolvedPullRequest.baseBranch,
+                    ])}
                   </p>
                 </div>
                 <span className={cn("shrink-0 text-xs capitalize", statusTone)}>
@@ -260,7 +267,7 @@ export function PullRequestThreadDialog({
           {isResolving ? (
             <div className="flex items-center gap-2 text-muted-foreground text-xs">
               <Spinner size="sm" />
-              Resolving {terminology.singular}...
+              {t("Resolving")} {terminology.singular}...
             </div>
           ) : null}
 
@@ -274,7 +281,7 @@ export function PullRequestThreadDialog({
             onClick={() => onOpenChange(false)}
             disabled={preparePullRequestThreadAction.isPending}
           >
-            Cancel
+            {t("Cancel")}
           </Button>
           <Button
             type="button"
@@ -289,7 +296,7 @@ export function PullRequestThreadDialog({
               preparePullRequestThreadAction.isPending
             }
           >
-            {preparingMode === "local" ? "Preparing local..." : "Local"}
+            {preparingMode === "local" ? t("Preparing local...") : t("Local")}
           </Button>
           <Button
             type="button"
@@ -304,7 +311,7 @@ export function PullRequestThreadDialog({
               preparePullRequestThreadAction.isPending
             }
           >
-            {preparingMode === "worktree" ? "Preparing worktree..." : "Worktree"}
+            {preparingMode === "worktree" ? t("Preparing worktree...") : t("Worktree")}
           </Button>
         </DialogFooter>
       </DialogPopup>

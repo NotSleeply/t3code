@@ -11,6 +11,7 @@ import {
   type BinaryWorkerRequest,
   type BinaryWorkerResult,
 } from "./binaryPreviewProtocol";
+import { t } from "~/i18n";
 
 let database: Database | null = null;
 let tables: string[] = [];
@@ -243,7 +244,7 @@ self.addEventListener("message", (event: MessageEvent<BinaryWorkerRequest>) => {
   void handle(event.data).catch((cause: unknown) =>
     reply({
       type: "error",
-      message: cause instanceof Error ? cause.message : "Could not preview this file.",
+      message: cause instanceof Error ? cause.message : t("Could not preview this file."),
     }),
   );
 });

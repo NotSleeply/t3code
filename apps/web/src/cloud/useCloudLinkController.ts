@@ -27,6 +27,7 @@ import {
 import { readCachedCloudLinkState, useCloudLinkState } from "./cloudLinkState";
 import { resolveRelayClerkTokenOptions } from "./publicConfig";
 import { isManagedTunnelActive } from "./t3ConnectState";
+import { t } from "~/i18n";
 
 export interface CloudLinkDesiredState {
   readonly managedTunnel: boolean;
@@ -77,7 +78,7 @@ export function useCloudLinkController(environmentId: EnvironmentId | null) {
     toastManager.add(
       stackedThreadToast({
         type: "error",
-        title: "Could not update T3 Connect",
+        title: t("Could not update T3 Connect"),
         description: reason ?? relayFailureReason(cause) ?? message,
         ...(traceId
           ? {

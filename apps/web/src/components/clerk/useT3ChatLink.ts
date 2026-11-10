@@ -13,13 +13,14 @@ import {
 import { readLocalApi } from "../../localApi";
 import { useAtomCommand } from "../../state/use-atom-command";
 import { toastManager } from "../ui/toast";
+import { t } from "~/i18n";
 
 function reportFailure(title: string, cause: unknown) {
   const traceId = findErrorTraceId(cause);
   toastManager.add({
     type: "error",
     title,
-    description: cause instanceof Error ? cause.message : "Try again.",
+    description: cause instanceof Error ? cause.message : t("Try again."),
     data: traceId
       ? {
           secondaryActionProps: {

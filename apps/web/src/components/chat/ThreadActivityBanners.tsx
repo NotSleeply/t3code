@@ -32,6 +32,7 @@ import { Button, InlineButton } from "../ui/button";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../ui/tooltip";
 import type { ComposerBannerStackItem } from "./ComposerBannerStack";
 import type { ThreadNowItem } from "./ThreadNow";
+import { t } from "~/i18n";
 
 export function extensionStatusBannerItem(
   statuses: NonNullable<OrchestrationV2ProviderSession["extensionStatuses"]>,
@@ -41,7 +42,7 @@ export function extensionStatusBannerItem(
     id: "pi-extension-status",
     variant: "default",
     icon: <span>▸</span>,
-    title: <output>{`Pi · ${statuses.map((status) => status.text).join(" · ")}`}</output>,
+    title: <output>{t("Pi · {0}", [statuses.map((status) => status.text).join(" · ")])}</output>,
   };
 }
 
@@ -111,7 +112,7 @@ export function goalNowItem(input: {
             <InlineButton
               onClick={() => void onSendCommand("/goal resume", "Failed to resume goal.")}
             >
-              Resume
+              {t("Resume")}
             </InlineButton>
             <span aria-hidden>·</span>
           </>
@@ -120,7 +121,7 @@ export function goalNowItem(input: {
           tone="muted"
           onClick={() => void onSendCommand("/goal clear", "Failed to clear goal.")}
         >
-          Clear
+          {t("Clear")}
         </InlineButton>
       </>
     ),
@@ -257,7 +258,7 @@ export function backgroundWorkNowItem(input: {
         />
         {onlyThreadId === undefined ? null : (
           <InlineButton tone="muted" onClick={() => onOpenThread(onlyThreadId)}>
-            Open
+            {t("Open")}
           </InlineButton>
         )}
         <InlineButton disabled={input.stopDisabled} onClick={() => void input.onStop()}>
@@ -284,7 +285,9 @@ export function branchMismatchBannerItem(input: {
     icon: <GitBranchIcon />,
     title: (
       <span className="flex min-w-0 items-baseline gap-1.5">
-        <span className="shrink-0 font-normal text-muted-foreground">Branch changed from</span>
+        <span className="shrink-0 font-normal text-muted-foreground">
+          {t("Branch changed from")}
+        </span>
         <Tooltip>
           <TooltipTrigger
             render={
@@ -294,8 +297,11 @@ export function branchMismatchBannerItem(input: {
             }
           />
           <TooltipPopup side="top">
-            This thread last ran on {mismatch.threadBranch}. Sending will continue on{" "}
-            {mismatch.currentBranch}.
+            {t("This thread last ran on {0}. Sending will continue on{1} {2}.", [
+              mismatch.threadBranch,
+              " ",
+              mismatch.currentBranch,
+            ])}
           </TooltipPopup>
         </Tooltip>
       </span>
@@ -305,7 +311,7 @@ export function branchMismatchBannerItem(input: {
         {input.restoring ? "Restoring..." : "Restore branch"}
       </Button>
     ),
-    dismissLabel: "Dismiss branch change notice",
+    dismissLabel: t("Dismiss branch change notice"),
     onDismiss: input.onDismiss,
   };
 }

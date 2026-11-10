@@ -3,6 +3,7 @@ import { type ComponentProps, type ReactNode, type RefObject } from "react";
 
 import { Command, CommandFooter, CommandInput, CommandPanel } from "./ui/command";
 import { Kbd, KbdGroup } from "./ui/kbd";
+import { t } from "~/i18n";
 
 /**
  * A view replacing another inside an open dialog mounts with focus on the body,
@@ -84,8 +85,8 @@ export function CommandPaletteContent({
             panelSize === "fill"
               ? "flex min-h-0 flex-1 flex-col"
               : panelSize === "tall-list"
-                ? "max-h-[min(34rem,76vh)]"
-                : "flex max-h-[min(28rem,70vh)] min-h-0 flex-col"
+                ? t("max-h-[min(34rem,76vh)]")
+                : t("flex max-h-[min(28rem,70vh)] min-h-0 flex-col")
           }
         >
           {children}
@@ -99,22 +100,22 @@ export function CommandPaletteContent({
               <Kbd>
                 <ArrowDownIcon />
               </Kbd>
-              <span>Navigate</span>
+              <span>{t("Navigate")}</span>
             </KbdGroup>
             {footerActionLabel !== undefined ? (
               <KbdGroup>
-                <Kbd>Enter</Kbd>
+                <Kbd>{t("Enter")}</Kbd>
                 <span>{footerActionLabel}</span>
               </KbdGroup>
             ) : null}
             {showBackHint ? (
               <KbdGroup>
-                <Kbd>Backspace</Kbd>
-                <span>Back</span>
+                <Kbd>{t("Backspace")}</Kbd>
+                <span>{t("Back")}</span>
               </KbdGroup>
             ) : null}
             <KbdGroup>
-              <Kbd>Esc</Kbd>
+              <Kbd>{t("Esc")}</Kbd>
               <span>{escapeLabel}</span>
             </KbdGroup>
           </div>

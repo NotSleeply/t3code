@@ -8,6 +8,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
+import { t } from "~/i18n";
 
 export type PageSize = {
   readonly width: number;
@@ -194,7 +195,7 @@ function OfficePage(props: {
         style={{
           width: page.width * scale,
           height: page.height * scale,
-          background: page.background ?? "#fff",
+          background: page.background ?? t("#fff"),
         }}
       >
         <canvas ref={canvas} aria-hidden="true" className="absolute inset-0 block size-full" />

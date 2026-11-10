@@ -19,13 +19,14 @@ import {
 } from "~/state/environments";
 import { projectEnvironment } from "~/state/projects";
 import { type NewThreadHandler, useNewThreadHandler } from "./useHandleNewThread";
+import { t } from "~/i18n";
 
 function reportScratchFailure(title: string, error: unknown) {
   toastManager.add(
     stackedThreadToast({
       type: "error",
       title,
-      description: error instanceof Error ? error.message : "An error occurred.",
+      description: error instanceof Error ? error.message : t("An error occurred."),
     }),
   );
 }

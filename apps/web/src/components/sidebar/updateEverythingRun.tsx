@@ -20,6 +20,7 @@ import {
   type UpdateEverythingRun,
   type UpdateRunMachine,
 } from "./updateEverything.logic";
+import { t } from "~/i18n";
 
 const updateEverythingRunAtom = Atom.make<UpdateEverythingRun | null>(null).pipe(
   Atom.keepAlive,
@@ -341,7 +342,7 @@ export function startDesktopUpdateLaunchNotice(): () => void {
       toastManager.add(
         stackedThreadToast({
           type: "error",
-          title: "Update did not apply",
+          title: t("Update did not apply"),
           description: `T3 Code is still on ${APP_VERSION}. Install ${notAppliedVersion} again from the update button.`,
         }),
       );

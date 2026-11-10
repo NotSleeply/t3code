@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { cn } from "~/lib/utils";
+import { t } from "~/i18n";
 
 export function hasNonZeroStat(stat: { additions: number; deletions: number }): boolean {
   return stat.additions > 0 || stat.deletions > 0;
@@ -29,11 +30,11 @@ export const DiffStatLabel = memo(function DiffStatLabel(props: {
   return (
     <span
       role="group"
-      aria-label={`${additions} additions, ${deletions} deletions`}
+      aria-label={t("{0} additions, {1} deletions", [additions, deletions])}
       className={cn(
         layout === "inline"
           ? "inline-flex items-center gap-1 tabular-nums align-middle"
-          : "inline-grid grid-cols-[4ch_4ch] gap-2 text-right tabular-nums align-middle",
+          : t("inline-grid grid-cols-[4ch_4ch] gap-2 text-right tabular-nums align-middle"),
         className,
       )}
     >

@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { stackedThreadToast, toastManager } from "../ui/toast";
 import { SettingsRow } from "./settingsLayout";
 import { searchableSetting } from "./settingsSearch";
+import { t } from "~/i18n";
 
 const FAILURE_TITLES = {
   install: "Could not install t3",
@@ -33,7 +34,7 @@ export function useDesktopCliCommand() {
           stackedThreadToast({
             type: "error",
             title: FAILURE_TITLES[action],
-            description: error instanceof Error ? error.message : "Something went wrong.",
+            description: error instanceof Error ? error.message : t("Something went wrong."),
           }),
         );
       })
@@ -70,7 +71,7 @@ export function CliCommandSettingsRow() {
         <div className="flex gap-2">
           {state.pathSetup && !state.pathSetup.added ? (
             <Button size="sm" variant="outline" disabled={busy} onClick={() => run("addToPath")}>
-              Add to PATH
+              {t("Add to PATH")}
             </Button>
           ) : null}
           <Button
@@ -79,7 +80,7 @@ export function CliCommandSettingsRow() {
             disabled={busy || (!installed && Boolean(state.shadowedBy))}
             onClick={() => run(installed ? "uninstall" : "install")}
           >
-            {installed ? "Remove" : "Install"}
+            {installed ? t("Remove") : t("Install")}
           </Button>
         </div>
       }

@@ -3,12 +3,13 @@ import type { LinkedPrompt } from "@t3tools/shared/promptLinks";
 import { type ComposerThreadTarget, useComposerDraftStore } from "~/composerDraftStore";
 
 import { toastManager } from "../ui/toast";
+import { t } from "~/i18n";
 
 export function warnAboutHiddenCharacters(prompt: LinkedPrompt): void {
   if (prompt.hiddenCharacters === 0) return;
   toastManager.add({
     type: "warning",
-    title: "This prompt had hidden characters, it may be malicious",
+    title: t("This prompt had hidden characters, it may be malicious"),
     description: `T3 Code removed ${prompt.hiddenCharacters} hidden character${prompt.hiddenCharacters === 1 ? "" : "s"}. Read the prompt before you send it.`,
     timeout: 0,
   });
@@ -24,7 +25,7 @@ export function placeLinkedPrompt(
     useComposerDraftStore.getState().setPrompt(target, prompt.text);
     toastManager.add({
       type: "info",
-      title: "Prompt added from a link",
+      title: t("Prompt added from a link"),
       description: ["Read it before you send.", ...notes].join(" "),
     });
   };
@@ -35,8 +36,8 @@ export function placeLinkedPrompt(
   }
   const id = toastManager.add({
     type: "info",
-    title: "Linked prompt ready",
-    description: "This thread already has a draft. Replace it with the linked prompt?",
+    title: t("Linked prompt ready"),
+    description: t("This thread already has a draft. Replace it with the linked prompt?"),
     timeout: 0,
     actionProps: {
       children: "Replace draft",
