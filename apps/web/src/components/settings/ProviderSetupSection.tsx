@@ -173,7 +173,7 @@ function ProviderSetupActions({
     if (result._tag === "Failure") {
       if (!isAtomCommandInterrupted(result)) {
         const failure = squashAtomCommandFailure(result);
-        setError(failure instanceof Error ? failure.message : "Provider setup failed.");
+        setError(failure instanceof Error ? failure.message : t("Provider setup failed."));
       }
       return false;
     }

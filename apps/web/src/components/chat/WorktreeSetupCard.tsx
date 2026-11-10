@@ -338,7 +338,7 @@ export function WorktreeSetupCard({
       {collapsed ? (
         <CollapsedSummaryRow snapshot={snapshot} />
       ) : (
-        <div className={showHeader ? t("pt-1.5") : undefined}>
+        <div className={showHeader ? "pt-1.5" : undefined}>
           {snapshot.stages.map((stage) => (
             <div key={stage.id}>
               <StageRow

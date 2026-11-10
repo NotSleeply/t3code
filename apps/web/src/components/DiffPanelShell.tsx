@@ -4,7 +4,6 @@ import { isElectron } from "~/env";
 import { cn } from "~/lib/utils";
 
 import { Skeleton } from "./ui/skeleton";
-import { t } from "~/i18n";
 
 export type DiffPanelMode = "inline" | "sheet" | "sidebar" | "embedded";
 
@@ -31,7 +30,7 @@ export function DiffPanelShell(props: {
       className={cn(
         "flex h-full min-w-0 flex-col bg-background",
         props.mode === "inline"
-          ? t("w-[42vw] min-w-[360px] max-w-[560px] shrink-0 border-l border-border")
+          ? "w-[42vw] min-w-[360px] max-w-[560px] shrink-0 border-l border-border"
           : "w-full",
       )}
     >

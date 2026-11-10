@@ -609,7 +609,7 @@ export function EnvironmentProviderSettings({
             type: "error",
             title: t("Could not continue authentication"),
             description:
-              error instanceof Error ? error.message : "The authentication request expired.",
+              error instanceof Error ? error.message : t("The authentication request expired."),
           });
         }
       });
@@ -685,7 +685,7 @@ export function EnvironmentProviderSettings({
             description:
               error instanceof Error
                 ? error.message
-                : "The provider update command could not be started.",
+                : t("The provider update command could not be started."),
           }),
         );
       }
@@ -806,7 +806,7 @@ export function EnvironmentProviderSettings({
       toastManager.add({
         type: "error",
         title: t("Could not update provider instance"),
-        description: error instanceof Error ? error.message : "The settings update failed.",
+        description: error instanceof Error ? error.message : t("The settings update failed."),
       });
     }
   };
@@ -850,7 +850,7 @@ export function EnvironmentProviderSettings({
         toastManager.add({
           type: "error",
           title: t("Could not delete provider instance"),
-          description: error instanceof Error ? error.message : "The settings update failed.",
+          description: error instanceof Error ? error.message : t("The settings update failed."),
         });
         return;
       }
@@ -870,7 +870,7 @@ export function EnvironmentProviderSettings({
         toastManager.add({
           type: "warning",
           title: t("Provider deleted, but managed files remain"),
-          description: error instanceof Error ? error.message : "Managed binary cleanup failed.",
+          description: error instanceof Error ? error.message : t("Managed binary cleanup failed."),
         });
       }
     },
@@ -893,7 +893,7 @@ export function EnvironmentProviderSettings({
       toastManager.add({
         type: "error",
         title: t("Could not reset provider instance"),
-        description: error instanceof Error ? error.message : "The settings update failed.",
+        description: error instanceof Error ? error.message : t("The settings update failed."),
       });
     }
   });

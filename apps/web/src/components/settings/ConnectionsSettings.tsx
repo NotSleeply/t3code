@@ -470,7 +470,8 @@ function ConnectionsSettingsContent({
       setPendingDesktopServerExposureMode(null);
       setIsUpdatingDesktopServerExposure(false);
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to update network exposure.";
+      const message =
+        error instanceof Error ? error.message : t("Failed to update network exposure.");
       setPendingDesktopServerExposureMode(null);
       setDesktopServerExposureMutationError(message);
       toastManager.add(
@@ -511,7 +512,7 @@ function ConnectionsSettingsContent({
     if (settled._tag === "Failure") {
       const error = Cause.squash(settled.cause);
       const message =
-        error instanceof Error ? error.message : "Failed to configure Tailscale HTTPS.";
+        error instanceof Error ? error.message : t("Failed to configure Tailscale HTTPS.");
       setDesktopServerExposureMutationError(message);
       toastManager.add(
         stackedThreadToast({
@@ -550,7 +551,8 @@ function ConnectionsSettingsContent({
     });
     if (settled._tag === "Failure") {
       const error = Cause.squash(settled.cause);
-      const message = error instanceof Error ? error.message : "Failed to disable Tailscale HTTPS.";
+      const message =
+        error instanceof Error ? error.message : t("Failed to disable Tailscale HTTPS.");
       setDesktopServerExposureMutationError(message);
       toastManager.add(
         stackedThreadToast({
@@ -578,7 +580,7 @@ function ConnectionsSettingsContent({
     const result = await revokePairingLink({ environmentId: accessEnvironmentId, input: { id } });
     if (result._tag === "Failure" && !isAtomCommandInterrupted(result)) {
       const error = squashAtomCommandFailure(result);
-      const message = error instanceof Error ? error.message : "Failed to revoke pairing link.";
+      const message = error instanceof Error ? error.message : t("Failed to revoke pairing link.");
       setDesktopAccessManagementMutationError(message);
       toastManager.add(
         stackedThreadToast({
@@ -604,7 +606,7 @@ function ConnectionsSettingsContent({
     const result = await revokeClient({ environmentId: accessEnvironmentId, input: { sessionId } });
     if (result._tag === "Failure" && !isAtomCommandInterrupted(result)) {
       const error = squashAtomCommandFailure(result);
-      const message = error instanceof Error ? error.message : "Failed to revoke client access.";
+      const message = error instanceof Error ? error.message : t("Failed to revoke client access.");
       setDesktopAccessManagementMutationError(message);
       toastManager.add(
         stackedThreadToast({
@@ -634,7 +636,7 @@ function ConnectionsSettingsContent({
       });
     } else if (!isAtomCommandInterrupted(result)) {
       const error = squashAtomCommandFailure(result);
-      const message = error instanceof Error ? error.message : "Failed to revoke other clients.";
+      const message = error instanceof Error ? error.message : t("Failed to revoke other clients.");
       setDesktopAccessManagementMutationError(message);
       toastManager.add(
         stackedThreadToast({
@@ -675,7 +677,7 @@ function ConnectionsSettingsContent({
     setRemovingSavedEnvironmentId(null);
     if (result._tag === "Failure" && !isAtomCommandInterrupted(result)) {
       const error = squashAtomCommandFailure(result);
-      const message = error instanceof Error ? error.message : "Failed to remove backend.";
+      const message = error instanceof Error ? error.message : t("Failed to remove backend.");
       setSavedBackendError(message);
       toastManager.add(
         stackedThreadToast({
@@ -770,7 +772,7 @@ function ConnectionsSettingsContent({
     });
     if (settled._tag === "Failure") {
       const error = Cause.squash(settled.cause);
-      const message = error instanceof Error ? error.message : "Failed to update WSL backend.";
+      const message = error instanceof Error ? error.message : t("Failed to update WSL backend.");
       setDesktopWslMutationError(message);
       toastManager.add(
         stackedThreadToast({

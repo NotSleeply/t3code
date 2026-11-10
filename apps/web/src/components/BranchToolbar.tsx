@@ -132,7 +132,7 @@ function showWorkspaceContextMenu(event: ReactMouseEvent, workspacePath: string)
             stackedThreadToast({
               type: "error",
               title: t("Failed to copy path"),
-              description: error instanceof Error ? error.message : "An error occurred.",
+              description: error instanceof Error ? error.message : t("An error occurred."),
             }),
           );
         },

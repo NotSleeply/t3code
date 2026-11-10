@@ -593,7 +593,7 @@ export function PreviewView({
     }
     if (record) {
       void startBrowserRecording(runtimeTabId, threadRef, tabId).catch((error) => {
-        const description = error instanceof Error ? error.message : "An error occurred.";
+        const description = error instanceof Error ? error.message : t("An error occurred.");
         if (isBrowserRecordingStartCancelledError(error)) return;
         toastManager.add({
           type: "error",
@@ -672,7 +672,7 @@ export function PreviewView({
               updateScreenshotToast(
                 "error",
                 "Unable to copy screenshot path",
-                error instanceof Error ? error.message : "An error occurred.",
+                error instanceof Error ? error.message : t("An error occurred."),
               );
             },
           );
@@ -692,7 +692,7 @@ export function PreviewView({
               updateScreenshotToast(
                 "error",
                 "Unable to copy screenshot",
-                error instanceof Error ? error.message : "An error occurred.",
+                error instanceof Error ? error.message : t("An error occurred."),
               );
             },
           );

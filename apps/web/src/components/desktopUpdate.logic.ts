@@ -116,7 +116,7 @@ export function getDesktopUpdateButtonTooltip(state: DesktopUpdateState): string
     if (state.downloadedVersion) {
       return `Update ${state.downloadedVersion} downloaded. Click to restart and install.`;
     }
-    return state.message ?? "Update failed";
+    return state.message ?? t("Update failed");
   }
   return "Up to date";
 }

@@ -399,7 +399,9 @@ function ManagedCodexSetup({
       if (result._tag === "Failure") {
         if (!isAtomCommandInterrupted(result)) {
           const failure = squashAtomCommandFailure(result);
-          setError(failure instanceof Error ? failure.message : "Codex setup failed. Try again.");
+          setError(
+            failure instanceof Error ? failure.message : t("Codex setup failed. Try again."),
+          );
         }
       } else {
         succeeded = true;
@@ -446,7 +448,7 @@ function ManagedCodexSetup({
   ) {
     setError(
       handoffQuery.data?.phase === "auth"
-        ? (handoffQuery.data.state.message ?? "ChatGPT sign-in could not finish. Try again.")
+        ? (handoffQuery.data.state.message ?? t("ChatGPT sign-in could not finish. Try again."))
         : "ChatGPT sign-in on the primary environment was interrupted. Try again.",
     );
     setHandoff(null);
@@ -621,7 +623,7 @@ function ManagedCodexSetup({
           ? "Checking Codex."
           : installed
             ? `${installation?.source === "local" ? "Using your installed Codex" : "Managed by T3 Code"}${installation?.installedVersion ? ` · v${installation.installedVersion}` : ""}.`
-            : (installation?.message ?? "T3 Code downloads and manages Codex for you.");
+            : (installation?.message ?? t("T3 Code downloads and manages Codex for you."));
   const accountDescription = finishingSignIn ? (
     "Finishing sign-in..."
   ) : installActive ? (
@@ -630,7 +632,7 @@ function ManagedCodexSetup({
     auth?.phase === "waiting" && requestedAccountEmail ? (
       `Continue as ${requestedAccountEmail} on OpenAI.`
     ) : (
-      (auth?.message ?? "Finish signing in in your browser.")
+      (auth?.message ?? t("Finish signing in in your browser."))
     )
   ) : authenticated ? (
     provider?.auth.email?.trim() ? (
@@ -1064,7 +1066,7 @@ function ManagedCodexSetup({
           {error ??
             (installation?.phase === "failed"
               ? installation.message
-              : "Could not read Codex setup status. Reconnect and try again.")}
+              : t("Could not read Codex setup status. Reconnect and try again."))}
         </p>
       ) : null}
     </section>

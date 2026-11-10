@@ -592,7 +592,7 @@ function useChatMarkdownState({
         let description =
           error instanceof Error
             ? error.message
-            : "The file could not be loaded. It may have been moved or deleted.";
+            : t("The file could not be loaded. It may have been moved or deleted.");
         if (
           isAssetNotFoundError(error) &&
           error.resource._tag === "media-file" &&
@@ -1147,8 +1147,8 @@ const CHAT_MARKDOWN_COMPONENTS = {
           data-markdown-copy={pullRequestCopy}
           data-markdown-image-link={!hasText || undefined}
           href={href}
-          target={isSameDocumentLink ? undefined : t("_blank")}
-          rel={isSameDocumentLink ? undefined : t("noopener noreferrer")}
+          target={isSameDocumentLink ? undefined : "_blank"}
+          rel={isSameDocumentLink ? undefined : "noopener noreferrer"}
           onClick={(event) => {
             onClick?.(event);
             if (isSameDocumentLink && href) {

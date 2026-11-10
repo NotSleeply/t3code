@@ -1,7 +1,6 @@
 import type { ComponentProps } from "react";
 import type { ResizableWidthHandlers } from "~/hooks/useResizableWidth";
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 interface Props extends Pick<
   ComponentProps<"div">,

@@ -261,7 +261,7 @@ export function SnapShotSettings() {
         ? "Checking shortcut…"
         : shortcutCheck.availability
           ? shortcutCheck.availability.available
-            ? "Ready to save."
+            ? t("Ready to save.")
             : shortcutCheck.availability.message
           : state?.mode === "portal" &&
               !state.shortcutLabel &&

@@ -3,6 +3,7 @@ import * as Cause from "effect/Cause";
 import * as Option from "effect/Option";
 import { AsyncResult, Atom } from "effect/reactivity";
 import { useContext } from "react";
+import { t } from "~/i18n";
 
 const EMPTY_ASYNC_RESULT_ATOM = Atom.make(AsyncResult.initial<never, never>(false)).pipe(
   Atom.withLabel("web-environment-query:empty"),
@@ -22,7 +23,7 @@ export function formatEnvironmentQueryError(cause: Cause.Cause<unknown>): string
   const error = Cause.squash(cause);
   return error instanceof Error && error.message.trim().length > 0
     ? error.message
-    : "The environment request failed.";
+    : t("The environment request failed.");
 }
 
 function queryUpdatedAt(result: AsyncResult.AsyncResult<unknown, unknown>): number {

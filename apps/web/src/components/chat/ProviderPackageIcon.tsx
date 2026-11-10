@@ -3,7 +3,6 @@ import { useId, type CSSProperties, type SVGProps } from "react";
 import type { ProviderIcon } from "@t3tools/provider-core/client";
 
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 export function ProviderPackageIcon({
   icon,
@@ -53,7 +52,7 @@ export function ProviderPackageIcon({
           fillRule={path.fillRule}
           fill={path.gradient ? `url(#${gradientId}-${index})` : undefined}
           data-icon-detail={path.fill ? true : undefined}
-          className={path.fill ? t("fill-(--path-light) dark:fill-(--path-dark)") : undefined}
+          className={path.fill ? "fill-(--path-light) dark:fill-(--path-dark)" : undefined}
           style={
             path.fill
               ? ({

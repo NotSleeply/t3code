@@ -544,7 +544,7 @@ function PublishRepositoryDialog(props: PublishRepositoryDialogProps) {
       if (result._tag === "Failure") {
         if (!isAtomCommandInterrupted(result)) {
           const error = squashAtomCommandFailure(result);
-          setPublishError(error instanceof Error ? error.message : "An error occurred.");
+          setPublishError(error instanceof Error ? error.message : t("An error occurred."));
         }
         return;
       }
@@ -1227,7 +1227,7 @@ export default function GitActionsControl({
         stackedThreadToast({
           type: "error",
           title: t("Action failed"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
           timeout: errorToastTiming.timeout,
           ...(scopedToastData !== undefined ? { data: scopedToastData } : {}),
         }),
@@ -1301,7 +1301,7 @@ export default function GitActionsControl({
             stackedThreadToast({
               type: "error",
               title: t("Pull failed"),
-              description: error instanceof Error ? error.message : "An error occurred.",
+              description: error instanceof Error ? error.message : t("An error occurred."),
               timeout: errorToastTiming.timeout,
               ...(threadToastData !== undefined ? { data: threadToastData } : {}),
             }),
@@ -1387,7 +1387,7 @@ export default function GitActionsControl({
         stackedThreadToast({
           type: "error",
           title: t("Unable to open file"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
           ...(threadToastData !== undefined ? { data: threadToastData } : {}),
         }),
       );
@@ -1408,7 +1408,7 @@ export default function GitActionsControl({
         stackedThreadToast({
           type: "error",
           title: t("Git initialization failed"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
           ...(threadToastData !== undefined ? { data: threadToastData } : {}),
         }),
       );

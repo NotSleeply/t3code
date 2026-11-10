@@ -143,7 +143,7 @@ export function ArchivedThreadsPanel() {
       stackedThreadToast({
         type: "error",
         title,
-        description: error instanceof Error ? error.message : "An error occurred.",
+        description: error instanceof Error ? error.message : t("An error occurred."),
       }),
     );
   };

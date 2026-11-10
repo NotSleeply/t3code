@@ -273,7 +273,7 @@ export function useResetCredit(
     setStatus(
       "error" in result.cause && result.cause.error instanceof Error
         ? result.cause.error.message
-        : "Could not use the reset credit.",
+        : t("Could not use the reset credit."),
     );
   };
 

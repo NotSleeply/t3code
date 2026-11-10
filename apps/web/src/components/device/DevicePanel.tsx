@@ -222,7 +222,7 @@ export function DevicePanel(props: {
         <div
           className={cn(
             "shrink-0 bg-background",
-            loading && t("absolute inset-x-0 top-0 z-10 max-h-[40%] overflow-y-auto"),
+            loading && "absolute inset-x-0 top-0 z-10 max-h-[40%] overflow-y-auto",
           )}
         >
           <div hidden={!!activeDevice}>

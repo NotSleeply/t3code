@@ -26,7 +26,6 @@ import {
 import { useAssetUrlState } from "../../assets/assetUrls";
 import { cn } from "~/lib/utils";
 import { TimelineRowCtx } from "./timelineRowContext";
-import { t } from "~/i18n";
 
 export const failedToolIconClassName = "text-tool-error-icon/40";
 
@@ -197,7 +196,7 @@ function ToolActivityImageIcon(props: {
           className={cn(
             props.className,
             "inline-block overflow-hidden rounded-xs bg-background",
-            props.muted && t("dark:opacity-70"),
+            props.muted && "dark:opacity-70",
           )}
         >
           <img
@@ -206,10 +205,7 @@ function ToolActivityImageIcon(props: {
             aria-hidden
             decoding="async"
             referrerPolicy="no-referrer"
-            className={cn(
-              "block size-full object-contain",
-              props.muted && t("light:brightness-70"),
-            )}
+            className={cn("block size-full object-contain", props.muted && "light:brightness-70")}
             onError={() => handleLoadError(displayedSrc)}
           />
         </span>

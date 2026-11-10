@@ -122,9 +122,7 @@ export function AssistantCitationCommentEditor({
           className={
             speech.state.phase === "idle"
               ? "contents"
-              : t(
-                  "flex basis-full flex-wrap gap-2 *:min-w-0 *:grow **:data-[slot=voice-input-pill]:w-full",
-                )
+              : "flex basis-full flex-wrap gap-2 *:min-w-0 *:grow **:data-[slot=voice-input-pill]:w-full"
           }
         >
           <TextFieldSpeechControls speech={speech} />

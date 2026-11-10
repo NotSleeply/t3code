@@ -224,7 +224,7 @@ export default function FileBrowserPanel({
             toastManager.add({
               type: "error",
               title: t("Failed to copy mention"),
-              description: error instanceof Error ? error.message : "An error occurred.",
+              description: error instanceof Error ? error.message : t("An error occurred."),
             });
           }
           return;

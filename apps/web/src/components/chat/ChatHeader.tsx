@@ -192,7 +192,7 @@ export const ChatHeader = memo(function ChatHeader({
         toastManager.add({
           type: "error",
           title: t("Failed to rename thread"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         });
       }
     });

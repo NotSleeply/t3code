@@ -444,7 +444,7 @@ export function McpAppFrame(props: {
           app.prefersBorder === true && !fullscreen && "rounded-lg border border-border",
           fullscreen
             ? "fixed inset-0 m-0 flex h-dvh max-h-none w-dvw max-w-none flex-col border-0 bg-background p-0"
-            : t("block! static! m-0 border-0 bg-transparent p-0 text-inherit"),
+            : "block! static! m-0 border-0 bg-transparent p-0 text-inherit",
         )}
       >
         {fullscreen ? (

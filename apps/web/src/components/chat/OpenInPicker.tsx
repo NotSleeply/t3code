@@ -385,7 +385,7 @@ export const OpenInPicker = memo(function OpenInPicker({
           <primaryOption.Icon
             aria-hidden="true"
             className={cn(
-              isPanel ? THREAD_DETAILS_PANEL_ICON_CLASS : t("size-3.5"),
+              isPanel ? THREAD_DETAILS_PANEL_ICON_CLASS : "size-3.5",
               getOpenInIconClass(primaryOption.kind),
             )}
           />
@@ -399,7 +399,7 @@ export const OpenInPicker = memo(function OpenInPicker({
           className={cn(
             compact
               ? "sr-only"
-              : t("sr-only @3xl/header-actions:not-sr-only @3xl/header-actions:ml-0.5"),
+              : "sr-only @3xl/header-actions:not-sr-only @3xl/header-actions:ml-0.5",
             isPanel && cn("not-sr-only ml-0 min-w-0 truncate", THREAD_DETAILS_PANEL_LABEL_CLASS),
           )}
         >
@@ -434,7 +434,7 @@ export const OpenInPicker = memo(function OpenInPicker({
         <MenuPopup
           align="end"
           {...(isPanel ? { anchor: panelAnchorRef } : {})}
-          className={isPanel ? t("w-(--anchor-width)") : undefined}
+          className={isPanel ? "w-(--anchor-width)" : undefined}
         >
           {editorItems}
         </MenuPopup>

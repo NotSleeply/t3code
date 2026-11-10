@@ -45,7 +45,8 @@ const licenseManifestAtom = Atom.make(
       try: () => decodeThirdPartyLicenseManifest(body),
       catch: (error) =>
         new LicenseManifestLoadError({
-          message: error instanceof Error ? error.message : "The license manifest could not load.",
+          message:
+            error instanceof Error ? error.message : t("The license manifest could not load."),
         }),
     });
   }).pipe(

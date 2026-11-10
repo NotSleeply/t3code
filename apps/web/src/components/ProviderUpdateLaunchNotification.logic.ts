@@ -209,7 +209,7 @@ export function getProviderUpdateRunOutcome(
     const error = squashAtomCommandFailure(run.result);
     return {
       status: "failed",
-      line: `${label}: ${error instanceof Error ? error.message : "Provider update failed."}`,
+      line: `${label}: ${error instanceof Error ? error.message : t("Provider update failed.")}`,
     };
   }
   const updateState = run.result.value.providers.find(
@@ -219,7 +219,7 @@ export function getProviderUpdateRunOutcome(
     ? { status: "updated" }
     : {
         status: "failed",
-        line: `${label}: ${updateState?.message ?? "Provider update did not finish."}`,
+        line: `${label}: ${updateState?.message ?? t("Provider update did not finish.")}`,
       };
 }
 

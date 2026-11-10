@@ -1058,7 +1058,7 @@ function TerminalSessionViewport({
             void localApi.shell.openExternal(text).catch((error: unknown) => {
               writeSystemMessage(
                 latestTerminal,
-                error instanceof Error ? error.message : "Unable to open link",
+                error instanceof Error ? error.message : t("Unable to open link"),
               );
             });
           };
@@ -1072,7 +1072,7 @@ function TerminalSessionViewport({
                 stackedThreadToast({
                   type: "error",
                   title: t("Unable to open link"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
             },
@@ -1088,7 +1088,7 @@ function TerminalSessionViewport({
           const error = squashAtomCommandFailure(result);
           writeSystemMessage(
             latestTerminal,
-            error instanceof Error ? error.message : "Unable to open path",
+            error instanceof Error ? error.message : t("Unable to open path"),
           );
         })();
       }
@@ -1101,7 +1101,7 @@ function TerminalSessionViewport({
           const error = squashAtomCommandFailure(result);
           writeSystemMessage(
             terminal,
-            error instanceof Error ? error.message : "Terminal write failed",
+            error instanceof Error ? error.message : t("Terminal write failed"),
           );
         })();
       }
@@ -1176,7 +1176,7 @@ function TerminalSessionViewport({
         setupTerminal = null;
         if (cancelled) return;
         const message =
-          error instanceof Error ? error.message : "Unable to initialize libghostty-vt";
+          error instanceof Error ? error.message : t("Unable to initialize libghostty-vt");
         mount.textContent = `${message}. Close and reopen the terminal to retry.`;
       });
 

@@ -2886,9 +2886,9 @@ function OpenCommandPaletteDialog(props: {
       inputAccessory={inputAccessory}
       inputProps={{
         className: hasHighlightedNewProjectItem
-          ? t("*:data-[slot=autocomplete-input]:pe-38!")
+          ? "*:data-[slot=autocomplete-input]:pe-38!"
           : addProjectCloneFlow?.step === "repository" || newProjectFlow !== null
-            ? t("*:data-[slot=autocomplete-input]:pe-32!")
+            ? "*:data-[slot=autocomplete-input]:pe-32!"
             : isBrowsing
               ? browseInputEndPaddingClass({
                   willCreateProjectPath,

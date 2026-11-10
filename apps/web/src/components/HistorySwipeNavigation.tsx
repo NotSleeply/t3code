@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { cn } from "../lib/utils";
 import { canNavigateHistory, navigateHistory, type HistoryDirection } from "../navigationHistory";
-import { t } from "~/i18n";
 
 const SWIPE_TRIGGER_DISTANCE = 120;
 // Movement needed before the gesture picks an axis; first events are often diagonal.
@@ -169,7 +168,7 @@ function SwipeIndicator({ direction, progress, y, bounds, tracking }: SwipeIndic
         className={cn(
           "absolute flex size-14 items-center rounded-full bg-muted text-foreground dark:bg-black dark:text-white",
           direction === "back" ? "left-0 justify-end pr-2" : "right-0 justify-start pl-2",
-          !tracking && t("transition-[opacity,transform] duration-200 ease-out"),
+          !tracking && "transition-[opacity,transform] duration-200 ease-out",
         )}
         style={{
           top: `clamp(0px, calc(${y - bounds.top}px - 1.75rem), calc(100% - 3.5rem))`,

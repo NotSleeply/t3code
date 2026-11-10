@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 
 import { cn } from "../lib/utils";
 import { THREAD_DETAILS_PANEL_LABEL_CLASS } from "./chat/threadDetailsPanelStyles";
-import { t } from "~/i18n";
 
 export function ComposerContextLabel({
   children,
@@ -18,7 +17,7 @@ export function ComposerContextLabel({
         "min-w-0",
         displayMode === "panel"
           ? "flex-1 overflow-x-clip overflow-y-visible text-left"
-          : t("max-w-[240px] group-data-[compact]/composer-context:max-w-0"),
+          : "max-w-[240px] group-data-[compact]/composer-context:max-w-0",
       )}
     >
       <span
@@ -27,9 +26,7 @@ export function ComposerContextLabel({
           "block w-full min-w-0 truncate",
           THREAD_DETAILS_PANEL_LABEL_CLASS,
           displayMode === "toolbar" &&
-            t(
-              "max-w-[240px] transition-opacity duration-180 ease-drawer group-data-[compact]/composer-context:opacity-0 motion-reduce:transition-none",
-            ),
+            "max-w-[240px] transition-opacity duration-180 ease-drawer group-data-[compact]/composer-context:opacity-0 motion-reduce:transition-none",
         )}
       >
         {children}

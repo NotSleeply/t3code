@@ -950,7 +950,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
         stackedThreadToast({
           type: "error",
           title: t("Failed to copy path"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         }),
       );
     },
@@ -969,7 +969,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
         stackedThreadToast({
           type: "error",
           title: t("Failed to copy branch"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         }),
       );
     },
@@ -987,7 +987,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
         stackedThreadToast({
           type: "error",
           title: t("Failed to copy thread ID"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         }),
       );
     },
@@ -1550,7 +1550,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to rename thread"),
-            description: error instanceof Error ? error.message : "An error occurred.",
+            description: error instanceof Error ? error.message : t("An error occurred."),
           }),
         );
       }
@@ -1621,7 +1621,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
             stackedThreadToast({
               type: "error",
               title: t("Failed to settle thread"),
-              description: error instanceof Error ? error.message : "An error occurred.",
+              description: error instanceof Error ? error.message : t("An error occurred."),
             }),
           );
         }
@@ -1659,7 +1659,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to un-settle thread"),
-            description: error instanceof Error ? error.message : "An error occurred.",
+            description: error instanceof Error ? error.message : t("An error occurred."),
           }),
         );
       }
@@ -1674,7 +1674,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to wake thread"),
-            description: error instanceof Error ? error.message : "An error occurred.",
+            description: error instanceof Error ? error.message : t("An error occurred."),
           }),
         );
       }
@@ -1872,7 +1872,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to pin thread"),
-            description: error instanceof Error ? error.message : "An error occurred.",
+            description: error instanceof Error ? error.message : t("An error occurred."),
           }),
         );
       }
@@ -1887,7 +1887,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to unpin thread"),
-            description: error instanceof Error ? error.message : "An error occurred.",
+            description: error instanceof Error ? error.message : t("An error occurred."),
           }),
         );
       }
@@ -2154,7 +2154,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
             stackedThreadToast({
               type: "error",
               title,
-              description: error instanceof Error ? error.message : "An error occurred.",
+              description: error instanceof Error ? error.message : t("An error occurred."),
             }),
           );
         }
@@ -2266,7 +2266,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
               type: "error",
               title: t("Failed to snooze thread"),
               description:
-                outcome.error instanceof Error ? outcome.error.message : "An error occurred.",
+                outcome.error instanceof Error ? outcome.error.message : t("An error occurred."),
             }),
           );
           return;
@@ -2428,7 +2428,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                     ? `Failed to snooze ${failures.length} thread${failures.length === 1 ? "" : "s"}`
                     : "Failed to snooze threads",
                 description:
-                  firstError instanceof Error ? firstError.message : "An error occurred.",
+                  firstError instanceof Error ? firstError.message : t("An error occurred."),
               }),
             );
           }
@@ -2455,7 +2455,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
               stackedThreadToast({
                 type: "error",
                 title: t("Failed to regenerate thread titles"),
-                description: error instanceof Error ? error.message : "An error occurred.",
+                description: error instanceof Error ? error.message : t("An error occurred."),
               }),
             );
           }
@@ -2519,7 +2519,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
           stackedThreadToast({
             type: "error",
             title: t("Failed to delete threads"),
-            description: firstError instanceof Error ? firstError.message : "An error occurred.",
+            description: firstError instanceof Error ? firstError.message : t("An error occurred."),
           }),
         );
       }
@@ -2707,7 +2707,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: t("Could not create thread"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
             }
@@ -2742,7 +2742,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: t("Could not turn thread into a project"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
             }
@@ -2760,7 +2760,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: t("Failed to update auto-settle"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
             }
@@ -2784,7 +2784,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: t("Failed to regenerate thread title"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
             }
@@ -2840,7 +2840,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                   title: didArchive
                     ? "Thread archived, but navigation failed"
                     : "Failed to archive thread",
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
               return;
@@ -2867,7 +2867,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: t("Failed to delete thread"),
-                  description: error instanceof Error ? error.message : "An error occurred.",
+                  description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
               return;

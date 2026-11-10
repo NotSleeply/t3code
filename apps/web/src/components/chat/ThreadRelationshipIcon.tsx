@@ -3,7 +3,6 @@ import { BotIcon, type LucideIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 import { shouldShowInstanceBadge, type ProviderInstanceEntry } from "../../providerInstances";
 import { ProviderInstanceIcon } from "./ProviderInstanceIcon";
-import { t } from "~/i18n";
 
 export function threadRelationshipStatusLabel(status: string | null): string {
   switch (status) {
@@ -82,7 +81,7 @@ export function ThreadRelationshipIcon({
       <span
         className={cn(
           "absolute size-2 rounded-full border-2 border-card",
-          showInstanceBadge ? t("-left-1 -top-1") : t("-bottom-1 -right-1"),
+          showInstanceBadge ? "-left-1 -top-1" : "-bottom-1 -right-1",
           status === "running" ||
             status === "in_progress" ||
             status === "pending" ||

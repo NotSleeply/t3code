@@ -29,6 +29,7 @@ import { assetEnvironment } from "../state/assets";
 import { attachmentEnvironment } from "../state/attachments";
 import { readEnvironmentScope, readPreparedConnection } from "../state/session";
 import type { AttachmentUploadState, ReadyAttachmentUpload } from "./attachmentUploadState";
+import { t } from "~/i18n";
 
 const MAX_UPLOADS_PER_ENVIRONMENT = 3;
 const UPLOAD_TIMEOUT_MS = 5 * 60_000;
@@ -340,7 +341,7 @@ async function runUpload(job: UploadJob): Promise<void> {
             : "This connection cannot upload attachments."
           : result.error instanceof Error
             ? result.error.message
-            : "Upload failed",
+            : t("Upload failed"),
     ...(result.attachmentId ? { attachmentId: result.attachmentId } : {}),
     ...(job.previous ? { previous: job.previous } : {}),
   });

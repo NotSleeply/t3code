@@ -40,7 +40,9 @@ describe("translate", () => {
   });
 
   it("uses the Chinese catalog for translated UI copy", () => {
-    const [source, translated] = Object.entries(zhHans)[0];
+    const first = Object.entries(zhHans)[0];
+    expect(first).toBeDefined();
+    const [source, translated] = first!;
     expect(translate("zh-Hans", source)).toBe(translated);
   });
 });

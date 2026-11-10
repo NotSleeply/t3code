@@ -1474,7 +1474,7 @@ export default function ChatView(props: ChatViewProps) {
       toastManager.add({
         type: "error",
         title: "Could not download " + attachment.name,
-        description: error instanceof Error ? error.message : "The attachment is unavailable.",
+        description: error instanceof Error ? error.message : t("The attachment is unavailable."),
       });
     }
   };
@@ -1811,7 +1811,7 @@ export default function ChatView(props: ChatViewProps) {
       const error = squashAtomCommandFailure(result);
       setThreadError(
         activeThread.id,
-        error instanceof Error ? error.message : "Failed to interrupt the current turn.",
+        error instanceof Error ? error.message : t("Failed to interrupt the current turn."),
       );
     }
   };

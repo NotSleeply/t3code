@@ -119,7 +119,7 @@ export function ProviderAuthenticationSection({
       else if (!isAtomCommandInterrupted(result)) {
         const failure = squashAtomCommandFailure(result);
         setError(
-          failure instanceof Error ? failure.message : "Provider sign-in failed. Try again.",
+          failure instanceof Error ? failure.message : t("Provider sign-in failed. Try again."),
         );
       }
     } catch {

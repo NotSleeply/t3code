@@ -795,7 +795,7 @@ function DiagnosticsSettingsBody() {
       if (result._tag === "Failure" && !isAtomCommandInterrupted(result)) {
         const error = squashAtomCommandFailure(result);
         setOpenLogsDirectoryError(
-          error instanceof Error ? error.message : "Unable to open logs folder.",
+          error instanceof Error ? error.message : t("Unable to open logs folder."),
         );
       }
     })();

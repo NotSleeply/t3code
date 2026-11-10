@@ -1,3 +1,4 @@
+import { t } from "~/i18n";
 const MAX_PIXELS = 32_000_000;
 
 function validateTiffMetadata(bytes: ArrayBuffer) {
@@ -201,7 +202,7 @@ self.addEventListener("message", (event: MessageEvent<{ bytes: ArrayBuffer; heif
     (blob) => self.postMessage({ blob }, { transfer: [] }),
     (cause: unknown) =>
       self.postMessage(
-        { error: cause instanceof Error ? cause.message : "Could not decode this image." },
+        { error: cause instanceof Error ? cause.message : t("Could not decode this image.") },
         { transfer: [] },
       ),
   );

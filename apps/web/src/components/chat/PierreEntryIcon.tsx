@@ -3,7 +3,6 @@ import { memo } from "react";
 
 import { ensurePierreIconSprite, resolvePierreIconForEntry } from "../../pierre-icons";
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 const ICON_COLORS: Record<string, readonly [light: string, dark: string]> = {
   astro: ["#a631be", "#d568ea"],

@@ -4,7 +4,6 @@ import { useRender } from "@base-ui/react/use-render";
 import type { ComponentType, SVGProps } from "react";
 
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 export type ComposerControlSize = "sm" | "xs";
 
@@ -57,7 +56,7 @@ export function ComposerControlIcon({
       aria-hidden="true"
       className={cn(
         "shrink-0",
-        size === "xs" ? "size-3" : opticalSize === "large" ? t("size-4.5") : "size-4",
+        size === "xs" ? "size-3" : opticalSize === "large" ? "size-4.5" : "size-4",
         className,
       )}
       data-composer-control-icon

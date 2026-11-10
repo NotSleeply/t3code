@@ -173,7 +173,7 @@ export function AttachmentFilePreview(props: {
       })
       .catch((cause: unknown) => {
         if (!cancelled)
-          setError(cause instanceof Error ? cause.message : "The attachment is unavailable.");
+          setError(cause instanceof Error ? cause.message : t("The attachment is unavailable."));
       });
     return () => {
       cancelled = true;
@@ -219,7 +219,7 @@ export function AttachmentFilePreview(props: {
       if (!controller.signal.aborted) setContent(result);
     })().catch((cause: unknown) => {
       if (!controller.signal.aborted)
-        setContentError(cause instanceof Error ? cause.message : "Could not load this file.");
+        setContentError(cause instanceof Error ? cause.message : t("Could not load this file."));
     });
     return () => controller.abort();
   }, [url, needsText, streamsText, revision, props.sizeBytes, props.file, refresh]);
@@ -259,7 +259,7 @@ export function AttachmentFilePreview(props: {
         toastManager.add({
           type: "error",
           title: t("Could not save file"),
-          description: cause instanceof Error ? cause.message : "Please try again.",
+          description: cause instanceof Error ? cause.message : t("Please try again."),
         });
       }
       setSaving(false);
@@ -439,7 +439,7 @@ export function AttachmentFilePreview(props: {
                   toastManager.add({
                     type: "error",
                     title: t("Could not copy file"),
-                    description: cause instanceof Error ? cause.message : "Try again.",
+                    description: cause instanceof Error ? cause.message : t("Try again."),
                   }),
                 );
             }}

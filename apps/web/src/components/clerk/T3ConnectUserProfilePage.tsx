@@ -218,7 +218,7 @@ export function T3ConnectUserProfilePage() {
     // The relay may have removed it before failing.
     environmentsState.refresh();
     const cause = squashAtomCommandFailure(result);
-    const message = cause instanceof Error ? cause.message : "Could not deregister the server.";
+    const message = cause instanceof Error ? cause.message : t("Could not deregister the server.");
     const traceId = findErrorTraceId(cause);
     console.error("[t3-connect] Could not deregister environment", {
       environmentId: environment.environmentId,

@@ -32,7 +32,7 @@ export function LocalEnvironmentSetting() {
     try {
       await setEnabled(!enabled);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Couldn't change this setting.");
+      setError(cause instanceof Error ? cause.message : t("Couldn't change this setting."));
       setIsUpdating(false);
     }
   };

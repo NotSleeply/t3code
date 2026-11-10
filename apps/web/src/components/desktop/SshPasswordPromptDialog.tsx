@@ -29,7 +29,7 @@ function formatRemainingSeconds(seconds: number): string {
 }
 
 function getPromptErrorMessage(error: unknown): string {
-  const message = error instanceof Error ? error.message : "SSH verification prompt failed.";
+  const message = error instanceof Error ? error.message : t("SSH verification prompt failed.");
   return message.includes("expired") || message.includes("no longer pending")
     ? "This SSH verification prompt expired. Try connecting again."
     : message;

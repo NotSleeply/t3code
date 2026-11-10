@@ -1,6 +1,5 @@
 import React, { type SVGProps, useId } from "react";
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 export type Icon = React.FC<SVGProps<SVGSVGElement>>;
 
 export const UltrafastIcon: Icon = (props) => (

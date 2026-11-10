@@ -246,7 +246,7 @@ export async function rewindToMessage(input: {
     store.addFiles(draftTarget, restoredFiles, { allowDuplicates: true });
     return { error: null, prompt: nextPrompt };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : "Failed to revert thread state." };
+    return { error: error instanceof Error ? error.message : t("Failed to revert thread state.") };
   }
 }
 

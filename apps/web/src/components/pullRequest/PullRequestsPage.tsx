@@ -1422,7 +1422,7 @@ export function PullRequestsPage() {
         toastManager.add({
           type: "error",
           title: `Failed to copy ${shortLabel} link`,
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         });
       },
     );

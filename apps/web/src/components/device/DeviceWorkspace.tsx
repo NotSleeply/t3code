@@ -10,6 +10,7 @@ import { DeviceControlsRail } from "./DeviceControlsRail";
 import { DeviceStreamView } from "./DeviceStreamView";
 import { DeviceToolsPanel } from "./DeviceToolsPanel";
 import { useDeviceControls } from "./useDeviceControls";
+import { t } from "~/i18n";
 
 const isDeviceScreenshotError = Schema.is(DeviceScreenshotError);
 
@@ -65,7 +66,7 @@ export function DeviceWorkspace(props: {
         if (isDeviceScreenshotError(cause) && cause.status === 401)
           refreshDeviceHubAccess(props.environmentId);
         setScreenshotError(
-          cause instanceof Error ? cause.message : "Screenshot capture failed. Try again.",
+          cause instanceof Error ? cause.message : t("Screenshot capture failed. Try again."),
         );
       })
       .finally(() => {

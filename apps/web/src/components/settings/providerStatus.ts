@@ -3,6 +3,7 @@ import type {
   ServerProviderVersionAdvisory,
   ServerProviderCompatibilityAdvisory,
 } from "@t3tools/contracts";
+import { t } from "~/i18n";
 
 export const PROVIDER_STATUS_STYLES = {
   disabled: {
@@ -55,13 +56,14 @@ export function getProviderSummary(provider: ServerProvider | undefined) {
     return {
       headline: "Disabled",
       detail:
-        provider.message ?? "This provider is installed but disabled for new sessions in T3 Code.",
+        provider.message ??
+        t("This provider is installed but disabled for new sessions in T3 Code."),
     };
   }
   if (!provider.installed) {
     return {
       headline: "Not found",
-      detail: provider.message ?? "CLI not detected on PATH.",
+      detail: provider.message ?? t("CLI not detected on PATH."),
     };
   }
   if (provider.auth.status === "unauthenticated") {
@@ -81,13 +83,14 @@ export function getProviderSummary(provider: ServerProvider | undefined) {
     return {
       headline: "Needs attention",
       detail:
-        provider.message ?? "The provider is installed, but the server could not fully verify it.",
+        provider.message ??
+        t("The provider is installed, but the server could not fully verify it."),
     };
   }
   if (provider.status === "error") {
     return {
       headline: "Unavailable",
-      detail: provider.message ?? "The provider failed its startup checks.",
+      detail: provider.message ?? t("The provider failed its startup checks."),
     };
   }
   if (provider.auth.status === "authenticated") {

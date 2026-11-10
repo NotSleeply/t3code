@@ -172,7 +172,7 @@ export function MicrophoneTest({ microphoneId }: { microphoneId: string }) {
           ? MICROPHONE_PERMISSION_ERROR
           : cause instanceof Error
             ? cause.message
-            : "Could not access the microphone.",
+            : t("Could not access the microphone."),
       );
     }
   };

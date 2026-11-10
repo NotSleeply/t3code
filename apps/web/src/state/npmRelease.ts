@@ -8,6 +8,7 @@ import { Atom } from "effect/reactivity";
 import { environmentSummaries } from "./presentation";
 import { primaryEnvironmentIdAtom } from "./primaryEnvironment";
 import { serverEnvironment } from "./server";
+import { t } from "~/i18n";
 
 const isServerNpmReleaseError = Schema.is(ServerNpmReleaseError);
 
@@ -26,7 +27,9 @@ export function npmReleaseFailureMessage(cause: Cause.Cause<unknown>): string {
   const error = Option.getOrUndefined(Cause.findErrorOption(cause));
   return isServerNpmReleaseError(error)
     ? error.message
-    : "Could not check this environment's npm registry. Check the connection and registry settings.";
+    : t(
+        "Could not check this environment's npm registry. Check the connection and registry settings.",
+      );
 }
 
 export const npmReleaseAtom = Atom.family((spec: string) =>

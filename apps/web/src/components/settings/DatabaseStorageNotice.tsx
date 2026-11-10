@@ -156,7 +156,7 @@ function ReclaimRow({
     toastManager.add({
       type: "error",
       title: `Could not reclaim space on ${label}`,
-      description: error instanceof Error ? error.message : "An error occurred.",
+      description: error instanceof Error ? error.message : t("An error occurred."),
     });
   };
   return (

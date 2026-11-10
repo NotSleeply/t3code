@@ -453,7 +453,7 @@ export function useThreadLifecycle(input: ThreadLifecycleInput) {
         const error = squashAtomCommandFailure(result);
         setThreadError(
           activeThread.id,
-          error instanceof Error ? error.message : "Failed to stop background work.",
+          error instanceof Error ? error.message : t("Failed to stop background work."),
         );
       }
     }

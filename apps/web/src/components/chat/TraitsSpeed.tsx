@@ -58,7 +58,7 @@ export function TraitsSpeedIcon({
           size === "xs"
             ? "text-current"
             : provider === "claudeAgent"
-              ? t("text-[#d97757]")
+              ? "text-[#d97757]"
               : "text-foreground",
         )}
       />

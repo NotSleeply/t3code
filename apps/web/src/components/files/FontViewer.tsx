@@ -56,7 +56,9 @@ export default function FontViewer(props: { readonly src: string; readonly name:
       })
       .catch((cause: unknown) => {
         if (!controller.signal.aborted)
-          setError(cause instanceof Error ? cause.message : "The font is damaged or unsupported.");
+          setError(
+            cause instanceof Error ? cause.message : t("The font is damaged or unsupported."),
+          );
       })
       .finally(() => clearTimeout(timeout));
     return () => {

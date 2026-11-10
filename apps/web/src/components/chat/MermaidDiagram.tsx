@@ -248,7 +248,7 @@ export function MermaidDiagram({
       onRender: () => setRenderError(null),
       onError: (error) =>
         setRenderError(
-          error instanceof Error ? error.message : "The diagram could not be rendered.",
+          error instanceof Error ? error.message : t("The diagram could not be rendered."),
         ),
     });
     return () => mounted.destroy();

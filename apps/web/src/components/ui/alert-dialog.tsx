@@ -7,7 +7,6 @@ import {
   DIALOG_POPUP_CLASS,
 } from "~/components/ui/dialog-styles";
 import { ControlledOpenContext, renderRetainedPopup } from "~/components/ui/dialog";
-import { t } from "~/i18n";
 
 function AlertDialog<Payload>(props: AlertDialogPrimitive.Root.Props<Payload>) {
   return (
@@ -56,9 +55,7 @@ function AlertDialogPopup({
     <AlertDialogPortal container={portalContainer}>
       <AlertDialogBackdrop />
       <AlertDialogViewport
-        className={cn(
-          bottomStickOnMobile && t("max-sm:grid-rows-[1fr_auto] max-sm:p-0 max-sm:pt-12"),
-        )}
+        className={cn(bottomStickOnMobile && "max-sm:grid-rows-[1fr_auto] max-sm:p-0 max-sm:pt-12")}
       >
         <AlertDialogPrimitive.Popup
           className={cn(

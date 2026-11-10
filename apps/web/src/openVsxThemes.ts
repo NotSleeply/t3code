@@ -9,6 +9,7 @@ import {
   parseVsCodeThemeFile,
   resolveThemeLabelCollisions,
 } from "./vscodeThemeImport";
+import { t } from "~/i18n";
 
 const OPEN_VSX_SEARCH_URL = "https://open-vsx.org/api/-/search";
 const MAX_VSIX_BYTES = 20 * 1024 * 1024;
@@ -740,7 +741,7 @@ export async function importOpenVsxThemeExtension(
       });
     } catch (cause) {
       signal?.throwIfAborted();
-      failures.push(cause instanceof Error ? cause.message : "theme could not be read");
+      failures.push(cause instanceof Error ? cause.message : t("theme could not be read"));
     }
   }
   if (failures.length > 0) {

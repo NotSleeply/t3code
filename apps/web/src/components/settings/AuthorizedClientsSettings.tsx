@@ -249,7 +249,7 @@ const PairingLinkListRow = memo(function PairingLinkListRow({
                 ? "Could not copy pairing URL"
                 : "Could not copy pairing code"
             : "Clipboard copy unavailable",
-          description: canCopyToClipboard ? error.message : "Showing the full value instead.",
+          description: canCopyToClipboard ? error.message : t("Showing the full value instead."),
         }),
       );
     },
@@ -628,7 +628,7 @@ export const AuthorizedClientsHeaderAction = memo(function AuthorizedClientsHead
       setDialogOpen(false);
     } else if (!isAtomCommandInterrupted(result)) {
       const error = squashAtomCommandFailure(result);
-      const message = error instanceof Error ? error.message : "Failed to create pairing URL.";
+      const message = error instanceof Error ? error.message : t("Failed to create pairing URL.");
       toastManager.add(
         stackedThreadToast({
           type: "error",

@@ -92,7 +92,7 @@ export function retryFailedUpdateRunServers(
           ? providerFailure
           : outcome.status === "failed"
             ? outcome.message
-            : "Could not start the update",
+            : t("Could not start the update"),
         { serverUpdated: outcome.status === "updated" },
       ),
     );

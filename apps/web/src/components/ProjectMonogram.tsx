@@ -1,7 +1,6 @@
 import type { ProjectIconColor } from "@t3tools/contracts";
 import { projectIconColorClassName } from "../projectIconColors";
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 const monogramSegmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
 
@@ -27,7 +26,7 @@ export function ProjectMonogram({
           projectIconColorClassName(color),
         )}
         style={{
-          backgroundColor: t("color-mix(in srgb, currentColor 14%, transparent)"),
+          backgroundColor: "color-mix(in srgb, currentColor 14%, transparent)",
         }}
       >
         <text

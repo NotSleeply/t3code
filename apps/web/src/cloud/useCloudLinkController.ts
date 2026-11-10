@@ -71,7 +71,8 @@ export function useCloudLinkController(environmentId: EnvironmentId | null) {
   const [tunnelLimit, setTunnelLimit] = useState<number | null>(null);
 
   const reportUpdateFailure = (cause: unknown, reason?: string) => {
-    const message = cause instanceof Error ? cause.message : "Could not update T3 Connect access.";
+    const message =
+      cause instanceof Error ? cause.message : t("Could not update T3 Connect access.");
     const traceId = findErrorTraceId(cause);
     console.error("[t3-connect] Could not update T3 Connect", { message, traceId, cause });
     setOperationError(traceId ? `${message} Trace ID: ${traceId}` : message);

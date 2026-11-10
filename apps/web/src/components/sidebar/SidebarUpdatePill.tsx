@@ -161,7 +161,7 @@ export async function downloadLocalUpdate(
   } catch (error) {
     reportError(
       "Could not start update download",
-      error instanceof Error ? error.message : "An unexpected error occurred.",
+      error instanceof Error ? error.message : t("An unexpected error occurred."),
     );
     return false;
   }
@@ -187,7 +187,7 @@ export async function installLocalUpdate(
   } catch (error) {
     reportError(
       "Could not install update",
-      error instanceof Error ? error.message : "An unexpected error occurred.",
+      error instanceof Error ? error.message : t("An unexpected error occurred."),
     );
     return false;
   }
@@ -471,7 +471,7 @@ function SidebarUpdateControl() {
         showUpdateIconState
           ? cn(
               "bg-sidebar-control-surface text-sidebar-foreground",
-              !isInteractionDisabled && t("hover:bg-sidebar-row-hover"),
+              !isInteractionDisabled && "hover:bg-sidebar-row-hover",
             )
           : cn(
               "text-(--sidebar-icon-color)",

@@ -207,7 +207,7 @@ function AboutVersionSection() {
           stackedThreadToast({
             type: "error",
             title: t("Could not download update"),
-            description: error instanceof Error ? error.message : "Download failed.",
+            description: error instanceof Error ? error.message : t("Download failed."),
           }),
         );
       });
@@ -230,7 +230,7 @@ function AboutVersionSection() {
           stackedThreadToast({
             type: "error",
             title: t("Could not confirm update"),
-            description: error instanceof Error ? error.message : "Update confirmation failed.",
+            description: error instanceof Error ? error.message : t("Update confirmation failed."),
           }),
         );
         return;
@@ -246,7 +246,7 @@ function AboutVersionSection() {
             stackedThreadToast({
               type: "error",
               title: t("Could not install update"),
-              description: error instanceof Error ? error.message : "Install failed.",
+              description: error instanceof Error ? error.message : t("Install failed."),
             }),
           );
         })
@@ -277,7 +277,7 @@ function AboutVersionSection() {
           stackedThreadToast({
             type: "error",
             title: t("Could not check for updates"),
-            description: error instanceof Error ? error.message : "Update check failed.",
+            description: error instanceof Error ? error.message : t("Update check failed."),
           }),
         );
       });

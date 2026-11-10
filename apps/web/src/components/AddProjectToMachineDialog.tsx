@@ -205,7 +205,7 @@ function AddProjectToMachineDialog({ request }: { request: AddProjectToMachineRe
       close();
       openClonedProject(scopeProjectRef(target.environmentId, projectId));
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Could not start the clone.");
+      setError(cause instanceof Error ? cause.message : t("Could not start the clone."));
       setSubmitting(false);
     }
   };

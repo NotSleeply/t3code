@@ -5,10 +5,11 @@ import {
   captureSetupAccessReady,
   captureSetupMacPermissionsReady,
 } from "./SnapShotSetupDialog.logic";
+import { t } from "~/i18n";
 
 export function snapShotStatus(state: DesktopSnapShotState | null, enabled: boolean): string {
   if (!state) return "Checking snapshots…";
-  if (state.mode === "unavailable") return state.message ?? "Not supported on this platform.";
+  if (state.mode === "unavailable") return state.message ?? t("Not supported on this platform.");
   if (!enabled) return "Turn this on to set up snapshots.";
   return snapShotSetupSummary(state, enabled);
 }

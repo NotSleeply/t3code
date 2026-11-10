@@ -1236,7 +1236,7 @@ export default function FilePreviewPanel({
         stackedThreadToast({
           type: "error",
           title: t("Unable to open file in browser"),
-          description: error instanceof Error ? error.message : "An error occurred.",
+          description: error instanceof Error ? error.message : t("An error occurred."),
         }),
       );
     })();
@@ -1603,7 +1603,7 @@ export function WorkspaceLargeTextPreview(props: {
     toastManager.add({
       type: "error",
       title: t("Could not read file"),
-      description: cause instanceof Error ? cause.message : "Try again.",
+      description: cause instanceof Error ? cause.message : t("Try again."),
     });
   };
   // Each workspace mutation re-mints the URL, so an edited file loads its new bytes.

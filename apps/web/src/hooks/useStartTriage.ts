@@ -61,7 +61,7 @@ export function useStartTriage() {
   ) => {
     if (isAtomCommandInterrupted(result)) return;
     const error = squashAtomCommandFailure(result);
-    fail(error instanceof Error ? error.message : "An error occurred.");
+    fail(error instanceof Error ? error.message : t("An error occurred."));
   };
 
   // `routeChanged` tells the steps the user went elsewhere while they waited;

@@ -135,7 +135,7 @@ export function createThemeSearch(
           if (controller.signal.aborted) return;
           view.setResults(null);
           shownKey = null;
-          view.setError(cause instanceof Error ? cause.message : "Open VSX search failed.");
+          view.setError(cause instanceof Error ? cause.message : t("Open VSX search failed."));
         },
       )
       .then(() => {
@@ -264,7 +264,7 @@ export function ThemeSearchSection({
     try {
       installedCollection = getStoredCustomThemeCollection(extension.collectionId);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Installed themes could not be read.");
+      setError(cause instanceof Error ? cause.message : t("Installed themes could not be read."));
       return;
     }
     const updated = installedCollection.length > 0;
@@ -285,7 +285,7 @@ export function ThemeSearchSection({
       }
     } catch (cause) {
       if (!installSignal.aborted) {
-        setError(cause instanceof Error ? cause.message : "That theme could not be added.");
+        setError(cause instanceof Error ? cause.message : t("That theme could not be added."));
       }
     }
     if (themeSearch.endInstall(installSignal)) setInstallingId(null);

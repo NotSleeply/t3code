@@ -20,7 +20,7 @@ export function PullRequestCommentBody({
       <div
         ref={clip}
         id={id}
-        className={cn("relative", !expanded && t("max-h-[240px] overflow-hidden"))}
+        className={cn("relative", !expanded && "max-h-[240px] overflow-hidden")}
         onFocusCapture={() => setExpanded(true)}
       >
         <div

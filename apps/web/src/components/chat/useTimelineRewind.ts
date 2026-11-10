@@ -33,6 +33,7 @@ import { useOrchestrationCommand } from "../../state/use-orchestration-command";
 import { useAtomQueryRunner } from "../../state/use-atom-query-runner";
 import { rewindToMessage } from "./chatViewSend";
 import { makeThreadErrorSetter } from "../ChatView.logic";
+import { t } from "~/i18n";
 interface TimelineRewindInput {
   readonly environmentId: EnvironmentId;
   readonly routeThreadRef: ScopedThreadRef;
@@ -192,7 +193,7 @@ export function useTimelineRewind(input: TimelineRewindInput) {
         const error = squashAtomCommandFailure(result);
         setThreadError(
           activeThread.id,
-          error instanceof Error ? error.message : "Failed to fork this response.",
+          error instanceof Error ? error.message : t("Failed to fork this response."),
         );
       }
       return;

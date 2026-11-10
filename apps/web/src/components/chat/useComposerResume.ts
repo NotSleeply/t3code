@@ -147,7 +147,7 @@ export function useComposerResume(input: ComposerResumeInput) {
         const error = squashAtomCommandFailure(result);
         setThreadError(
           threadId,
-          error instanceof Error ? error.message : "Could not resume thread.",
+          error instanceof Error ? error.message : t("Could not resume thread."),
         );
       }
     } else {

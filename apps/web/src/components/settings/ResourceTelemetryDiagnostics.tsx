@@ -942,7 +942,7 @@ function ResourceTelemetryDiagnosticsBody({
           type: "error",
           title: t("Could not restart resource monitor"),
           description:
-            error instanceof Error ? error.message : "The resource monitor retry failed.",
+            error instanceof Error ? error.message : t("The resource monitor retry failed."),
         });
       })
       .finally(() => {

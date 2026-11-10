@@ -9,7 +9,6 @@ import {
   type SidebarListMarker,
 } from "../Sidebar.logic";
 import { SIDEBAR_SORTABLE_DRAG_DISABLED } from "./SidebarThreadRow";
-import { t } from "~/i18n";
 
 function SortableSidebarMarker(props: {
   marker: SidebarListMarker;

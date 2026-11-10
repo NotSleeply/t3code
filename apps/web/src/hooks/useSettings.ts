@@ -704,7 +704,7 @@ function useUpdateSettingsTarget(environmentId: EnvironmentId | null) {
               if (result._tag !== "Failure" || isAtomCommandInterrupted(result)) return [];
               const error = squashAtomCommandFailure(result);
               return [
-                `Could not save on ${label}: ${error instanceof Error ? error.message : "The save failed. Try reconnecting and saving again."}`,
+                `Could not save on ${label}: ${error instanceof Error ? error.message : t("The save failed. Try reconnecting and saving again.")}`,
               ];
             });
             if (

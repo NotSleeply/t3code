@@ -145,7 +145,7 @@ function ExtendedOfficeViewer(props: {
         }
       })
       .catch((cause: unknown) =>
-        fail(cause instanceof Error ? cause.message : "Could not read this file."),
+        fail(cause instanceof Error ? cause.message : t("Could not read this file.")),
       );
     return () => {
       controller.abort();

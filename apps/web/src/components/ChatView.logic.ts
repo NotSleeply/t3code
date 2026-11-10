@@ -1176,7 +1176,7 @@ export type LocalThreadErrorEntry = {
 };
 
 export function chatActionErrorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : "An error occurred.";
+  return error instanceof Error ? error.message : t("An error occurred.");
 }
 
 export function releaseChatTimelineAnchor<T extends { readonly messageId: MessageId | null }>(

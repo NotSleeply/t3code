@@ -104,7 +104,7 @@ export function ProjectFaviconPickerDialog(props: {
                           type: "error",
                           title: t("Could not open image picker"),
                           description:
-                            error instanceof Error ? error.message : "An error occurred.",
+                            error instanceof Error ? error.message : t("An error occurred."),
                         });
                       })
                       .finally(() => setIsPickingExternal(false));

@@ -92,7 +92,7 @@ interface BranchToolbarBranchSelectorProps {
 }
 
 function toBranchActionErrorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : "An error occurred.";
+  return error instanceof Error ? error.message : t("An error occurred.");
 }
 
 export function BranchToolbarBranchSelector({
@@ -680,7 +680,7 @@ export function BranchToolbarBranchSelector({
       popupProps={{
         align: displayMode === "panel" ? "start" : "end",
         side: displayMode === "panel" ? "bottom" : "top",
-        className: cn("flex flex-col", displayMode === "panel" ? t("w-(--anchor-width)") : "w-80"),
+        className: cn("flex flex-col", displayMode === "panel" ? "w-(--anchor-width)" : "w-80"),
         ...(displayMode === "toolbar" ? composerFloatingLayerProps : {}),
       }}
     >

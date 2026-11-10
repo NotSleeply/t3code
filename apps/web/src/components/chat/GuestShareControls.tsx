@@ -98,7 +98,7 @@ function GuestShareDialog({
     const error = squashAtomCommandFailure(result);
     setState({
       status: "failed",
-      message: error instanceof Error ? error.message : "Could not create a guest link.",
+      message: error instanceof Error ? error.message : t("Could not create a guest link."),
     });
   };
 

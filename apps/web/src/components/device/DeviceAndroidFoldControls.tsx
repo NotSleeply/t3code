@@ -64,7 +64,7 @@ export function DeviceAndroidFoldControls(props: {
             ? "Fold command timed out."
             : cause instanceof Error
               ? cause.message
-              : "Could not change fold posture.",
+              : t("Could not change fold posture."),
         );
       })
       .finally(() => {

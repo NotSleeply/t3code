@@ -64,9 +64,7 @@ function ArchiveFile(props: { readonly path: string; readonly bytes: Uint8Array<
     return url ? <PreviewImage key={url} src={url} name={props.path} /> : <FileSurfaceLoading />;
   if (!text)
     return (
-      <FileSurfaceFailure
-        message={t("Only UTF-8 text and images can be opened inside an archive.")}
-      />
+      <FileSurfaceFailure message={"Only UTF-8 text and images can be opened inside an archive."} />
     );
   return (
     <>
@@ -160,7 +158,7 @@ export default function BinaryViewer(props: {
         }
       })
       .catch((cause: unknown) =>
-        fail(cause instanceof Error ? cause.message : "Could not read this file."),
+        fail(cause instanceof Error ? cause.message : t("Could not read this file.")),
       );
     return () => {
       controller.abort();

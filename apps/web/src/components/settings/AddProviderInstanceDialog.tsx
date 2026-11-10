@@ -405,7 +405,7 @@ export function AddProviderInstanceDialog({
       toastManager.add({
         type: "error",
         title: t("Could not add provider instance"),
-        description: error instanceof Error ? error.message : "The settings update failed.",
+        description: error instanceof Error ? error.message : t("The settings update failed."),
       });
       return;
     }

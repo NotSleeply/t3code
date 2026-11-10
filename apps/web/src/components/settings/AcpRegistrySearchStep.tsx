@@ -32,7 +32,7 @@ import { t } from "~/i18n";
 function errorMessage(error: unknown): string {
   return error instanceof Error && error.message.trim()
     ? error.message
-    : "The ACP could not be prepared.";
+    : t("The ACP could not be prepared.");
 }
 
 const ACP_REGISTRY_SEARCH_DEBOUNCE_MS = 300;

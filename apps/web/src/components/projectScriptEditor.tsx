@@ -372,7 +372,7 @@ function ProjectScriptEditorForm({
         autoOpenPreview: trimmedPreviewUrl.length > 0 ? autoOpenPreview : false,
       } satisfies NewProjectScriptInput;
     } catch (error) {
-      setValidationError(error instanceof Error ? error.message : "Failed to save action.");
+      setValidationError(error instanceof Error ? error.message : t("Failed to save action."));
       return;
     }
 
@@ -386,7 +386,9 @@ function ProjectScriptEditorForm({
         if (result._tag === "Failure") {
           if (!isAtomCommandInterrupted(result)) {
             const error = squashAtomCommandFailure(result);
-            setValidationError(error instanceof Error ? error.message : "Failed to save action.");
+            setValidationError(
+              error instanceof Error ? error.message : t("Failed to save action."),
+            );
           }
         } else {
           close();
@@ -394,7 +396,7 @@ function ProjectScriptEditorForm({
       }
     } catch (error) {
       if (pendingSubmissionRef.current === submission) {
-        setValidationError(error instanceof Error ? error.message : "Failed to save action.");
+        setValidationError(error instanceof Error ? error.message : t("Failed to save action."));
       }
     }
     if (pendingSubmissionRef.current === submission) {
@@ -441,7 +443,7 @@ function ProjectScriptEditorForm({
                             className={`relative flex flex-col items-center gap-2 rounded-md border px-2 py-2 text-xs dark:border-transparent ${
                               isSelected
                                 ? "border-primary/70 bg-primary/10 ring-inset dark:ring-1 dark:ring-primary/30"
-                                : t("border-border/70 hover:bg-accent/60 dark:bg-white/[0.035]")
+                                : "border-border/70 hover:bg-accent/60 dark:bg-white/[0.035]"
                             }`}
                             onClick={() => {
                               setIcon(entry.id);

@@ -95,7 +95,7 @@ function PdfPage(props: {
       await Promise.all([paint.promise, layer.render()]);
     })().catch((cause: unknown) => {
       if (!cancelled)
-        onError(cause instanceof Error ? cause.message : "This PDF page could not render.");
+        onError(cause instanceof Error ? cause.message : t("This PDF page could not render."));
     });
     return () => {
       cancelled = true;
@@ -207,7 +207,7 @@ export default function PdfViewer(props: {
       })
       .catch((cause: unknown) => {
         if (!disposed && !controller.signal.aborted)
-          setError(cause instanceof Error ? cause.message : "Unable to open PDF.");
+          setError(cause instanceof Error ? cause.message : t("Unable to open PDF."));
       })
       .finally(() => clearTimeout(timeout));
     return () => {
@@ -335,7 +335,7 @@ export default function PdfViewer(props: {
       })()
         .catch((cause: unknown) => {
           if (!cancelled)
-            setFindError(cause instanceof Error ? cause.message : "Could not search this PDF.");
+            setFindError(cause instanceof Error ? cause.message : t("Could not search this PDF."));
         })
         .finally(() => {
           if (!cancelled) setFinding(false);

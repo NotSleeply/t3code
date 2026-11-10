@@ -1,7 +1,6 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 function getVirtualizedScrollFadeClassName({ top, bottom }: { top: boolean; bottom: boolean }) {
   if (!top && !bottom) return undefined;
@@ -44,7 +43,7 @@ function ScrollArea({
     <ScrollAreaPrimitive.Root
       className={cn(
         "relative size-full min-h-0 overflow-hidden",
-        radius === "none" ? "rounded-none" : t("rounded-[inherit]"),
+        radius === "none" ? "rounded-none" : "rounded-[inherit]",
         className,
       )}
       {...props}
@@ -57,10 +56,10 @@ function ScrollArea({
           scrollFade &&
             "mask-t-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-start)))] mask-b-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-end)))] mask-l-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-start)))] mask-r-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-end)))] focus-visible:mask-none [--fade-size:1.5rem]",
           scrollFade && scrollFadePadding && "scroll-p-[var(--fade-size)]",
-          scrollFade && !scrollFadePadding && t("has-focus-visible:mask-none"),
+          scrollFade && !scrollFadePadding && "has-focus-visible:mask-none",
           scrollbarGutter && "scrollbar-gutter-stable",
           hideScrollbars &&
-            t("[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"),
+            "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         )}
         data-slot="scroll-area-viewport"
       >

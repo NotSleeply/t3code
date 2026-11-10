@@ -43,7 +43,7 @@ export function useCheckProviderUpdates() {
           const result = await refreshProviders({ environmentId, input: { refreshModels: true } });
           if (result._tag !== "Failure" || isAtomCommandInterrupted(result)) return [];
           const error = squashAtomCommandFailure(result);
-          return [`${label}: ${error instanceof Error ? error.message : "Refresh failed."}`];
+          return [`${label}: ${error instanceof Error ? error.message : t("Refresh failed.")}`];
         }),
     );
     const lines = failures.flat();

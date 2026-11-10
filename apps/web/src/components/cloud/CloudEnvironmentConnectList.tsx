@@ -168,7 +168,7 @@ export function CloudEnvironmentConnectRows({
     }
     const cause = squashAtomCommandFailure(result);
     const message =
-      cause instanceof Error ? cause.message : "Could not connect the T3 Connect environment.";
+      cause instanceof Error ? cause.message : t("Could not connect the T3 Connect environment.");
     const traceId = findErrorTraceId(cause);
     console.error("[t3-connect] Could not connect environment", { message, traceId, cause });
     toastManager.add({
@@ -447,7 +447,7 @@ export function CloudEnvironmentConnectRows({
                             ? "Relay offline"
                             : availability === "checking"
                               ? "Checking relay status"
-                              : (Option.getOrNull(error)?.message ?? "Relay status unavailable")
+                              : (Option.getOrNull(error)?.message ?? t("Relay status unavailable"))
                 }
               />
               <EnvironmentMachineIcon

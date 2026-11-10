@@ -76,8 +76,8 @@ function ChecksBody({
           className={cn(
             "grid gap-x-2 gap-y-1 pe-3",
             hasDetails
-              ? t("grid-cols-[auto_minmax(0,1fr)_auto_auto]")
-              : t("grid-cols-[auto_minmax(0,1fr)_auto]"),
+              ? "grid-cols-[auto_minmax(0,1fr)_auto_auto]"
+              : "grid-cols-[auto_minmax(0,1fr)_auto]",
           )}
         >
           {visibleChecks.map(

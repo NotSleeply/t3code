@@ -21,7 +21,7 @@ import { t } from "~/i18n";
 function errorMessage(error: unknown): string {
   return error instanceof Error && error.message.trim().length > 0
     ? error.message
-    : "An error occurred.";
+    : t("An error occurred.");
 }
 
 export function useNewProject() {

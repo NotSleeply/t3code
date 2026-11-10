@@ -12,7 +12,6 @@ import { deriveProjectIdentity } from "../projectIdentity";
 import { projectIconColorClassName } from "../projectIconColors";
 import { ProjectMonogram } from "./ProjectMonogram";
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 // All lucide icons load as one chunk, only once a project uses a lucide override.
 const LucideProjectIcon = lazy(() =>

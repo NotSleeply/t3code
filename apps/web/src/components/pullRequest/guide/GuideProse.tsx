@@ -4,7 +4,6 @@ import { createContext, useContext } from "react";
 import { cn } from "~/lib/utils";
 
 import { PullRequestMarkdown } from "../PullRequestMarkdown";
-import { t } from "~/i18n";
 
 export const GuideProseContext = createContext<{
   readonly environmentId: EnvironmentId;

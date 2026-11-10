@@ -171,7 +171,7 @@ async function submitQueuedRunEdit(input: {
     });
     return result._tag === "Failure" ? "Could not save the edited queued message." : null;
   } catch (error) {
-    return error instanceof Error ? error.message : "Could not save the edited queued message.";
+    return error instanceof Error ? error.message : t("Could not save the edited queued message.");
   }
 }
 

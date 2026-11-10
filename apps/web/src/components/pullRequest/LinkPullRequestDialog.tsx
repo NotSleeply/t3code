@@ -104,7 +104,9 @@ function LinkPullRequestDialog({
     setPending(false);
     if (result._tag === "Failure") {
       const error = squashAtomCommandFailure(result);
-      setSubmitError(error instanceof Error ? error.message : "Could not link the pull request.");
+      setSubmitError(
+        error instanceof Error ? error.message : t("Could not link the pull request."),
+      );
       return;
     }
     onOpenChange(false);

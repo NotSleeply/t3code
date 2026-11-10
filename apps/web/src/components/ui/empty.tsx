@@ -1,7 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/lib/utils";
-import { t } from "~/i18n";
 
 const emptySizeClassName = {
   compact:

@@ -81,7 +81,7 @@ function CrossTrackNote() {
 }
 
 function updateFailureMessage(error: unknown): string {
-  return error instanceof Error ? error.message : "Server update failed.";
+  return error instanceof Error ? error.message : t("Server update failed.");
 }
 
 export interface ServerUpdateTarget {

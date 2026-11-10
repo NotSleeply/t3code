@@ -7,7 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import { cn } from "../../lib/utils";
-import { t } from "~/i18n";
 
 const GroupedRows = createContext(false);
 
@@ -70,7 +69,7 @@ function WorkLogLine({ icon, label, trailing, wrapLabel }: RowContent) {
         <div
           className={cn(
             "min-w-0 flex-1 text-secondary-label",
-            !wrapLabel && t("truncate [&_*]:whitespace-nowrap"),
+            !wrapLabel && "truncate [&_*]:whitespace-nowrap",
           )}
         >
           {label}
@@ -157,9 +156,9 @@ export function WorkLogDetails({
       className={cn(
         "cursor-auto",
         kind === "text"
-          ? t("ms-7 flex max-h-96 flex-col gap-3 overflow-auto px-0.5 py-1 select-text")
+          ? "ms-7 flex max-h-96 flex-col gap-3 overflow-auto px-0.5 py-1 select-text"
           : kind === "panel"
-            ? t("mt-0.5 mb-1.5 pb-2")
+            ? "mt-0.5 mb-1.5 pb-2"
             : "mt-1",
       )}
       onClick={(event) => event.stopPropagation()}

@@ -11,7 +11,6 @@ import {
 
 import { cn } from "~/lib/utils";
 import { useNativeTitlebarHeight } from "~/lib/windowControlsOverlay";
-import { t } from "~/i18n";
 
 // Base UI's default, restated because a padding object zeroes the sides it omits.
 const COLLISION_PADDING = 5;
@@ -144,7 +143,7 @@ function TooltipPopup({
               ? "dropdown-glass shadow-xl shadow-black/25 before:hidden"
               : "border bg-popover not-dark:bg-clip-padding shadow-md/5",
             variant === "code"
-              ? t("max-w-120 wrap-anywhere text-left font-mono text-[11px] leading-relaxed")
+              ? "max-w-120 wrap-anywhere text-left font-mono text-[11px] leading-relaxed"
               : "max-w-80 wrap-anywhere whitespace-normal leading-snug",
             className,
           )}
