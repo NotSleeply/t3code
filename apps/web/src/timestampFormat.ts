@@ -1,4 +1,5 @@
 import { type TimestampFormat } from "@t3tools/contracts/settings";
+import { t } from "~/i18n";
 
 function getTimestampFormatOptions(
   timestampFormat: TimestampFormat,
@@ -312,7 +313,7 @@ export function formatExpiresInLabel(isoDate: string, nowMs: number = Date.now()
   if (diffMs <= 0) return "Expired";
 
   const totalSeconds = Math.floor(diffMs / 1000);
-  if (totalSeconds < 5) return "Expires in a moment";
+  if (totalSeconds < 5) return t("Expires in a moment");
   if (totalSeconds < 60) return `Expires in ${totalSeconds}s`;
 
   if (totalSeconds < 3600) {

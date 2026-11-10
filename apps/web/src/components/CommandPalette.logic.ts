@@ -782,13 +782,13 @@ export function buildRootGroups(input: {
 export function getCommandPaletteInputPlaceholder(mode: CommandPaletteMode): string {
   switch (mode) {
     case "root":
-      return "Search commands, projects, and threads...";
+      return t("Search commands, projects, and threads...");
     case "root-browse":
-      return "Enter project path (e.g. ~/projects/my-app)";
+      return t("Enter project path (e.g. ~/projects/my-app)");
     case "submenu":
       return "Search...";
     case "submenu-browse":
-      return "Enter path (e.g. ~/projects/my-app)";
+      return t("Enter path (e.g. ~/projects/my-app)");
   }
 }
 
@@ -833,7 +833,7 @@ export function remoteProjectInputPlaceholder(flow: AddProjectCloneFlow | null):
   if (!flow) return null;
   if (flow.step === "confirm") return null;
   if (flow.source === "url") {
-    return "Enter Git clone URL";
+    return t("Enter Git clone URL");
   }
   return `Enter ${addProjectRemoteSourceLabel(flow.source)} repository (${addProjectRemoteSourcePathHint(flow.source)})`;
 }
@@ -860,7 +860,7 @@ export function errorMessage(error: unknown): string {
   if (error instanceof Error && error.message.trim().length > 0) {
     return error.message;
   }
-  return "An error occurred.";
+  return t("An error occurred.");
 }
 
 const OVERLAY_MODE_BY_COMMAND = {

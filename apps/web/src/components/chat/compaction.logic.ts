@@ -3,6 +3,7 @@ import {
   resolveSelectableProviderInstanceEntry,
   type ProviderInstanceEntry,
 } from "../../providerInstances";
+import { t } from "~/i18n";
 
 function providerSupportsManualCompaction(
   provider: ProviderInstanceEntry | null | undefined,
@@ -38,5 +39,5 @@ export function formatContextWindowCompactionMessage(autoCompactThreshold?: numb
   if (typeof autoCompactThreshold === "number" && autoCompactThreshold > 0) {
     return `Compacts automatically at about ${autoCompactThreshold.toLocaleString("en-US")} tokens.`;
   }
-  return "Context compacts automatically when needed.";
+  return t("Context compacts automatically when needed.");
 }

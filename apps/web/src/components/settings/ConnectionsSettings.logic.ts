@@ -25,6 +25,7 @@ import {
   getDesktopUpdateDownloadedVersion,
   resolveDesktopUpdateButtonAction,
 } from "../desktopUpdate.logic";
+import { t } from "~/i18n";
 
 /** Keep terminal:read with terminal:operate to avoid creating unseen shells on every script run. */
 export function togglePairingScopeSelection(
@@ -424,17 +425,17 @@ export function isHostedAppPairingUrl(value: string): boolean {
 
 export function endpointShareHint(endpoint: AdvertisedEndpoint, url: string): string {
   if (isHostedAppPairingUrl(url)) {
-    return "Opens the hosted app, no install needed";
+    return t("Opens the hosted app, no install needed");
   }
   switch (endpoint.reachability) {
     case "lan":
-      return "Devices on the same network";
+      return t("Devices on the same network");
     case "private-network":
-      return "Devices on your private network";
+      return t("Devices on your private network");
     case "public":
       return "Reachable from anywhere";
     case "loopback":
-      return "Clients on this machine";
+      return t("Clients on this machine");
   }
 }
 

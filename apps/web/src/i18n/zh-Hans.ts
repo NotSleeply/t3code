@@ -255,6 +255,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Add Action": "添加操作",
   "Add actions declared by this checkout without editing them first.":
     "直接添加此检出声明的操作，无需先编辑。",
+  'Add an "origin" remote before pushing.': '推送前请先添加 "origin" 远程仓库。',
   "Add an account or configure a provider on {0}.": "在 {0} 上添加账户或配置服务商。",
   "Add an alias for {0}": "为 {0} 添加别名",
   "Add an optional comment...": "添加可选评论…",
@@ -378,6 +379,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "An error occurred while saving.": "保存时发生错误。",
   "An error occurred.": "发生错误。",
   "An unexpected error occurred.": "发生意外错误。",
+  "An unexpected router error occurred.": "发生了意外的路由错误。",
   "and the": "和",
   Android: "Android",
   "Android available": "Android 可用",
@@ -424,6 +426,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Approval needed from {0}": "需要 {0} 审批",
   "Approval requested": "已请求审批",
   Approve: "批准",
+  "Approve the shortcut permission prompt to continue.": "请批准快捷键权限提示以继续。",
   "Approve workflows to run": "批准工作流运行",
   Approved: "已批准",
   "Approving…": "正在批准…",
@@ -560,6 +563,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Branch changed from": "分支已变更，原为",
   "Branch copied": "分支已复制",
   "Branch deleted": "分支已删除",
+  "Branch is behind upstream. Pull/rebase before pushing.": "分支落后于上游。推送前请先拉取/变基。",
   "Branch name copied": "分支名已复制",
   "branch naming": "分支命名",
   "branch naming instructions": "分支命名说明",
@@ -625,6 +629,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   Cancelled: "已取消",
   "Cannot add project": "无法添加项目",
   "Capture animations": "截图动画",
+  "Capture effects aren't available on Niri.": "Niri 上不支持截图特效。",
   "Capture flash": "截图闪光",
   "Capture is ready": "截图已就绪",
   "Capture needs attention. Go back to check access.": "截图功能需要处理，请返回检查访问权限。",
@@ -709,6 +714,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Checking machine resources": "正在检查机器资源",
   "Checking out...": "正在检出…",
   "Checking releases…": "正在检查发布版本…",
+  "Checking snapshots…": "正在检查 SnapShot…",
   "Checking T3 Connect…": "正在检查 T3 Connect…",
   "Checking the proxy and the firewall": "正在检查代理和防火墙",
   "Checking the sign-in request": "正在检查登录请求",
@@ -747,6 +753,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Choose a window each time": "每次选择窗口",
   "Choose a window to capture from any app.": "从任意应用中选择要截取的窗口。",
   "Choose an agent": "选择智能体",
+  "Choose an Antigravity model before sending.": "发送前请先选择 Antigravity 模型。",
   "Choose an icon, emoji, or monogram.": "选择图标、emoji 或字母组合。",
   "Choose an OpenRouter model in Settings → Voice.": "在设置 → 语音中选择 OpenRouter 模型。",
   "Choose colors for additions and deletions, including change counts.":
@@ -809,6 +816,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Client label (optional)": "客户端标签（可选）",
   "Client not supported": "客户端不受支持",
   "Client scopes": "客户端作用域",
+  "Clients on this machine": "本机上的客户端",
   "Clipboard API unavailable.": "剪贴板 API 不可用。",
   "Clone {0}": "克隆 {0}",
   "Clone {0} and bring the local files git does not track.":
@@ -906,11 +914,13 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Commit & push to default ref?": "提交并推送到默认 ref？",
   "commit and pull request writing": "提交与 PR 撰写",
   "Commit and pull request writing": "提交与 PR 撰写",
+  "Commit is currently unavailable.": "目前无法提交。",
   "Commit message (optional)": "提交信息（可选）",
   "Commit messages and pull request titles and descriptions match each project's history.":
     "提交信息以及 PR 标题和描述会与各项目的历史保持一致。",
   "Commit messages, pull requests, and branch names": "提交信息、PR 和分支名称",
   "Commit on new branch": "在新分支上提交",
+  "Commit or stash local changes before pushing.": "推送前请先提交或暂存本地更改。",
   Commits: "提交",
   "Commits & pull requests": "提交与 PR",
   "Compact {0} tokens of history before sending": "发送前压缩 {0} 个 Token 的历史记录",
@@ -979,6 +989,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   Contacts: "联系人",
   Context: "上下文",
   "Context compaction": "上下文压缩",
+  "Context compacts automatically when needed.": "需要时会自动压缩上下文。",
   "Context window": "上下文窗口",
   Continue: "继续",
   "Continue authentication": "继续认证",
@@ -1129,6 +1140,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Could not post the comment": "无法发布评论",
   "Could not preview this file.": "无法预览此文件。",
   "Could not reach T3 Connect.": "无法连接到 T3 Connect。",
+  "Could not reach T3 Connect. Check your network.": "无法连接 T3 Connect。请检查网络。",
   "Could not reach this environment. Try again.": "无法连接到此环境。请重试。",
   "Could not read Codex setup status. Reconnect and try again.":
     "无法读取 Codex 配置状态。请重新连接后重试。",
@@ -1339,8 +1351,11 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Desktop app": "桌面应用",
   "Desktop host signals not connected": "桌面端主机信号未连接",
   "Desktop only": "仅桌面端",
+  "Desktop-managed pairing and one-time pairing tokens are both accepted for this environment.":
+    "此环境同时接受桌面端托管配对和一次性配对 Token。",
   Destination: "目标",
   "Detach Magic Keyboard": "断开 Magic Keyboard",
+  "Detached HEAD: check out a branch before pushing.": "处于分离 HEAD 状态：推送前请先检出分支。",
   "Detached HEAD: create and check out a branch to enable push and{0} {1} actions.":
     "HEAD 已分离：创建并检出一个分支，才能执行推送和{0}{1} 操作。",
   Details: "详情",
@@ -1362,6 +1377,8 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Device tools": "设备工具",
   "Device unavailable": "设备不可用",
   Devices: "设备",
+  "Devices on the same network": "同一网络中的设备",
+  "Devices on your private network": "你私有网络中的设备",
   Diagnostics: "诊断",
   "Diagnostics copied": "诊断信息已复制",
   "Dialog response": "对话框响应",
@@ -1496,6 +1513,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Empty placeholders: {0}": "为空的占位符：{0}",
   "Enable {0}": "启用 {0}",
   "Enable Antigravity": "启用 Antigravity",
+  "Enable capture to continue": "启用截图以继续",
   "Enable device hub": "启用设备中心",
   "Enable extension": "启用扩展",
   "Enable network access": "启用网络访问",
@@ -1513,6 +1531,8 @@ export const zhHans: Readonly<Record<string, string>> = {
   Enter: "Enter",
   "Enter a backend host and pairing code.": "输入后端主机和配对码。",
   "Enter a Git clone URL and press Enter to continue.": "输入 Git 克隆 URL 并按 Enter 继续。",
+  "Enter a pairing token to start a session with this environment.":
+    "输入配对 Token 以与此环境建立会话。",
   "Enter a path relative to": "输入相对于",
   "Enter a port from 1 to 65535.": "输入 1 到 65535 之间的端口。",
   "Enter a positive duration.": "请输入大于 0 的时长。",
@@ -1526,7 +1546,10 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Enter an http or https URL.": "请输入 HTTP 或 HTTPS URL。",
   "Enter API key": "输入 API 密钥",
   "Enter code": "输入代码",
+  "Enter Git clone URL": "输入 Git 克隆 URL",
   "Enter manually": "手动输入",
+  "Enter path (e.g. ~/projects/my-app)": "输入路径（例如 ~/projects/my-app）",
+  "Enter project path (e.g. ~/projects/my-app)": "输入项目路径（例如 ~/projects/my-app）",
   "Enter the password or verification code required by": "输入以下目标要求的密码或验证码：",
   "Enter to save the citation comment; Command/Ctrl+Enter to save and send; Shift+Enter for a new line.":
     "按 Enter 保存引用评论；按 Command/Ctrl+Enter 保存并发送；按 Shift+Enter 换行。",
@@ -1574,6 +1597,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Expanded {0} preview": "已展开的 {0} 预览",
   Expired: "已过期",
   Expires: "过期时间",
+  "Expires in a moment": "即将过期",
   "Expo access token": "Expo 访问令牌",
   "Expo allows sessions of up to 40 minutes on free accounts and 115 on paid ones, and ends one after the idle minutes without activity, so idle minutes must be smaller than session minutes.":
     "Expo 免费账户的会话最长 40 分钟，付费账户最长 115 分钟，并会在无活动达到设定的空闲分钟数后结束会话，因此空闲分钟数必须小于会话分钟数。",
@@ -1753,11 +1777,13 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Get one from Use T3 Code in another app (MCP), Settings → Sharing & access, or":
     "可从“在其他应用中使用 T3 Code（MCP）”或“设置 → 共享与访问权限”中获取，或",
   "Get T3 Code": "获取 T3 Code",
+  "Git action in progress.": "Git 操作进行中。",
   "Git action options": "Git 操作选项",
   "Git actions": "Git 操作",
   "git clone": "git clone",
   "Git fetch interval": "Git fetch 间隔",
   "Git initialization failed": "Git 初始化失败",
+  "Git status is unavailable.": "Git 状态不可用。",
   "Give us a star on GitHub to let us know!": "在 GitHub 上给我们点个星，让我们知道！",
   "glass opacity": "玻璃不透明度",
   "Glass opacity": "玻璃不透明度",
@@ -1898,6 +1924,8 @@ export const zhHans: Readonly<Record<string, string>> = {
   Inspect: "检查",
   Install: "安装",
   "Install and manage Antigravity.": "安装并管理 Antigravity。",
+  "Install Antigravity in provider settings before sending.":
+    "发送前请在服务商设置中安装 Antigravity。",
   "Install extension": "安装扩展",
   "Install failed.": "安装失败。",
   "Install helper": "安装辅助程序",
@@ -2177,6 +2205,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Managed relay client": "托管中继客户端",
   "Management key": "管理密钥",
   Manual: "手动",
+  "Manual capture only. You'll choose a window each time": "仅手动截图。每次都会让你选择窗口",
   "Manual only": "仅手动",
   "Manual setup": "手动设置",
   "Manual update required": "需要手动更新",
@@ -2382,6 +2411,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "No licenses match that search.": "没有与该搜索匹配的许可证。",
   "No linked environments": "没有已链接的环境",
   "No linked pull requests": "没有已关联的 PR",
+  "No local commits to push.": "没有可推送的本地提交。",
   "No machine can read every attached thread. Choose a machine in the composer or remove the threads.":
     "没有机器能读取所有已附加的线程。在输入框中选择机器，或移除这些线程。",
   "No matches found.": "未找到匹配项。",
@@ -2410,6 +2440,7 @@ export const zhHans: Readonly<Record<string, string>> = {
     "此端点没有二维码。其他设备扫描回环链接只会连接到自身；请改为复制 URL 在本机使用。",
   "No refs found.": "未找到引用。",
   "No requests yet.": "暂无请求。",
+  "No reset credits banked": "没有已存入的重置额度",
   "No retained process samples in this window.": "此时间窗口内没有保留的进程采样数据。",
   "No reviews": "无审查",
   "No saved remote environments": "没有已保存的远程环境",
@@ -2600,6 +2631,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "OpenRouter no longer lists {0}. Dictation stays off until you choose another model.":
     "OpenRouter 已不再提供 {0}。在你选择其他模型之前，听写功能将保持关闭。",
   "Opens over SSH. Needs your key on {0}": "通过 SSH 打开。需要在 {0} 上配置密钥",
+  "Opens the hosted app, no install needed": "打开网页版应用，无需安装",
   "OpenTelemetry export": "OpenTelemetry 导出",
   Operation: "操作",
   "Option {0}": "选项 {0}",
@@ -2893,6 +2925,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Pulling latest changes...": "正在拉取最新更改…",
   Purple: "紫色",
   Push: "推送",
+  "Push is currently unavailable.": "目前无法推送。",
   "Push notification": "推送通知",
   "Push notifications": "推送通知",
   "Push to default ref?": "推送到默认 ref？",
@@ -2936,6 +2969,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   Ready: "就绪",
   "Ready for review": "标记为可审核",
   "Ready to save.": "可以保存了。",
+  "Ready. You'll choose a window each time.": "已就绪。每次都会让你选择窗口。",
   Reasoning: "推理",
   "Reasoning effort": "推理强度",
   "Rebase and merge": "变基并合并",
@@ -2984,6 +3018,8 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Reference an issue or change request": "引用议题或变更请求",
   Refresh: "刷新",
   "Refresh {0} provider status": "刷新 {0} 服务商状态",
+  "Refresh Antigravity models in provider settings before sending.":
+    "发送前请在服务商设置中刷新 Antigravity 模型。",
   "Refresh devices": "刷新设备",
   "Refresh failed.": "刷新失败。",
   "Refresh failed. Retry": "刷新失败。请重试",
@@ -3056,6 +3092,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Remove from draft": "从草稿中移除",
   "Remove from queue": "移出队列",
   "Remove from this device": "从此设备移除",
+  "Remove group and its conditions": "移除分组及其条件",
   "Remove hub": "移除 Hub",
   "Remove key": "移除密钥",
   "Remove key…": "移除密钥…",
@@ -3193,6 +3230,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Return to the original draft and send or clear its current prompt before restoring.":
     "请先返回原始草稿，发送或清除其当前 提示词 后再恢复。",
   "Return to the provider and try again.": "返回服务商并重试。",
+  "Reveal in File Explorer": "在文件资源管理器中显示",
   "Revert and keep changes": "回退并保留更改",
   "Revert files too": "同时回退文件",
   Review: "审查",
@@ -3333,6 +3371,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Search all Lucide icons": "搜索所有 Lucide 图标",
   "Search all threads...": "搜索所有线程…",
   "Search authors": "搜索作者",
+  "Search commands, projects, and threads...": "搜索命令、项目和线程…",
   "Search community themes": "搜索社区主题",
   "search engine": "搜索引擎",
   "Search engine": "搜索引擎",
@@ -3444,6 +3483,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Set the prompt, code, and terminal fonts separately instead of one monospace font.":
     "分别设置提示词、代码和终端字体，而不是共用一种等宽字体。",
   "Set up": "开始设置",
+  "Set up active-window snapshots": "设置活动窗口快照",
   "Set up another way": "通过其他方式设置",
   "Set up devices": "设置设备",
   "Set up one agent to start.": "先设置一个智能体即可开始。",
@@ -3457,6 +3497,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Setting not saved": "设置未保存",
   "Setting saved on some environments": "设置已在部分环境中保存",
   "Setting up": "正在设置",
+  "Setting up worktree…": "正在设置工作树…",
   Settings: "设置",
   "Settings · {0}": "设置 · {0}",
   "Settings breadcrumb": "设置面包屑导航",
@@ -3556,6 +3597,8 @@ export const zhHans: Readonly<Record<string, string>> = {
     "侧边栏线程若在此期间无活动，会自动结束。",
   Sidecar: "Sidecar",
   "Sign in": "登录",
+  "Sign in to Antigravity in provider settings before sending.":
+    "发送前请在服务商设置中登录 Antigravity。",
   "Sign in to approve": "登录以批准",
   "Sign in to continue authorizing T3 Connect for your CLI.":
     "登录以继续为你的 CLI 授权 T3 Connect。",
@@ -3564,6 +3607,7 @@ export const zhHans: Readonly<Record<string, string>> = {
     "先在此处登录 T3 Connect，然后在应用中使用同一账户登录。",
   "Sign in to T3 Connect with the account this environment is linked to.":
     "使用此环境关联的账户登录 T3 Connect。",
+  "Sign in via the CLI to authenticate again.": "请通过 CLI 登录以重新认证。",
   "Sign in with": "使用以下方式登录",
   "Sign out": "退出登录",
   "Sign-in code": "登录码",
@@ -3709,6 +3753,9 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Still bringing attached context into this message.": "仍在将附加的上下文加入此消息。",
   "Still compressing a pasted image.": "仍在压缩粘贴的图片。",
   "Still connecting": "仍在连接",
+  "Still unable to check access. See Advanced for help.":
+    "仍无法检查访问权限。请查看“高级”获取帮助。",
+  "Still waiting for you to sign out and back in.": "仍在等待你注销并重新登录。",
   Stockholm: "斯德哥尔摩",
   "Stop {0} of {1}": "第 {0} 站，共 {1} 站",
   "Stop {0}, read": "第 {0} 站，已读",
@@ -3730,6 +3777,7 @@ export const zhHans: Readonly<Record<string, string>> = {
     "已包含结构化的辅助功能元素，但它们没有可读的名称或值。",
   Subagent: "子智能体",
   "Subagent work": "子智能体工作",
+  "Submitting...": "正在提交…",
   Submodules: "子模块",
   "Subtle surface": "次级表面",
   "Suggest next prompt": "建议下一条提示词",
@@ -3803,7 +3851,9 @@ export const zhHans: Readonly<Record<string, string>> = {
   "T3 Connect enabled": "T3 Connect 已启用",
   "T3 Connect is on for this computer. Sign in to the app with the same account.":
     "此计算机已开启 T3 Connect。请使用同一账号登录应用。",
+  "T3 Connect is unavailable. Try again.": "T3 Connect 不可用，请重试。",
   "T3 Connect settings": "T3 Connect 设置",
+  "T3 Connect timed out. Try again.": "T3 Connect 超时，请重试。",
   "T3 Connect tunnels in use": "使用中的 T3 Connect 隧道",
   "T3 could not ask for approval here.": "T3 无法在此处请求批准。",
   "T3 system footprint": "T3 系统资源占用",
@@ -3850,6 +3900,8 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Text generators": "文本生成器",
   "Text size": "文字大小",
   "Thanks for the star!": "感谢你的 Star！",
+  "That Antigravity model is no longer available. Choose another model.":
+    "该 Antigravity 模型已不可用，请选择其他模型。",
   "That snooze time has passed. Choose another time.": "该稍后提醒时间已过。请选择其他时间。",
   "That theme could not be added.": "无法添加该主题。",
   "That theme file is invalid.": "该主题文件无效。",
@@ -3899,6 +3951,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "The extension isn't ready yet. Try again in a moment.": "扩展尚未就绪，请稍后再试。",
   "The file could not be loaded. It may have been moved or deleted.":
     "无法加载该文件。它可能已被移动或删除。",
+  "The file is binary and cannot be displayed as text.": "该文件是二进制文件，无法以文本显示。",
   "The font is damaged or unsupported.": "字体已损坏或不受支持。",
   "The guest sees the thread as you do, including command output and the agent's reasoning. Each message they send waits for you.":
     "访客看到的内容与你相同，包括命令输出和智能体的推理过程。他们发送的每条消息都会等待你确认。",
@@ -3929,6 +3982,9 @@ export const zhHans: Readonly<Record<string, string>> = {
     "所有者会看到你的名字，并在智能体收到每条消息前予以批准。",
   "The page asks for {0}.": "页面正在请求 {0}。",
   "The page copied text": "页面已复制文本",
+  "The path is a directory or special file, not a regular file.":
+    "该路径是目录或特殊文件，不是普通文件。",
+  "The path resolves to a location outside the workspace.": "该路径解析到工作区之外的位置。",
   "The process is not a child of the T3 Server. It might already have exited.":
     "该进程不是 T3 Server 的子进程，可能已经退出。",
   "The project is still available. Try opening the draft again.":
@@ -3949,6 +4005,7 @@ export const zhHans: Readonly<Record<string, string>> = {
     "中继客户端安装完成，但未返回最终状态。",
   "The relay client is still unavailable after installation.": "安装后中继客户端仍不可用。",
   "The request failed.": "请求失败。",
+  "The requested path is outside the workspace.": "请求的路径在工作区之外。",
   "The reset time has passed. Retry the thread manually.": "重置时间已过。请手动重试线程。",
   "The resource monitor retry failed.": "资源监视器重试失败。",
   "The rest of this diff could not be loaded.": "此差异的其余部分无法加载。",
@@ -4041,6 +4098,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "This database has no readable tables.": "此数据库没有可读取的表。",
   "This deletes the API key stored on {0}. Anything set to use this generator falls back to the text generation model.":
     "这会删除存储在 {0} 上的 API 密钥。任何设置为使用此生成器的内容都会回退到文本生成模型。",
+  "This desktop only provides a screenshot.": "此桌面环境仅提供屏幕截图。",
   "This device": "此设备",
   "This diagram contains resource URLs, markup, node metadata, or custom configuration. Show Mermaid source to inspect it safely.":
     "此图表包含资源 URL、标记、节点元数据或自定义配置。请显示 Mermaid 源码以安全地检查它。",
@@ -4051,12 +4109,18 @@ export const zhHans: Readonly<Record<string, string>> = {
   "This draft no longer points to an available project.": "此草稿不再指向可用的项目。",
   "This driver has no required configuration. You can add the instance now.":
     "此驱动无需任何必需配置。你现在即可添加实例。",
+  "This environment accepts one-time pairing tokens. Pairing links can open this page directly, or you can paste the token here.":
+    "此环境接受一次性配对 Token。配对链接可直接打开此页面，你也可以在此粘贴 Token。",
   "This environment can’t transcribe audio: {0}.": "此环境无法转写音频：{0}。",
   "This environment does not support this setting. Update T3 Code on it.":
     "此环境不支持该设置。请在其上更新 T3 Code。",
+  "This environment expects a trusted pairing credential before the app can connect.":
+    "此环境要求先提供受信任的配对凭据，应用才能连接。",
   "This environment is already linked to": "此环境已关联到",
   "This environment is available to your other devices through T3 Connect.":
     "此环境可通过 T3 Connect 供你的其他设备访问。",
+  "This environment is desktop-managed. Open it from the desktop app or paste a bootstrap credential if one was issued explicitly.":
+    "此环境由桌面端托管。请从桌面应用打开，或粘贴已明确签发的启动凭据。",
   "This environment is managed by": "此环境的管理方为",
   "This environment is managed by {0}. Some settings and features follow its policy.":
     "此环境由 {0} 管理。部分设置和功能会遵循其策略。",
@@ -4108,6 +4172,8 @@ export const zhHans: Readonly<Record<string, string>> = {
     "这会替换已安装的变体，包括任何本地修改。扩展中已不存在的变体将被移除。",
   "This repository has no labels.": "此仓库没有标签。",
   "This scheduled task no longer exists.": "此定时任务已不存在。",
+  "This server does not accept file attachments right now. Remove the files to send.":
+    "此服务器目前不接受文件附件。若要发送，请移除这些文件。",
   "This session can view {0}'s providers but can't change their settings.":
     "此会话可以查看 {0} 的服务商，但无法更改其设置。",
   "This shared policy gates background work such as Git refreshes and provider health probes after their individual intervals elapse.":
@@ -4268,6 +4334,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Turn on: {0}": "开启：{0}",
   "Turn stopped; the agent is still shutting down": "回合已停止；智能体仍在关闭中",
   "Turn stopped; the agent process kept running": "回合已停止；智能体进程仍在运行",
+  "Turn this on to set up snapshots.": "打开此项以设置 SnapShot。",
   "Turned off. Agents only run in remote environments.": "已关闭。智能体仅在远程环境中运行。",
   "Two colors, rest derived": "两种颜色，其余自动推导",
   "Two-line folder rows": "双行文件夹列表项",
@@ -4451,6 +4518,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Use variables with !, &&, ||, and parentheses.": "变量可搭配 !、&&、|| 和括号使用。",
   "Use without project": "不使用项目",
   "Use your desktop's shortcut settings file.{0} {1}": "使用桌面端的快捷键设置文件。{0} {1}",
+  "Use your shortcut from another app": "从其他应用使用你的快捷键",
   "Used for new threads when the default model's provider is out of usage.":
     "当默认模型的服务商用量耗尽时，用于新建线程。",
   "user@host or SSH alias": "user@host 或 SSH 别名",
@@ -4517,6 +4585,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Waiting for installer": "正在等待安装程序",
   "Waiting for sample": "正在等待采样",
   "Waiting for the native process monitor.": "正在等待原生进程监视器。",
+  "Waiting for the server before file attachments can send": "正在等待服务器，文件附件暂时无法发送",
   "Waiting for your computer…": "正在等待你的电脑…",
   Wake: "唤醒",
   "Wake now": "立即唤醒",
@@ -4600,6 +4669,7 @@ export const zhHans: Readonly<Record<string, string>> = {
   "Worktree branch naming": "工作树分支命名",
   "Worktree cleanup": "工作树清理",
   "Worktree deleted, but Git status refresh failed": "工作树已删除，但 Git 状态刷新失败",
+  "Worktree is clean. Make changes before committing.": "工作树是干净的，请先做出更改再提交。",
   "worktree location": "工作树位置",
   "Worktree location": "工作树位置",
   "Worktree setup": "工作树设置",

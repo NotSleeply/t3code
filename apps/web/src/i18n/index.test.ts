@@ -43,6 +43,17 @@ describe("translate", () => {
     const first = Object.entries(zhHans)[0];
     expect(first).toBeDefined();
     const [source, translated] = first!;
-    expect(translate("zh-Hans", source)).toBe(translated);
+    expect(translate("zh-Hans", source, undefined, zhHans)).toBe(translated);
+  });
+
+  it("keeps every catalog value usable and every placeholder intact", () => {
+    for (const [source, translated] of Object.entries(zhHans)) {
+      expect(translated.trim(), source).not.toBe("");
+      const sourcePlaceholders = new Set(source.match(/\{\w+\}/g) ?? []);
+      const translatedPlaceholders = new Set(translated.match(/\{\w+\}/g) ?? []);
+      for (const placeholder of translatedPlaceholders) {
+        expect(sourcePlaceholders.has(placeholder), `${source} -> ${translated}`).toBe(true);
+      }
+    }
   });
 });

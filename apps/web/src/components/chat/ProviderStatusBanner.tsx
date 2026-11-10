@@ -85,7 +85,7 @@ export function getProviderStatusMessage(status: ServerProvider): string {
         ? "Open provider setup to sign in with Google."
         : "Open provider setup to sign in.";
     }
-    return "Sign in via the CLI to authenticate again.";
+    return t("Sign in via the CLI to authenticate again.");
   }
   return status.status === "ready"
     ? "No models are available for this provider."

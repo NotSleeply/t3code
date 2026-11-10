@@ -109,7 +109,7 @@ export function whenNodeRemoveLabel(node: KeybindingWhenNode, depth: number): st
   if (node.type === "identifier" || (node.type === "not" && node.node.type === "identifier")) {
     return "Remove condition";
   }
-  return "Remove group and its conditions";
+  return t("Remove group and its conditions");
 }
 
 function wrapWhenExpression(node: KeybindingWhenNode): string {

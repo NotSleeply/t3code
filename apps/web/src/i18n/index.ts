@@ -1,5 +1,3 @@
-import { zhHans } from "./zh-Hans";
-
 /** Stored preference. "system" follows the OS/browser language. */
 export type LanguagePreference = "system" | "en" | "zh-Hans";
 
@@ -8,10 +6,7 @@ export type AppLocale = "en" | "zh-Hans";
 
 const LANGUAGE_STORAGE_KEY = "t3code:display-language";
 
-const CATALOGS: Readonly<Record<AppLocale, Readonly<Record<string, string>>>> = {
-  en: {},
-  "zh-Hans": zhHans,
-};
+const EMPTY_CATALOG: Readonly<Record<string, string>> = {};
 
 export function isLanguagePreference(value: unknown): value is LanguagePreference {
   return value === "system" || value === "en" || value === "zh-Hans";
@@ -52,6 +47,11 @@ const currentLocale: AppLocale = TEST_MODE
   ? "en"
   : resolveAppLocale(initialPreference, systemLanguage);
 
+// Only Chinese builds ship the catalog, as its own chunk. The top-level await makes every module
+// that imports `t` evaluate after it resolves, so module-level t() calls are already translated.
+const catalog: Readonly<Record<string, string>> =
+  !TEST_MODE && currentLocale === "zh-Hans" ? (await import("./zh-Hans")).zhHans : EMPTY_CATALOG;
+
 export function getLanguagePreference(): LanguagePreference {
   return initialPreference;
 }
@@ -64,8 +64,13 @@ export function applyDocumentLanguage(): void {
 type TranslationValues = ReadonlyArray<string | number> | Readonly<Record<string, string | number>>;
 
 /** Pure translation used by `t` and by tests. Missing entries fall back to the source string. */
-export function translate(locale: AppLocale, source: string, values?: TranslationValues): string {
-  const translated = CATALOGS[locale][source] ?? source;
+export function translate(
+  locale: AppLocale,
+  source: string,
+  values?: TranslationValues,
+  messages: Readonly<Record<string, string>> = locale === "zh-Hans" ? catalog : EMPTY_CATALOG,
+): string {
+  const translated = messages[source] ?? source;
   if (!values) return translated;
   return translated.replace(/\{(\w+)\}/g, (match, key: string) => {
     const value = Array.isArray(values)

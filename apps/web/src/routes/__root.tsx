@@ -287,7 +287,7 @@ function errorMessage(error: unknown): string {
     return error;
   }
 
-  return "An unexpected router error occurred.";
+  return t("An unexpected router error occurred.");
 }
 
 function errorDetails(error: unknown): string {

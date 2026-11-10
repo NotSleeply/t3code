@@ -323,7 +323,7 @@ export function resetCreditsSummary(
   const expiresIn = credits.nextExpiresAt
     ? formatDuration(Date.parse(credits.nextExpiresAt) - now)
     : null;
-  if (credits.availableCount === 0) return "No reset credits banked";
+  if (credits.availableCount === 0) return t("No reset credits banked");
   if (compact)
     return `${credits.availableCount} banked${expiresIn ? ` · expires in ${expiresIn}` : ""}`;
   return `${credits.availableCount} ${credits.availableCount === 1 ? "reset credit" : "reset credits"} banked${

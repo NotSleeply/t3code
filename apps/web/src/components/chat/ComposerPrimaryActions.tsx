@@ -61,7 +61,7 @@ const formatPendingPrimaryActionLabel = (input: {
   questionIndex: number;
 }) => {
   if (input.isResponding) {
-    return "Submitting...";
+    return t("Submitting...");
   }
   if (input.compact) {
     return input.isLastQuestion ? "Submit" : "Next";

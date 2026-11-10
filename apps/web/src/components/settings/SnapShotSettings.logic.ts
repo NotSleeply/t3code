@@ -8,9 +8,9 @@ import {
 import { t } from "~/i18n";
 
 export function snapShotStatus(state: DesktopSnapShotState | null, enabled: boolean): string {
-  if (!state) return "Checking snapshots…";
+  if (!state) return t("Checking snapshots…");
   if (state.mode === "unavailable") return state.message ?? t("Not supported on this platform.");
-  if (!enabled) return "Turn this on to set up snapshots.";
+  if (!enabled) return t("Turn this on to set up snapshots.");
   return snapShotSetupSummary(state, enabled);
 }
 
@@ -21,23 +21,23 @@ export function snapShotSetupSummary(state: DesktopSnapShotState, enabled: boole
       ? "Check capture access in setup"
       : "Install the capture helper to continue";
   if (captureSetupBackend(state) === "gnome" && state.gnomeExtension?.status !== "enabled")
-    return "Set up active-window snapshots";
+    return t("Set up active-window snapshots");
   if (captureSetupBackend(state) === "kde" && state.kdeHelper?.status !== "ready")
     return state.kdeHelper?.status === "error"
       ? "Check capture access in setup"
       : "Install the capture helper to continue";
   if (captureSetupBackend(state) === "picker")
-    return "Manual capture only. You'll choose a window each time";
-  if (!enabled) return "Enable capture to continue";
+    return t("Manual capture only. You'll choose a window each time");
+  if (!enabled) return t("Enable capture to continue");
   if (state.shortcutPending)
     return state.linuxBackend === "hyprland"
       ? "Connecting your shortcut…"
       : "Waiting for shortcut permission";
   if (state.shortcutVerified) return "Ready to capture";
   if (state.linuxBackend === "niri" && state.shortcutBinding)
-    return "Use your shortcut from another app";
+    return t("Use your shortcut from another app");
   if (state.linuxBackend === "hyprland" && state.shortcutActionRegistered)
-    return "Use your shortcut from another app";
+    return t("Use your shortcut from another app");
   if (state.shortcutRegistered) return state.shortcutLabel ? "Ready to capture" : "Shortcut saved";
   return "Finish shortcut setup";
 }
@@ -45,7 +45,7 @@ export function snapShotSetupSummary(state: DesktopSnapShotState, enabled: boole
 export function snapShotShortcutStatus(state: DesktopSnapShotState | null): string | null {
   if (!state) return null;
   if (state.linuxBackend === "hyprland") return state.shortcutMessage;
-  if (state.shortcutPending) return "Approve the shortcut permission prompt to continue.";
+  if (state.shortcutPending) return t("Approve the shortcut permission prompt to continue.");
   if (state.shortcutRegistered) return state.mode === "portal" ? null : "Shortcut saved.";
   return state.shortcutMessage;
 }
@@ -80,7 +80,7 @@ export function snapShotFeedbackUnavailableMessage(
     return state.hyprlandHelper?.status === "ready"
       ? "Capture effects aren't available on this desktop."
       : "Install or update the capture helper to enable effects.";
-  if (state.linuxBackend === "niri") return "Capture effects aren't available on Niri.";
+  if (state.linuxBackend === "niri") return t("Capture effects aren't available on Niri.");
   if (state.linuxBackend === "kde")
     return state.kdeHelper?.status === "ready"
       ? "Capture effects aren't available on this desktop."
@@ -103,7 +103,7 @@ export function snapShotAccessibilityUnavailableMessage(
 ): string | undefined {
   if (state?.mode !== "portal") return undefined;
   if (state.linuxBackend === "picker" || state.linuxBackend === "screenshot-portal")
-    return "This desktop only provides a screenshot.";
+    return t("This desktop only provides a screenshot.");
   return undefined;
 }
 

@@ -224,8 +224,8 @@ function getMenuActionDisabledReason({
   hasPrimaryRemote: boolean;
 }): string | null {
   if (!item.disabled) return null;
-  if (isBusy) return "Git action in progress.";
-  if (!gitStatus) return "Git status is unavailable.";
+  if (isBusy) return t("Git action in progress.");
+  if (!gitStatus) return t("Git status is unavailable.");
 
   const hasBranch = gitStatus.refName !== null;
   const hasChanges = gitStatus.hasWorkingTreeChanges;
@@ -235,28 +235,28 @@ function getMenuActionDisabledReason({
 
   if (item.id === "commit") {
     if (!hasChanges) {
-      return "Worktree is clean. Make changes before committing.";
+      return t("Worktree is clean. Make changes before committing.");
     }
-    return "Commit is currently unavailable.";
+    return t("Commit is currently unavailable.");
   }
 
   if (item.id === "push") {
     if (!hasBranch) {
-      return "Detached HEAD: check out a branch before pushing.";
+      return t("Detached HEAD: check out a branch before pushing.");
     }
     if (hasChanges) {
-      return "Commit or stash local changes before pushing.";
+      return t("Commit or stash local changes before pushing.");
     }
     if (isBehind) {
-      return "Branch is behind upstream. Pull/rebase before pushing.";
+      return t("Branch is behind upstream. Pull/rebase before pushing.");
     }
     if (!gitStatus.hasUpstream && !hasPrimaryRemote) {
-      return 'Add an "origin" remote before pushing.';
+      return t('Add an "origin" remote before pushing.');
     }
     if (!isAhead) {
-      return "No local commits to push.";
+      return t("No local commits to push.");
     }
-    return "Push is currently unavailable.";
+    return t("Push is currently unavailable.");
   }
 
   if (!hasBranch) {
