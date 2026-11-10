@@ -222,7 +222,7 @@ export default function LargeTextViewer(props: {
         {props.delimiter ? ` · ${meta.count ? meta.columns.toLocaleString() : 0} columns` : ""}
         {meta.complete && meta.sizeBytes !== undefined
           ? ` · ${meta.sizeBytes === 0 ? t("0 bytes") : formatAttachmentSize(meta.sizeBytes)}`
-          : t("· Indexing…")}
+          : " " + t("· Indexing…")}
       </div>
       {!meta.complete ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">

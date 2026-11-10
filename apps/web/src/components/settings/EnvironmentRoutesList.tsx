@@ -173,7 +173,7 @@ function SortableRouteRow({
         {address !== null ? (
           <p className="truncate text-2xs text-muted-foreground">
             {address}
-            {isLearned(route) ? t("· found automatically") : ""}
+            {isLearned(route) ? " " + t("· found automatically") : ""}
           </p>
         ) : null}
       </div>
