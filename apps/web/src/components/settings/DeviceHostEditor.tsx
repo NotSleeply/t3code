@@ -104,7 +104,7 @@ function DeviceHostEditorForm({
       }}
     >
       <DialogHeader>
-        <DialogTitle>{isNew ? "Add device host" : "Edit device host"}</DialogTitle>
+        <DialogTitle>{isNew ? t("Add device host") : t("Edit device host")}</DialogTitle>
         <DialogDescription>
           {t("{0}{1} Hosts on the same machine are skipped.", [
             targets.length === 1

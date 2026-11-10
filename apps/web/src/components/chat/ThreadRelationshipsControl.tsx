@@ -273,7 +273,7 @@ function RemoteSubagentRow(props: {
   const status = props.agent.status;
   const failed = status === "failed";
   const title = relationshipThreadTitle({
-    title: props.agent.title ?? "Subagent",
+    title: props.agent.title ?? t("Subagent"),
     isSubagent: true,
   });
   return (
@@ -885,7 +885,7 @@ export function ThreadRelationshipsPanel(props: {
                     aria-label={
                       parentTitle
                         ? `Merge back to ${parentTitle}`
-                        : "Merge back to source conversation"
+                        : t("Merge back to source conversation")
                     }
                     disabled={!canMerge || busyAction !== null}
                     onClick={() => void merge()}
@@ -900,10 +900,10 @@ export function ThreadRelationshipsPanel(props: {
               />
               <TooltipPopup side="left">
                 {latestMergeBackRun === null
-                  ? "Complete a run in this fork before merging it back"
+                  ? t("Complete a run in this fork before merging it back")
                   : parentTitle
                     ? `Merge this conversation back into ${parentTitle}`
-                    : "Merge this conversation back into its source"}
+                    : t("Merge this conversation back into its source")}
               </TooltipPopup>
             </Tooltip>
             <span className="shrink-0 border border-transparent ps-1 pe-2.5 text-2xs font-medium text-muted-foreground">
@@ -948,7 +948,7 @@ export function ThreadRelationshipsPanel(props: {
       {lineageVisible ? (
         <ThreadDetailsSection
           headingId="thread-details-lineage-heading"
-          title={runningCount > 0 ? `Lineage · ${runningCount} running` : "Lineage"}
+          title={runningCount > 0 ? `Lineage · ${runningCount} running` : t("Lineage")}
           // A lone "Previous agents" row names itself; the heading returns for status or actions.
           showHeading={
             runningCount > 0 ||
@@ -1018,7 +1018,9 @@ export function ThreadRelationshipsPanel(props: {
       {sideChatsVisible ? (
         <ThreadDetailsSection
           headingId="thread-details-side-chats-heading"
-          title={runningSideChats > 0 ? `Side chats · ${runningSideChats} running` : "Side chats"}
+          title={
+            runningSideChats > 0 ? `Side chats · ${runningSideChats} running` : t("Side chats")
+          }
           data-thread-side-chats-panel
         >
           <ThreadLineageGroup

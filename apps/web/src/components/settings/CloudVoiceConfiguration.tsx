@@ -255,7 +255,9 @@ export function CloudVoiceConfiguration({
 
   const keyField = (
     <>
-      <Label htmlFor="voice-cloud-key">{routed && saved ? "Replace API key" : "API key"}</Label>
+      <Label htmlFor="voice-cloud-key">
+        {routed && saved ? t("Replace API key") : t("API key")}
+      </Label>
       <div className="flex min-w-0 items-start gap-2">
         {sources.length > 0 && (
           <SecretSourceSelect
@@ -303,11 +305,12 @@ export function CloudVoiceConfiguration({
       </div>
       <p className="text-sm text-muted-foreground">
         {draft.trim() && !credential
-          ? (source?.invalidReferenceMessage ?? "Enter an API key, not a URL or secret reference.")
+          ? (source?.invalidReferenceMessage ??
+            t("Enter an API key, not a URL or secret reference."))
           : active && !routed
-            ? "Updating the key keeps dictation enabled."
+            ? t("Updating the key keeps dictation enabled.")
             : routed && saved
-              ? "Leave blank to keep the saved key."
+              ? t("Leave blank to keep the saved key.")
               : `Anyone with dictation access to ${environment.label} can bill this key.`}
       </p>
     </>
@@ -327,7 +330,7 @@ export function CloudVoiceConfiguration({
               ? `Remove the ${company} key?`
               : active
                 ? routed
-                  ? "Manage OpenRouter dictation"
+                  ? t("Manage OpenRouter dictation")
                   : `Manage ${company} key`
                 : `Use ${name} for dictation?`}
           </DialogTitle>
@@ -451,12 +454,12 @@ export function CloudVoiceConfiguration({
             ) : routed ? (
               saved !== undefined && (saved || canManage) ? (
                 <Button type="submit" form={formId} size="sm" disabled={busy || !canSubmit}>
-                  {active ? "Save" : "Save and enable"}
+                  {active ? t("Save") : t("Save and enable")}
                 </Button>
               ) : null
             ) : editingKey ? (
               <Button type="submit" form={formId} size="sm" disabled={busy || !credential}>
-                {active ? "Save key" : "Save and enable"}
+                {active ? t("Save key") : t("Save and enable")}
               </Button>
             ) : saved && !active ? (
               <Button

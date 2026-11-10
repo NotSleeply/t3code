@@ -436,11 +436,11 @@ function ProviderSettingsPanelContent(target: ProviderSettingsTarget) {
       {options.length === 0 && !targetEnvironmentMissing ? (
         <ProviderSettingsPlaceholder
           icon={<EnvironmentMachineIcon kind={resolveEnvironmentMachineKind(null)} />}
-          title={isReady ? "No connected devices" : "Loading devices"}
+          title={isReady ? t("No connected devices") : t("Loading devices")}
           description={
             isReady
-              ? "Connect an execution environment before configuring providers."
-              : "Reading connected execution environments."
+              ? t("Connect an execution environment before configuring providers.")
+              : t("Reading connected execution environments.")
           }
         />
       ) : null}
@@ -1014,7 +1014,7 @@ export function EnvironmentProviderSettings({
                     <span className="sr-only">{t("Refresh provider status")}</span>
                     <span className="hidden min-w-0 truncate sm:inline">
                       {isRefreshingProviders ? (
-                        "Refreshing providers"
+                        t("Refreshing providers")
                       ) : (
                         <ProviderLastChecked environmentId={environmentId} />
                       )}
@@ -1081,8 +1081,8 @@ export function EnvironmentProviderSettings({
             ) : (
               <div className="p-6 text-sm text-muted-foreground">
                 {targetInstanceMissing
-                  ? "This provider instance is no longer available on this device."
-                  : "No providers configured."}
+                  ? t("This provider instance is no longer available on this device.")
+                  : t("No providers configured.")}
               </div>
             )}
           </div>

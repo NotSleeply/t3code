@@ -330,7 +330,7 @@ export function SettingsSidebarNav({ pathname }: { pathname: string }) {
               <SidebarMenu
                 id={hasResults ? "settings-search-results" : undefined}
                 role={hasResults ? "listbox" : undefined}
-                aria-label={hasResults ? "Settings search results" : undefined}
+                aria-label={hasResults ? t("Settings search results") : undefined}
               >
                 {results.map((item, index) => (
                   <SidebarMenuItem

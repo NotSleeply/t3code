@@ -243,7 +243,7 @@ function tabMuteMenuItem(input: {
 }): { label: string; disabled: boolean } {
   const muted = input.overlay?.audioMuted ?? false;
   return {
-    label: muted ? "Unmute tab" : "Mute tab",
+    label: muted ? t("Unmute tab") : t("Mute tab"),
     disabled: input.overlay === null || !input.canResolveRuntimeTabId,
   };
 }
@@ -947,7 +947,7 @@ function RightPanelTab(
               </button>
             }
           />
-          <TooltipPopup>{audio === "muted" ? "Unmute tab" : "Mute tab"}</TooltipPopup>
+          <TooltipPopup>{audio === "muted" ? t("Unmute tab") : t("Mute tab")}</TooltipPopup>
         </Tooltip>
       )}
       {props.renaming ? (
@@ -1571,8 +1571,8 @@ function DeviceTabTooltip(props: {
       <span>{props.title}</span>
       {target ? (
         <span className="text-muted-foreground">
-          {host?.label ?? "Device host"} ·{" "}
-          {device?.version ?? (target.platform === "ios" ? "iOS" : "Android")}
+          {host?.label ?? t("Device host")} ·{" "}
+          {device?.version ?? (target.platform === "ios" ? "iOS" : t("Android"))}
         </span>
       ) : null}
     </div>

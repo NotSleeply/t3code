@@ -129,7 +129,7 @@ export function TextGeneratorsSettings({
               description={
                 // Indented past the icon so it lines up with the name.
                 <span className="block truncate ps-7.5">
-                  {config.enabled ? "" : "Off · "}
+                  {config.enabled ? "" : t("Off ·") + " "}
                   {config.baseUrl.replace(/^https?:\/\//, "")}
                 </span>
               }
@@ -330,7 +330,9 @@ function TextGeneratorWizard({
     >
       <WizardPopup>
         <WizardHeader
-          title={existing ? `Edit ${textGeneratorDisplayName(existing)}` : "Add a text generator"}
+          title={
+            existing ? `Edit ${textGeneratorDisplayName(existing)}` : t("Add a text generator")
+          }
           description={t(
             "Writes thread titles, commit messages, and other short text without starting a coding agent. Your API key is stored on this environment.",
           )}
@@ -388,7 +390,7 @@ function TextGeneratorWizard({
                                 badgeContent="none"
                               />
                             )}
-                            {candidate.id === "custom" ? "Custom" : candidate.label}
+                            {candidate.id === "custom" ? t("Custom") : candidate.label}
                           </button>
                         );
                       })}
@@ -413,7 +415,7 @@ function TextGeneratorWizard({
                 ) : null}
                 <div className="grid gap-1.5">
                   <Label htmlFor="text-generator-key">
-                    {keyRequired ? "API key" : "API key (optional)"}
+                    {keyRequired ? t("API key") : t("API key (optional)")}
                   </Label>
                   <SecretSourceInput
                     id="text-generator-key"
@@ -438,7 +440,7 @@ function TextGeneratorWizard({
                       existing !== null
                         ? textGeneratorDisplayName(existing)
                         : preset.id === "custom"
-                          ? "e.g. My local model"
+                          ? t("e.g. My local model")
                           : preset.label
                     }
                     value={label}
@@ -491,7 +493,7 @@ function TextGeneratorWizard({
               </Button>
               <Button onClick={() => void connect()} disabled={!canConnect || checking}>
                 {checking ? <Spinner /> : null}
-                {checking ? "Connecting" : existing ? "Save and continue" : "Connect"}
+                {checking ? t("Connecting") : existing ? t("Save and continue") : t("Connect")}
               </Button>
             </>
           ) : (
@@ -728,8 +730,8 @@ function TextGeneratorModelsDialog({
           <DialogDescription>
             {models === null
               ? error
-                ? "The model list couldn't load."
-                : "Loading the model list."
+                ? t("The model list couldn't load.")
+                : t("Loading the model list.")
               : `${models.length} ${models.length === 1 ? "model" : "models"} available. Pick one in a text generation model picker.`}
           </DialogDescription>
         </DialogHeader>

@@ -355,7 +355,7 @@ function CompactingLabel({ createdAt }: { createdAt: string | null }) {
           {t("Compacting for")} <WorkingTimer createdAt={createdAt} />
         </span>
       ) : (
-        "Compacting…"
+        t("Compacting…")
       )}
     </span>
   );
@@ -369,7 +369,7 @@ export function ThinkingTimelineRow({ row }: { row: Extract<TimelineRow, { kind:
   const live = ctx.pendingApprovals.size === 0;
   const activity = (
     <LiveActivityRow
-      label={liveAnswerPreview ?? "Thinking"}
+      label={liveAnswerPreview ?? t("Thinking")}
       iconName="brain"
       active={live}
       shimmer={live}
@@ -462,7 +462,7 @@ function LiveActivityContent({
                   : "text-icon-muted",
             )}
             role={announceFailure ? "img" : undefined}
-            aria-label={announceFailure ? "Tool call failed" : undefined}
+            aria-label={announceFailure ? t("Tool call failed") : undefined}
           >
             <ToolActivityIconView
               icon={toolIcon}
@@ -557,9 +557,9 @@ export function LiveWorkEntryTimelineRow({
         label={
           thoughtIsStatus ? (
             row.active ? (
-              "Thinking"
+              t("Thinking")
             ) : (
-              "Thought"
+              t("Thought")
             )
           ) : row.entry.itemType === "reasoning" ? (
             <ChatMarkdown

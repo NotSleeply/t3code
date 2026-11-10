@@ -158,14 +158,14 @@ export function DeviceToolsPanel(props: {
             onSubmit={(url) => act({ type: "openUrl", url })}
           />
           <SubmitRow
-            placeholder={isIos ? "Bundle ID to launch" : "Package name to launch"}
+            placeholder={isIos ? t("Bundle ID to launch") : t("Package name to launch")}
             action="Launch"
             disabled={disabled}
             onSubmit={(appId) => act({ type: "launchApp", appId })}
           />
         </Section>
 
-        <Section title={isIos ? "Simulator" : "Emulator"}>
+        <Section title={isIos ? t("Simulator") : t("Emulator")}>
           <Row label={t("Appearance")}>
             <ToggleGroup
               aria-label={t("Appearance")}
@@ -387,7 +387,7 @@ function ChoiceSelect<V extends string>(props: {
           {current ? (
             current.label
           ) : (
-            <span className="text-muted-foreground">{props.placeholder ?? "Unknown"}</span>
+            <span className="text-muted-foreground">{props.placeholder ?? t("Unknown")}</span>
           )}
         </SelectValue>
       </SelectTrigger>
@@ -556,7 +556,7 @@ function PermissionsSection(props: {
       <Input
         size="compact"
         font="mono"
-        placeholder={props.defaultAppId || "App ID"}
+        placeholder={props.defaultAppId || t("App ID")}
         value={appId}
         disabled={props.disabled}
         onChange={(event) => setAppId(event.target.value)}

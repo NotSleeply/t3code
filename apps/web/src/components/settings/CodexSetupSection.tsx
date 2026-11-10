@@ -122,7 +122,7 @@ export function CodexSetupSection(props: CodexSetupSectionProps) {
   const content =
     props.mode === "existing" && props.presentation === "onboarding" ? (
       <CodexWelcomeCard
-        title={props.displayName || props.provider?.displayName || "Codex"}
+        title={props.displayName || props.provider?.displayName || t("Codex")}
         description={
           existingReady ? (
             props.provider?.auth.email?.trim() ? (
@@ -138,14 +138,14 @@ export function CodexSetupSection(props: CodexSetupSectionProps) {
                 .
               </>
             ) : (
-              "Connected with your Codex CLI."
+              t("Connected with your Codex CLI.")
             )
           ) : existingChecking ? (
-            "Checking your Codex CLI..."
+            t("Checking your Codex CLI...")
           ) : props.provider?.installed ? (
             existingSummary.headline
           ) : (
-            "Code with your ChatGPT subscription."
+            t("Code with your ChatGPT subscription.")
           )
         }
         control={
@@ -189,7 +189,7 @@ export function CodexSetupSection(props: CodexSetupSectionProps) {
     ) : props.mode === "existing" ? null : !props.provider?.setup?.canAuthenticate ? (
       props.presentation === "onboarding" ? (
         <CodexWelcomeCard
-          title={props.displayName || props.provider?.displayName || "Codex"}
+          title={props.displayName || props.provider?.displayName || t("Codex")}
           description={<CodexSignInDescription />}
           control={
             <Button size="sm" variant="outline" className="min-w-44" disabled>
@@ -683,18 +683,18 @@ function ManagedCodexSetup({
       }}
     >
       {finishingSignIn
-        ? "Finishing sign-in..."
+        ? t("Finishing sign-in...")
         : handoffQuery.data?.phase === "finished"
           ? transferFailed
-            ? "Retry connection"
-            : "Finishing sign-in..."
+            ? t("Retry connection")
+            : t("Finishing sign-in...")
           : auth?.phase === "waiting"
             ? remoteWeb
-              ? "Open ChatGPT sign-in"
-              : "Open sign-in page"
+              ? t("Open ChatGPT sign-in")
+              : t("Open sign-in page")
             : presentation === "onboarding"
-              ? "Open sign-in page"
-              : "Signing in..."}
+              ? t("Open sign-in page")
+              : t("Signing in...")}
     </Button>
   );
   const callbackCompletion =
@@ -822,7 +822,7 @@ function ManagedCodexSetup({
       <>
         {accountPicker}
         <CodexWelcomeCard
-          title={displayName || provider?.displayName || "Codex"}
+          title={displayName || provider?.displayName || t("Codex")}
           description={
             installActive ? (
               runtimeDescription
@@ -840,7 +840,7 @@ function ManagedCodexSetup({
                   .
                 </>
               ) : (
-                "Connected to ChatGPT."
+                t("Connected to ChatGPT.")
               )
             ) : callbackCompletion && !needsManualCallback ? (
               <CodexSignInDescription
@@ -857,7 +857,7 @@ function ManagedCodexSetup({
             ) : authActive || auth?.phase === "failed" || auth?.phase === "cancelled" ? (
               accountDescription
             ) : (
-              "Code with your ChatGPT subscription."
+              t("Code with your ChatGPT subscription.")
             )
           }
           control={
@@ -882,10 +882,10 @@ function ManagedCodexSetup({
                 }}
               >
                 {installActive || pending
-                  ? "Setting up..."
+                  ? t("Setting up...")
                   : hasSavedAccount
-                    ? "Reconnect account"
-                    : "Continue with ChatGPT"}
+                    ? t("Reconnect account")
+                    : t("Continue with ChatGPT")}
               </ChatGptConnectionButton>
             )
           }
@@ -1020,10 +1020,10 @@ function ManagedCodexSetup({
                   }}
                 >
                   {pending
-                    ? "Setting up..."
+                    ? t("Setting up...")
                     : hasSavedAccount
-                      ? "Reconnect account"
-                      : "Continue with ChatGPT"}
+                      ? t("Reconnect account")
+                      : t("Continue with ChatGPT")}
                 </ChatGptConnectionButton>
                 {hasSavedAccount ? (
                   <Button
@@ -1100,7 +1100,9 @@ export function CodexManagedRuntimeFields({
               aria-label={t("Codex binary path")}
               value={executablePath}
               title={executablePath}
-              placeholder={installation.error ? "Could not read runtime path" : "Not installed"}
+              placeholder={
+                installation.error ? t("Could not read runtime path") : t("Not installed")
+              }
               disabled
             />
           </div>
@@ -1125,8 +1127,8 @@ export function CodexManagedRuntimeFields({
         title={t("Shadow home path")}
         description={
           provider?.runtimePaths?.shadowHomePath
-            ? "Account-specific home sharing the Codex state above."
-            : "This instance uses the shared Codex home directly."
+            ? t("Account-specific home sharing the Codex state above.")
+            : t("This instance uses the shared Codex home directly.")
         }
         control={
           <div className="w-full sm:w-80">
@@ -1134,7 +1136,7 @@ export function CodexManagedRuntimeFields({
               aria-label={t("Codex shadow home path")}
               value={provider?.runtimePaths?.shadowHomePath ?? ""}
               title={provider?.runtimePaths?.shadowHomePath ?? undefined}
-              placeholder={provider?.runtimePaths ? "Not used" : "Unavailable"}
+              placeholder={provider?.runtimePaths ? t("Not used") : t("Unavailable")}
               disabled
             />
           </div>

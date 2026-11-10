@@ -70,7 +70,7 @@ function RefreshFilesButton(props: { isPending: boolean; onRefresh: () => void }
       >
         <RefreshIcon refreshing={props.isPending} />
       </TooltipTrigger>
-      <TooltipPopup>{props.isPending ? "Refreshing…" : "Refresh files"}</TooltipPopup>
+      <TooltipPopup>{props.isPending ? t("Refreshing…") : t("Refresh files")}</TooltipPopup>
     </Tooltip>
   );
 }
@@ -507,8 +507,8 @@ export default function FileBrowserPanel({
                   variant="ghost"
                   aria-label={
                     expandAll || allDirectoriesExpanded
-                      ? "Collapse all folders"
-                      : "Expand all folders"
+                      ? t("Collapse all folders")
+                      : t("Expand all folders")
                   }
                   onClick={toggleAllDirectories}
                 />
@@ -520,7 +520,9 @@ export default function FileBrowserPanel({
               />
             </TooltipTrigger>
             <TooltipPopup>
-              {expandAll || allDirectoriesExpanded ? "Collapse all folders" : "Expand all folders"}
+              {expandAll || allDirectoriesExpanded
+                ? t("Collapse all folders")
+                : t("Expand all folders")}
             </TooltipPopup>
           </Tooltip>
         ) : null}

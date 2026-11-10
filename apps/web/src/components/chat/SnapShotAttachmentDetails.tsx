@@ -95,7 +95,9 @@ export function SnapShotContentsButton({
               render={
                 <Button
                   aria-label={
-                    includesAccessibility ? "View accessibility data" : "No accessibility data"
+                    includesAccessibility
+                      ? t("View accessibility data")
+                      : t("No accessibility data")
                   }
                   className={className}
                   onClick={(event) => event.stopPropagation()}
@@ -162,7 +164,7 @@ export function SnapShotAttachmentDetails({
           <SnapShotContentsButton source={source} className="pointer-events-auto" />
         </div>
         <div className="truncate text-3xs leading-3.5 text-white/70">
-          {source.windowTitle || "Captured window"}
+          {source.windowTitle || t("Captured window")}
         </div>
       </div>
     </div>

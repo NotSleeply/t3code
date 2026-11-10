@@ -100,7 +100,7 @@ export function PullRequestStackMenu({
     setConfirmation(null);
     const toastId = toastManager.add({
       type: "loading",
-      title: action === "merge" ? "Merging stack..." : "Rebasing stack...",
+      title: action === "merge" ? t("Merging stack...") : t("Rebasing stack..."),
     });
     const result = await runAction({
       environmentId,
@@ -118,7 +118,8 @@ export function PullRequestStackMenu({
     if (result._tag === "Failure") {
       toastManager.update(toastId, {
         type: "error",
-        title: action === "merge" ? "Could not merge the stack" : "Could not rebase the stack",
+        title:
+          action === "merge" ? t("Could not merge the stack") : t("Could not rebase the stack"),
         description: readableFailure(
           squashAtomCommandFailure(result),
           action === "merge"
@@ -129,7 +130,7 @@ export function PullRequestStackMenu({
     } else {
       toastManager.update(toastId, {
         type: "success",
-        title: action === "merge" ? "Stack merge request completed" : "Stack rebased",
+        title: action === "merge" ? t("Stack merge request completed") : t("Stack rebased"),
         description:
           action === "merge"
             ? `${hostLabel} merged the stack or added it to its merge queue.`
@@ -278,7 +279,7 @@ export function PullRequestStackMenu({
               {t("Cancel")}
             </Button>
             <Button onClick={() => void run()}>
-              {confirmation === "merge" ? "Merge stack" : "Rebase stack"}
+              {confirmation === "merge" ? t("Merge stack") : t("Rebase stack")}
             </Button>
           </DialogFooter>
         </DialogPopup>

@@ -2426,7 +2426,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 title:
                   snoozedThreadRefs.length > 0
                     ? `Failed to snooze ${failures.length} thread${failures.length === 1 ? "" : "s"}`
-                    : "Failed to snooze threads",
+                    : t("Failed to snooze threads"),
                 description:
                   firstError instanceof Error ? firstError.message : t("An error occurred."),
               }),
@@ -2838,8 +2838,8 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 stackedThreadToast({
                   type: "error",
                   title: didArchive
-                    ? "Thread archived, but navigation failed"
-                    : "Failed to archive thread",
+                    ? t("Thread archived, but navigation failed")
+                    : t("Failed to archive thread"),
                   description: error instanceof Error ? error.message : t("An error occurred."),
                 }),
               );
@@ -3045,7 +3045,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                         label={
                           scopedProjectGroups.length > 0
                             ? `Filter threads by project: ${scopedProjectGroups.map((project) => project.displayName).join(", ")}`
-                            : "Filter threads by project"
+                            : t("Filter threads by project")
                         }
                       />
                     }
@@ -3305,7 +3305,7 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                 role="status"
                 className="px-2 py-6 text-center text-xs text-sidebar-muted-foreground"
               >
-                {threadSearch.isPending ? "Searching thread messages…" : "No threads found"}
+                {threadSearch.isPending ? t("Searching thread messages…") : t("No threads found")}
               </p>
             )
           ) : null}
@@ -3633,9 +3633,9 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                           {/* Plus means "add", so revealing more uses a chevron. */}
                           <ChevronDownIcon aria-hidden className="size-4 shrink-0" />
                           {olderSettledShelf.loading
-                            ? "Loading"
+                            ? t("Loading")
                             : olderSettledShelf.failed
-                              ? "Could not load older threads. Retry"
+                              ? t("Could not load older threads. Retry")
                               : `Show ${Math.min(hiddenSettledCount, SETTLED_TAIL_PAGE_COUNT)} more`}
                         </button>
                       </li>
@@ -3668,11 +3668,11 @@ export default function Sidebar({ routeReveal }: { routeReveal: SidebarRouteReve
                   </button>
                 </>
               ) : scopedProjectGroups.length > 1 ? (
-                "No threads in these projects yet"
+                t("No threads in these projects yet")
               ) : scopedProjectGroups[0] ? (
                 `No threads in ${scopedProjectGroups[0].displayName} yet`
               ) : (
-                "No threads yet"
+                t("No threads yet")
               )}
             </div>
           ) : null}

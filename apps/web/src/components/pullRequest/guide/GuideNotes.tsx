@@ -29,7 +29,7 @@ export function GuideNotes({
       <h4 className="flex items-baseline justify-between gap-2 text-xs font-medium text-foreground">
         {t("Notes on this stop")}
         <span className="font-normal text-muted-foreground tabular-nums">
-          {notes.length === 1 ? "1 note" : `${notes.length} notes`}
+          {notes.length === 1 ? t("1 note") : `${notes.length} notes`}
         </span>
       </h4>
       <ol className="flex flex-col gap-3">

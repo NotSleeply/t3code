@@ -93,7 +93,7 @@ const EFFORT_DISPLAY_LABELS: Record<EffortDisplay, string> = {
 
 const LANGUAGE_LABELS: Record<LanguagePreference, string> = {
   system: t("System default"),
-  en: t("English"),
+  en: "English",
   "zh-Hans": "简体中文",
 };
 
@@ -173,11 +173,11 @@ export function AppearanceSettingsPanel() {
             <div className="w-full sm:w-40">
               <Select value={languagePreference} onValueChange={changeLanguage}>
                 <SelectTrigger size="sm" className="w-full min-w-0" aria-label={t("Language")}>
-                  <SelectValue>{t(LANGUAGE_LABELS[languagePreference])}</SelectValue>
+                  <SelectValue>{LANGUAGE_LABELS[languagePreference]}</SelectValue>
                 </SelectTrigger>
                 <SelectPopup align="end" alignItemWithTrigger={false}>
-                  <SelectItem value="system">{t("System default")}</SelectItem>
-                  <SelectItem value="en">{t("English")}</SelectItem>
+                  <SelectItem value="system">{LANGUAGE_LABELS.system}</SelectItem>
+                  <SelectItem value="en">{LANGUAGE_LABELS.en}</SelectItem>
                   <SelectItem value="zh-Hans">简体中文</SelectItem>
                 </SelectPopup>
               </Select>

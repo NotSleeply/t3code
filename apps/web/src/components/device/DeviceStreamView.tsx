@@ -446,7 +446,7 @@ export function DeviceStreamView(props: {
               size="xs"
               aria-pressed={!!showPhone}
               disabled={!!phoneUnavailableReason}
-              title={phoneUnavailableReason ?? "Show 3D phone"}
+              title={phoneUnavailableReason ?? t("Show 3D phone")}
               onClick={() => setPresentation("phone")}
             >
               3D

@@ -231,7 +231,7 @@ export default function ProjectScriptsControl({
       {importMenuItems}
       <MenuItem density={presentation === "menu" ? "touch" : "default"} onClick={openAddDialog}>
         <PlusIcon className="size-4" />
-        <MenuItemLabel>{isPanel ? "Add project script" : "Add action"}</MenuItemLabel>
+        <MenuItemLabel>{isPanel ? t("Add project script") : t("Add action")}</MenuItemLabel>
       </MenuItem>
     </>
   );
@@ -317,7 +317,7 @@ export default function ProjectScriptsControl({
             <TooltipPopup side="top">
               {onRunScript
                 ? `Run ${primaryScript.name}`
-                : "Pair this client again with permission to run terminal commands."}
+                : t("Pair this client again with permission to run terminal commands.")}
             </TooltipPopup>
           </Tooltip>
           {isPanel ? (
@@ -430,7 +430,7 @@ export default function ProjectScriptsControl({
                 part="row"
                 panel={isPanel}
                 className={isPanel ? undefined : "w-7 sm:w-6 @3xl/header-actions:w-auto!"}
-                aria-label={isPanel ? "Add project script" : "Add action"}
+                aria-label={isPanel ? t("Add project script") : t("Add action")}
                 data-toolbar-control=""
                 onClick={openAddDialog}
               />
@@ -443,10 +443,12 @@ export default function ProjectScriptsControl({
                 isPanel && cn("not-sr-only ml-0.5", THREAD_DETAILS_PANEL_LABEL_CLASS),
               )}
             >
-              {isPanel ? "Add project script" : "Add action"}
+              {isPanel ? t("Add project script") : t("Add action")}
             </span>
           </TooltipTrigger>
-          <TooltipPopup side="top">{isPanel ? "Add project script" : "Add action"}</TooltipPopup>
+          <TooltipPopup side="top">
+            {isPanel ? t("Add project script") : t("Add action")}
+          </TooltipPopup>
         </Tooltip>
       )}
 

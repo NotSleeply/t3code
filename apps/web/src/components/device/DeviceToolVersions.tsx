@@ -40,14 +40,14 @@ export function DeviceToolVersions({
           ? version
             ? `v${version}`
             : selected
-              ? "Not installed"
-              : "Version unknown"
+              ? t("Not installed")
+              : t("Version unknown")
           : error
-            ? "Versions unavailable"
-            : "Versions"}
+            ? t("Versions unavailable")
+            : t("Versions")}
       </PopoverTrigger>
       <PopoverPopup align="end" width="md">
-        <PopoverTitle>{kind ? label : "Device tools"}</PopoverTitle>
+        <PopoverTitle>{kind ? label : t("Device tools")}</PopoverTitle>
         {tools ? (
           <div className="mt-4 divide-y divide-border/50">
             {(
@@ -62,12 +62,14 @@ export function DeviceToolVersions({
                   {!kind ? <p className="text-xs font-medium">{name}</p> : null}
                   <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-xs">
                     <dt className="text-muted-foreground">{t("Running")}</dt>
-                    <dd className="text-right font-mono">{tool.runningVersion ?? "Not running"}</dd>
+                    <dd className="text-right font-mono">
+                      {tool.runningVersion ?? t("Not running")}
+                    </dd>
                     <dt className="text-muted-foreground">{t("Required")}</dt>
                     <dd className="text-right font-mono">{tool.requiredVersion}</dd>
                     <dt className="text-muted-foreground">{t("Installed")}</dt>
                     <dd className="text-right font-mono break-words">
-                      {tool.installedVersions.join(", ") || "None"}
+                      {tool.installedVersions.join(", ") || t("None")}
                     </dd>
                   </dl>
                 </div>

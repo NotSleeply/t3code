@@ -230,7 +230,9 @@ function InstanceSessionManagement(
       );
       toastManager.add({
         type: "success",
-        title: result.value.imported ? "ACP session imported" : "ACP session already imported",
+        title: result.value.imported
+          ? t("ACP session imported")
+          : t("ACP session already imported"),
       });
       return;
     }
@@ -408,7 +410,7 @@ function InstanceSessionManagement(
                 disabled={props.readOnly || loggingOut}
                 onClick={() => void logoutProvider()}
               >
-                {loggingOut ? "Logging out" : "Log out"}
+                {loggingOut ? t("Logging out") : t("Log out")}
               </Button>
             ) : null}
             {canList && props.projects.length > 0 ? (
@@ -445,7 +447,11 @@ function InstanceSessionManagement(
                   disabled={!canRead || loading || projectId === null}
                   onClick={() => void loadSessions()}
                 >
-                  {loading ? "Loading" : sessions.length === 0 ? "List sessions" : "Refresh"}
+                  {loading
+                    ? t("Loading")
+                    : sessions.length === 0
+                      ? t("List sessions")
+                      : t("Refresh")}
                 </Button>
               </>
             ) : null}
@@ -483,10 +489,10 @@ function InstanceSessionManagement(
                         onClick={() => void importNativeSession(session)}
                       >
                         {session.importedThreadId !== null
-                          ? "Imported"
+                          ? t("Imported")
                           : importingSessionId === session.sessionId
-                            ? "Importing"
-                            : "Import"}
+                            ? t("Importing")
+                            : t("Import")}
                       </Button>
                       {canDelete ? (
                         <Button
@@ -500,7 +506,7 @@ function InstanceSessionManagement(
                           }
                           onClick={() => void deleteNativeSession(session)}
                         >
-                          {deletingSessionId === session.sessionId ? "Deleting" : "Delete"}
+                          {deletingSessionId === session.sessionId ? t("Deleting") : t("Delete")}
                         </Button>
                       ) : null}
                     </div>
@@ -518,7 +524,7 @@ function InstanceSessionManagement(
                 disabled={!canRead || loading}
                 onClick={() => void loadSessions(nextCursor)}
               >
-                {loading ? "Loading" : "Load more"}
+                {loading ? t("Loading") : t("Load more")}
               </Button>
             ) : null}
           </>
@@ -543,7 +549,11 @@ function InstanceSessionManagement(
               }
               onClick={() => void loadProviders()}
             >
-              {loadingProviders ? "Loading" : providers.length === 0 ? "List providers" : "Refresh"}
+              {loadingProviders
+                ? t("Loading")
+                : providers.length === 0
+                  ? t("List providers")
+                  : t("Refresh")}
             </Button>
           </div>
 
@@ -596,8 +606,8 @@ function InstanceSessionManagement(
                           {provider.providerId}
                         </p>
                         <p className="text-3xs text-muted-foreground">
-                          {provider.current === null ? "Disabled" : "Configured"}
-                          {provider.required ? " · Required" : ""}
+                          {provider.current === null ? t("Disabled") : t("Configured")}
+                          {provider.required ? " " + t("· Required") : ""}
                         </p>
                       </div>
                       <div className="flex items-center gap-1">
@@ -614,7 +624,7 @@ function InstanceSessionManagement(
                           }
                           onClick={() => void saveProvider(provider)}
                         >
-                          {savingProviderId === provider.providerId ? "Saving" : "Save"}
+                          {savingProviderId === provider.providerId ? t("Saving") : t("Save")}
                         </Button>
                         {!provider.required && provider.current !== null ? (
                           <Button

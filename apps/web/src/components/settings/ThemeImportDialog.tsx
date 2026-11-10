@@ -125,9 +125,9 @@ function ThemeJsonEditor({
         id={id}
         onChange={(event) => onChange(event.currentTarget.value)}
         onScroll={syncScroll}
-        placeholder={
-          '{\n  "version": 1,\n  "name": "Aurora",\n  "appearance": "light",\n  "colors": { ... }\n}'
-        }
+        placeholder={t(
+          '{ "version": 1, "name": "Aurora", "appearance": "light", "colors": { ... } }',
+        )}
         spellCheck={false}
         value={value}
       />
@@ -463,7 +463,7 @@ function ThemeImportBody({
         const chooseButton = (label = "Choose files") => (
           <Button disabled={isReading} size="sm" variant="outline" onClick={openFilePicker}>
             <DownloadIcon />
-            {isReading ? "Reading…" : label}
+            {isReading ? t("Reading…") : label}
           </Button>
         );
         const editorSection = () => (
@@ -514,7 +514,7 @@ function ThemeImportBody({
               <div className="min-w-0">
                 <p className="text-sm font-medium">{t("Theme file")}</p>
                 <p className="truncate text-xs text-muted-foreground">
-                  {fileName ?? "Drop T3 Code or VS Code .json files"}
+                  {fileName ?? t("Drop T3 Code or VS Code .json files")}
                 </p>
               </div>
               {chooseButton()}

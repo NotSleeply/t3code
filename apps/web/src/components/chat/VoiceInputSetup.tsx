@@ -104,7 +104,7 @@ export function VoiceInputSetup(props: {
                   </div>
                   <p className="mt-2 text-muted-foreground">
                     {t("Download the")} {Math.round(model.size / 1024 / 1024)} {t("MB model to")}{" "}
-                    {environment?.label ?? "your transcription environment"}
+                    {environment?.label ?? t("your transcription environment")}
                     {t(
                       ". Microphone audio is sent there for transcription, as chosen in Voice settings.",
                     )}
@@ -131,9 +131,9 @@ export function VoiceInputSetup(props: {
                       </div>
                       <p className="text-xs">
                         {model?.state === "verifying"
-                          ? "Verifying download…"
+                          ? t("Verifying download…")
                           : progress === null
-                            ? "Starting download…"
+                            ? t("Starting download…")
                             : `${progress}% downloaded`}
                       </p>
                     </div>
@@ -226,7 +226,7 @@ export function VoiceInputSetup(props: {
           {props.step === 0 ? (
             <>
               <Button variant="outline" onClick={() => openSettings("speech-models")}>
-                {model ? "Choose another model or language" : "Choose a model or language"}
+                {model ? t("Choose another model or language") : t("Choose a model or language")}
               </Button>
               {props.onRetryCatalog ? (
                 <Button onClick={props.onRetryCatalog}>{t("Retry loading models")}</Button>
@@ -242,12 +242,12 @@ export function VoiceInputSetup(props: {
                   onClick={props.onDownload}
                 >
                   {props.downloading
-                    ? "Downloading…"
+                    ? t("Downloading…")
                     : props.error
-                      ? "Try again"
+                      ? t("Try again")
                       : canManage
-                        ? "Download model"
-                        : "Ask an environment admin to download"}
+                        ? t("Download model")
+                        : t("Ask an environment admin to download")}
                 </Button>
               ) : null}
             </>

@@ -119,7 +119,7 @@ function PendingLinkRequest(props: {
       <div className="flex min-w-0 flex-col gap-1">
         <p className="text-sm font-medium text-foreground">
           {picksMachine(item)
-            ? "Link a machine to this environment"
+            ? t("Link a machine to this environment")
             : `Link ${target} to this environment`}
         </p>
         {item.reason.trim() ? <p className="text-sm text-muted-foreground">{item.reason}</p> : null}
@@ -144,7 +144,7 @@ function PendingLinkRequest(props: {
             {t("Decline")}
           </Button>
           <Button type="button" size="xs" disabled={declining} onClick={() => setOpen(true)}>
-            {picksMachine(item) ? "Choose machine…" : "Review link…"}
+            {picksMachine(item) ? t("Choose machine…") : t("Review link…")}
           </Button>
         </div>
       ) : (
@@ -331,7 +331,7 @@ function LinkRequestDialog(props: {
     >
       <WizardPopup>
         <WizardHeader
-          title={pickMachine ? "Link a machine" : `Link ${targetName}`}
+          title={pickMachine ? t("Link a machine") : `Link ${targetName}`}
           description={t(
             "Agents here can then launch, message and wait on threads there. Revoke it in that machine's Connections.",
           )}
@@ -470,7 +470,13 @@ function LinkRequestDialog(props: {
             type="submit"
             disabled={busy || (finishesHere ? !ready : !machineReady)}
           >
-            {busy ? "Linking…" : useExisting ? "Use this link" : finishesHere ? "Link" : "Continue"}
+            {busy
+              ? t("Linking…")
+              : useExisting
+                ? t("Use this link")
+                : finishesHere
+                  ? t("Link")
+                  : t("Continue")}
           </Button>
         </WizardFooter>
       </WizardPopup>

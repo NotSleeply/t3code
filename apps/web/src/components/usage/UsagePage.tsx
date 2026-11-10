@@ -428,7 +428,7 @@ export function UsagePage() {
         </ToggleGroup>
         <Button
           onClick={refreshWindow}
-          aria-label={showingLimits ? "Refresh limits" : "Refresh usage"}
+          aria-label={showingLimits ? t("Refresh limits") : t("Refresh usage")}
           aria-busy={isRefreshing}
           disabled={isRefreshing || (!showingLimits && !canReadDiagnostics)}
           size="icon-sm"
@@ -489,7 +489,7 @@ export function UsagePage() {
         </Select>
         <Button
           onClick={refreshWindow}
-          aria-label={showingLimits ? "Refresh limits" : "Refresh usage"}
+          aria-label={showingLimits ? t("Refresh limits") : t("Refresh usage")}
           aria-busy={isRefreshing}
           disabled={isRefreshing || (!showingLimits && !canReadDiagnostics)}
           size="icon-sm"
@@ -672,7 +672,7 @@ function UsageOverview({
                 <span className={figureClass(loadingPartial)}>
                   {t("{0} sessions", [formatCount(merged.sessions)])}
                 </span>
-                {metric === "cost" && " · API estimate"}
+                {metric === "cost" && " " + t("· API estimate")}
               </span>
               {metric === "cost" && merged.costQuality.unpricedShare > 0 && (
                 <Popover>
@@ -765,7 +765,8 @@ function UsageOverview({
 
         <div className="flex min-w-0 flex-col gap-3">
           <h2 className="text-sm font-medium text-foreground">
-            {shownHourly ? "Hourly" : "Daily"} {metric === "tokens" ? "processed tokens" : "cost"}
+            {shownHourly ? t("Hourly") : t("Daily")}{" "}
+            {metric === "tokens" ? t("processed tokens") : "cost"}
           </h2>
           <UsageProviderChart
             providers={activeProviders}
@@ -859,7 +860,7 @@ function UsageOverview({
             {(
               [
                 { value: "model", label: t("Model") },
-                { value: "time", label: shownHourly ? "Hour" : "Day" },
+                { value: "time", label: shownHourly ? t("Hour") : t("Day") },
               ] as const
             ).map((option) => (
               <Toggle key={option.value} value={option.value}>
@@ -956,7 +957,7 @@ function UsageOverview({
               </colgroup>
               <thead>
                 <tr className="border-b border-border text-left text-xs text-muted-foreground">
-                  <th className="py-2 pl-2 font-normal">{shownHourly ? "Hour" : "Day"}</th>
+                  <th className="py-2 pl-2 font-normal">{shownHourly ? t("Hour") : t("Day")}</th>
                   {activeProviders.map((provider) => (
                     <th key={provider} className="py-2 pl-4 text-right font-normal">
                       {PROVIDER_PRESENTATION[provider].label}

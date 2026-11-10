@@ -324,7 +324,9 @@ function PullRequestAuthorChoices({
         ))}
         {visible.length === 0 && !hosted.isPending ? (
           <MenuItem disabled>
-            {hosted.error === null ? "No authors found" : "Couldn't search authors on the host"}
+            {hosted.error === null
+              ? t("No authors found")
+              : t("Couldn't search authors on the host")}
           </MenuItem>
         ) : null}
       </MenuRadioGroup>
@@ -349,7 +351,7 @@ function PullRequestAuthorFilter({
         <UserRoundIcon aria-hidden className="size-3.5" />
         <span className="flex-1">{t("Author")}</span>
         <span className="min-w-0 max-w-32 truncate text-xs text-muted-foreground">
-          {value ?? "Anyone"}
+          {value ?? t("Anyone")}
         </span>
       </MenuSubTrigger>
       <MenuSubPopup>
@@ -397,7 +399,7 @@ function PullRequestLabelChoices({
       />
       {visible.length === 0 && !hosted.isPending ? (
         <MenuItem disabled>
-          {hosted.error === null ? "No labels found" : "Couldn't search labels on the host"}
+          {hosted.error === null ? t("No labels found") : t("Couldn't search labels on the host")}
         </MenuItem>
       ) : null}
       {visible.map((option) => {
@@ -452,7 +454,7 @@ function PullRequestLabelFilter({
         <TagIcon aria-hidden className="size-3.5" />
         <span className="flex-1">{t("Labels")}</span>
         <span className="text-xs text-muted-foreground">
-          {value.length === 0 ? "Any" : `${value.length} selected`}
+          {value.length === 0 ? t("Any") : `${value.length} selected`}
         </span>
       </MenuSubTrigger>
       <MenuSubPopup>

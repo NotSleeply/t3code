@@ -60,10 +60,10 @@ export function ProviderWizardAuthenticationStep({
               title={t("Account")}
               description={
                 isDiscovering
-                  ? "Discovering sign-in methods…"
+                  ? t("Discovering sign-in methods…")
                   : (query.error ??
                     auth?.message ??
-                    "No in-app sign-in advertised. Follow the provider's docs to finish setup.")
+                    t("No in-app sign-in advertised. Follow the provider's docs to finish setup."))
               }
               control={
                 isDiscovering ? (
@@ -93,7 +93,7 @@ export function ProviderWizardAuthenticationStep({
           disabled={active}
           onClick={onFinish}
         >
-          {signedIn ? "Done" : "Skip for now"}
+          {signedIn ? t("Done") : t("Skip for now")}
         </Button>
       </WizardFooter>
     </>

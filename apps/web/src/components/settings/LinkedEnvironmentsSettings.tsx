@@ -160,7 +160,7 @@ function LinkedEnvironmentRow({
               disabled={busy}
               onClick={() => void forget()}
             >
-              {busy ? "Forgetting…" : "Forget"}
+              {busy ? t("Forgetting…") : t("Forget")}
             </Button>
           </div>
         ) : null}
@@ -333,8 +333,8 @@ function LinkEnvironmentAction({ environmentId }: { readonly environmentId: Envi
                   onChange={(event) => setPairingCode(event.target.value)}
                   placeholder={
                     machine === null
-                      ? "From that environment's Connections, or t3 pair there"
-                      : "Paste the code"
+                      ? t("From that environment's Connections, or t3 pair there")
+                      : t("Paste the code")
                   }
                   disabled={busy}
                   autoComplete="one-time-code"
@@ -359,7 +359,7 @@ function LinkEnvironmentAction({ environmentId }: { readonly environmentId: Envi
             {t("Cancel")}
           </DialogClose>
           <Button form={formId} type="submit" disabled={busy || !ready}>
-            {busy ? "Linking…" : "Link"}
+            {busy ? t("Linking…") : t("Link")}
           </Button>
         </DialogFooter>
       </DialogPopup>

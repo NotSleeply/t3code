@@ -24,7 +24,7 @@ export function TriageDraftHero(props: {
           <TooltipTrigger
             render={<span tabIndex={0} className="min-w-0 truncate font-medium text-foreground" />}
           >
-            {props.machineLabel ?? "This machine"}
+            {props.machineLabel ?? t("This machine")}
             {props.serverVersion === null ? null : (
               <span className="ml-1.5 font-normal text-muted-foreground">
                 v{props.serverVersion}
@@ -50,7 +50,7 @@ export function TriageDraftHero(props: {
               />
             }
           >
-            {isCopied ? "Copied" : "or run"}
+            {isCopied ? t("Copied") : t("or run")}
             {isCopied ? null : <code className="ml-1 font-mono text-xs">{TRIAGE_CLI_COMMAND}</code>}
           </TooltipTrigger>
           <TooltipPopup side="bottom">{t("Copy command, for a terminal")}</TooltipPopup>

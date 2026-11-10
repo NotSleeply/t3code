@@ -371,7 +371,7 @@ export function ThemeSearchSection({
 
       <div className="sr-only" role="status">
         {isSearching
-          ? "Searching themes..."
+          ? t("Searching themes...")
           : results
             ? `${results.length} supported ${results.length === 1 ? "theme" : "themes"} found.`
             : ""}
@@ -420,7 +420,7 @@ export function ThemeSearchSection({
                     </div>
                   </div>
                   <p className="line-clamp-2 min-h-8 text-muted-foreground text-xs leading-4">
-                    {extension.description || "A community color theme for your editor."}
+                    {extension.description || t("A community color theme for your editor.")}
                   </p>
                   <div className="mt-auto flex items-center justify-between gap-2">
                     <div className="flex min-w-0 items-center gap-2">

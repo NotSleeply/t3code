@@ -52,7 +52,7 @@ function taskScheduleLine(task: ScheduledTask) {
       ) : task.enabled ? (
         ""
       ) : (
-        " · paused"
+        " " + t("· paused")
       )}
     </>
   );

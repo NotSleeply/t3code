@@ -191,7 +191,7 @@ export function mcpHandoffAction(app: McpApp, mcpUrl: string) {
   switch (handoff.kind) {
     case "open":
       return {
-        label: `Open in ${app.name}`,
+        label: t("Open in {0}", [app.name]),
         link: handoff.link(mcpUrl),
         appLink: null,
         copy: null,

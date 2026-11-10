@@ -71,7 +71,7 @@ function endpointStatus(url: string, check: EndpointCheck | undefined) {
     case "Rejected":
       return { label: `Rejected · HTTP ${result.status}`, dot: "bg-destructive" };
     case "Unreachable":
-      return { label: result.timedOut ? "Timed out" : "Unreachable", dot: "bg-destructive" };
+      return { label: result.timedOut ? t("Timed out") : t("Unreachable"), dot: "bg-destructive" };
   }
 }
 
@@ -240,7 +240,7 @@ function TelemetryExportForm() {
               </div>
               {(saved[key] !== (running?.[key] ?? "") || override?.variable) && (
                 <p className="break-all text-xs text-muted-foreground">
-                  {t("Running:")} {running?.[key] || "Disabled"}
+                  {t("Running:")} {running?.[key] || t("Disabled")}
                   {override?.variable && (
                     <>
                       {" "}
@@ -276,7 +276,7 @@ function TelemetryExportForm() {
               {t("Discard")}
             </Button>
             <Button type="submit" size="xs" disabled={!changed || saving || !canEdit}>
-              {saving ? "Saving…" : "Save"}
+              {saving ? t("Saving…") : t("Save")}
             </Button>
           </div>
         </div>

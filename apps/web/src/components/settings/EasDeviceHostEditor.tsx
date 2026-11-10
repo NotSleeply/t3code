@@ -175,7 +175,7 @@ export function EasDeviceHostEditor(props: {
           }}
         >
           <DialogHeader>
-            <DialogTitle>{props.isNew ? "Add EAS host" : "Edit EAS host"}</DialogTitle>
+            <DialogTitle>{props.isNew ? t("Add EAS host") : t("Edit EAS host")}</DialogTitle>
             <DialogDescription>
               {t(
                 "The environment's server signs in to Expo and starts the sessions. Without a token here it uses EXPO_TOKEN, then its eas login.",
@@ -264,8 +264,8 @@ export function EasDeviceHostEditor(props: {
                   : account.status === "failed"
                     ? account.error
                     : account.status === "checking"
-                      ? "Checking the Expo account…"
-                      : "Check the Expo account before choosing a project."}
+                      ? t("Checking the Expo account…")
+                      : t("Check the Expo account before choosing a project.")}
               </p>
               <Button
                 type="button"
@@ -328,7 +328,9 @@ export function EasDeviceHostEditor(props: {
               {t(
                 "Expo allows sessions of up to 40 minutes on free accounts and 115 on paid ones, and ends one after the idle minutes without activity, so idle minutes must be smaller than session minutes.",
               )}
-              {props.isNew ? null : " Saving restarts this host, which stops its running sessions."}
+              {props.isNew
+                ? null
+                : " " + t("Saving restarts this host, which stops its running sessions.")}
             </p>
             {problem === null ? null : (
               <p className="text-xs text-destructive" role="alert">

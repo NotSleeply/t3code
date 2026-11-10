@@ -142,8 +142,8 @@ function BreadcrumbMenuContent(props: {
         ) : children.length === 0 ? (
           <MenuItem disabled>
             {entriesTruncated
-              ? "No entries from this folder are available in the partial workspace index."
-              : "This folder is empty."}
+              ? t("No entries from this folder are available in the partial workspace index.")
+              : t("This folder is empty.")}
           </MenuItem>
         ) : (
           <MenuRadioGroup

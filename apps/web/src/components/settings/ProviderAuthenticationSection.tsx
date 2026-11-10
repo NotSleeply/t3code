@@ -202,7 +202,7 @@ export function ProviderAuthenticationSection({
               <SelectTrigger size="sm" aria-label={t("Sign-in method")} className="w-44">
                 <SelectValue>
                   {auth?.methods?.find((method) => method.id === methodId)?.name ??
-                    "Provider default"}
+                    t("Provider default")}
                 </SelectValue>
               </SelectTrigger>
               <SelectPopup>
@@ -297,14 +297,14 @@ export function ProviderAuthenticationSection({
                 }
               >
                 {signedIn
-                  ? "Change account"
+                  ? t("Change account")
                   : auth?.phase === "failed" || auth?.phase === "cancelled"
                     ? usesCredentials
-                      ? "Retry connection"
-                      : "Retry sign-in"
+                      ? t("Retry connection")
+                      : t("Retry sign-in")
                     : usesCredentials
-                      ? "Connect"
-                      : "Sign in"}
+                      ? t("Connect")
+                      : t("Sign in")}
               </Button>
             ) : null}
             {!active && signedIn && (provider.auth.canLogout ?? provider.setup?.canAuthenticate) ? (

@@ -103,7 +103,7 @@ export const PanelLayoutControls = memo(function PanelLayoutControls({
           <TooltipPopup side="bottom">
             {terminalAvailable
               ? `Toggle terminal drawer${terminalShortcutLabel ? ` (${terminalShortcutLabel})` : ""}`
-              : "Terminal drawer is unavailable"}
+              : t("Terminal drawer is unavailable")}
           </TooltipPopup>
         </Tooltip>
       ) : null}

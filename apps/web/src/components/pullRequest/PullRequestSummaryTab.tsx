@@ -134,7 +134,7 @@ function CommentIdentity({
         </TooltipTrigger>
         <TooltipPopup>
           {new Date(comment.createdAt).toLocaleString()}
-          {comment.url ? " · Open comment on host" : ""}
+          {comment.url ? " " + t("· Open comment on host") : ""}
         </TooltipPopup>
       </Tooltip>
     </div>
@@ -673,7 +673,7 @@ export function PullRequestSummaryTab({
                 <HammerIcon className="size-3 self-center" />
                 <span>
                   {pendingFinding === pullRequestFindingKey(finding)
-                    ? "Preparing..."
+                    ? t("Preparing...")
                     : fixFindingLabel}
                 </span>
               </span>
@@ -716,7 +716,7 @@ export function PullRequestSummaryTab({
           editing={commentEditing}
           detail={detail}
           thread={thread}
-          label={thread?.isResolved ? "Resolved" : "Review dismissed"}
+          label={thread?.isResolved ? t("Resolved") : t("Review dismissed")}
           body={visibleBody(comment.body)}
           replyCount={item.kind === "thread" ? item.replies.length + item.moreReplies : 0}
           replies={replies}
@@ -862,7 +862,7 @@ export function PullRequestSummaryTab({
             <div className="flex items-start gap-1">
               <PullRequestMarkdown
                 className="min-w-0 flex-1"
-                text={description.trim().length > 0 ? description : "_No description provided._"}
+                text={description.trim().length > 0 ? description : t("_No description provided._")}
                 cwd={detail.workspaceRoot}
                 environmentId={environmentId}
                 threadRef={threadRef}
@@ -927,7 +927,7 @@ export function PullRequestSummaryTab({
                       >
                         <HammerIcon className="size-3" />
                         {pendingFinding === pullRequestFindingKey(finding)
-                          ? "Preparing..."
+                          ? t("Preparing...")
                           : fixCheckLabel}
                       </Button>
                     ) : null}
@@ -948,7 +948,7 @@ export function PullRequestSummaryTab({
                 aria-label={t("Filter comments")}
               >
                 <ListFilterIcon aria-hidden className="size-3" />
-                {filteredOutCount > 0 ? `${filteredOutCount} hidden` : "Filter"}
+                {filteredOutCount > 0 ? `${filteredOutCount} hidden` : t("Filter")}
               </MenuTrigger>
               <MenuPopup align="end">
                 <MenuGroup>
@@ -977,13 +977,13 @@ export function PullRequestSummaryTab({
               variant="ghost-muted"
               aria-label={
                 commentOrder === "newest"
-                  ? "Show oldest comments first"
-                  : "Show newest comments first"
+                  ? t("Show oldest comments first")
+                  : t("Show newest comments first")
               }
               onClick={() => setCommentOrder((value) => (value === "newest" ? "oldest" : "newest"))}
             >
               <ArrowDownUpIcon aria-hidden className="size-3" />
-              {commentOrder === "newest" ? "Newest first" : "Oldest first"}
+              {commentOrder === "newest" ? t("Newest first") : t("Oldest first")}
             </Button>
           </div>
         }
@@ -1002,7 +1002,7 @@ export function PullRequestSummaryTab({
             {detail.commentsTruncated ? (
               <p className="mb-2 rounded-md border border-warning/30 bg-warning-surface px-2 py-1.5 text-xs">
                 {t("This conversation is only partially loaded.")} {commentCount} comment
-                {commentCount === 1 ? " is" : "s are"}{" "}
+                {commentCount === 1 ? " is" : t("s are")}{" "}
                 {t("loaded; open it on the host to read the rest.")}
               </p>
             ) : null}
@@ -1011,7 +1011,7 @@ export function PullRequestSummaryTab({
             ) : filteredItems.length === 0 ? (
               <p className="py-2 text-xs text-muted-foreground">
                 {filteredOutCount === 1
-                  ? "The only comment is hidden by the filter."
+                  ? t("The only comment is hidden by the filter.")
                   : `All ${filteredOutCount} comments are hidden by the filter.`}
               </p>
             ) : (

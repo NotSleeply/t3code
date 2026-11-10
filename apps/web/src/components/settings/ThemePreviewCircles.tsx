@@ -206,7 +206,7 @@ export function ThemePreviewCircles({
               }
             />
             <TooltipPopup>
-              {mode === "light" ? "Use for light mode only" : "Use for dark mode only"}
+              {mode === "light" ? t("Use for light mode only") : t("Use for dark mode only")}
             </TooltipPopup>
           </Tooltip>
         );

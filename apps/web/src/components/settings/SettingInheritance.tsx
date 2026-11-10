@@ -291,7 +291,7 @@ export function SettingInheritance({
                         layer.effective ? "font-medium text-foreground" : "text-muted-foreground",
                       )}
                     >
-                      {layer.key === "environment" ? "Environment" : layer.label}
+                      {layer.key === "environment" ? t("Environment") : layer.label}
                     </span>
                     <span
                       className={cn(
@@ -344,7 +344,7 @@ export function SettingInheritance({
                           </span>
                           <span className="text-xs text-muted-foreground">
                             {winningLayer?.key === "environment"
-                              ? "Environment"
+                              ? t("Environment")
                               : winningLayer?.label}
                           </span>
                           <ChevronRightIcon

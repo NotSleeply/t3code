@@ -165,16 +165,16 @@ export function PullRequestCommentForm({
                 </span>
                 <span className="col-start-1 row-start-1">
                   {submitting === "close"
-                    ? "Closing..."
+                    ? t("Closing...")
                     : inlineConfirm.isArmed("close")
-                      ? "Confirm close?"
-                      : "Close with comment"}
+                      ? t("Confirm close?")
+                      : t("Close with comment")}
                 </span>
               </span>
             ) : submitting === "reopen" ? (
-              "Reopening..."
+              t("Reopening...")
             ) : (
-              "Reopen with comment"
+              t("Reopen with comment")
             )}
           </Button>
         )}
@@ -185,7 +185,7 @@ export function PullRequestCommentForm({
           onClick={() => submitAfterDictation("comment")}
         >
           <SendIcon className="size-3.5" />
-          {submitting === "comment" ? "Posting..." : "Comment"}
+          {submitting === "comment" ? t("Posting...") : t("Comment")}
         </Button>
       </div>
     </div>

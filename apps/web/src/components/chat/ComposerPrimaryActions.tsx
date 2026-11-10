@@ -330,7 +330,7 @@ export const ComposerPrimaryActions = memo(function ComposerPrimaryActions({
         >
           <Minimize2Icon aria-hidden="true" />
           <span className="@max-[480px]/composer-surface:hidden">
-            {keepFullHistory ? "Keep" : "Compact"}
+            {keepFullHistory ? t("Keep") : t("Compact")}
           </span>
           <span className="text-muted-foreground">{compactTokens}</span>
         </TooltipTrigger>
@@ -340,7 +340,9 @@ export const ComposerPrimaryActions = memo(function ComposerPrimaryActions({
               ? `Next send keeps all ${compactTokens} tokens.`
               : `Next send compacts ${compactTokens} tokens first.`}
           </div>
-          <div>{keepFullHistory ? "Click to compact first" : "Click to keep full history"}</div>
+          <div>
+            {keepFullHistory ? t("Click to compact first") : t("Click to keep full history")}
+          </div>
         </TooltipPopup>
       </Tooltip>
       {children}

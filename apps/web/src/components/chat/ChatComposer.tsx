@@ -2751,8 +2751,8 @@ export const ChatComposer = memo(function ChatComposer(props: ChatComposerProps)
           description:
             isEnvironmentRequestInvalidError(error) &&
             error.reason === "thread_transcript_too_large"
-              ? "This thread exceeds the attachment size limit. Try a shorter thread."
-              : "Check that its environment is connected and up to date, then try again.",
+              ? t("This thread exceeds the attachment size limit. Try a shorter thread.")
+              : t("Check that its environment is connected and up to date, then try again."),
         });
       }
       toastManager.close(loadingToast);
@@ -3324,7 +3324,9 @@ export const ChatComposer = memo(function ChatComposer(props: ChatComposerProps)
                   aria-label={t("Expand composer")}
                 >
                   {prompt.trim() ||
-                    (showProviderUnavailable ? "Enable a provider in Settings" : "Ask anything...")}
+                    (showProviderUnavailable
+                      ? t("Enable a provider in Settings")
+                      : t("Ask anything..."))}
                 </button>
                 {collapsedComposerImagePreviews}
                 <button
@@ -3398,10 +3400,10 @@ export const ChatComposer = memo(function ChatComposer(props: ChatComposerProps)
                 {composerSuggestionsVisible && composerMenuItems.length === 0
                   ? isComposerMenuLoading
                     ? composerTriggerKind === "pull-request"
-                      ? "Finding pull request..."
+                      ? t("Finding pull request...")
                       : composerTriggerKind === "skill" || composerTriggerKind === "slash-command"
-                        ? "Searching workspace skills..."
-                        : "Searching workspace files..."
+                        ? t("Searching workspace skills...")
+                        : t("Searching workspace files...")
                     : composerMenuEmptyState
                   : ""}
               </div>
@@ -3447,7 +3449,7 @@ export const ChatComposer = memo(function ChatComposer(props: ChatComposerProps)
                   <ComposerPromptEditor
                     draftKey={composerDraftTargetKey}
                     // Switching threads lands focus here, so the label names the thread.
-                    ariaLabel={activeThread ? `Message ${activeThread.title}` : "Message"}
+                    ariaLabel={activeThread ? `Message ${activeThread.title}` : t("Message")}
                     suggestionListId={composerSuggestionListId}
                     activeSuggestionId={
                       composerSuggestionListVisible && activeComposerMenuItem
@@ -3479,16 +3481,18 @@ export const ChatComposer = memo(function ChatComposer(props: ChatComposerProps)
                     placeholder={
                       isComposerApprovalState
                         ? activePendingApproval?.supportsFeedback
-                          ? "Send feedback to decline this request"
-                          : "Send a message to decline and redirect the agent"
+                          ? t("Send feedback to decline this request")
+                          : t("Send a message to decline and redirect the agent")
                         : activePendingProgress
                           ? isChoiceOnlyPendingQuestion
-                            ? "Choose an option above"
-                            : "Type your own answer, or leave this blank to use the selected option"
+                            ? t("Choose an option above")
+                            : t(
+                                "Type your own answer, or leave this blank to use the selected option",
+                              )
                           : projectSelectionRequired
-                            ? "Choose a project above to start a thread"
+                            ? t("Choose a project above to start a thread")
                             : showProviderUnavailable
-                              ? "Enable a provider in Settings to send a message"
+                              ? t("Enable a provider in Settings to send a message")
                               : (offeredPromptSuggestion ?? DEFAULT_COMPOSER_PLACEHOLDER)
                     }
                     placeholderSuffix={

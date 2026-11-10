@@ -97,13 +97,13 @@ export function PreviewMoreMenu({
         {actions.toggleNativePictureInPicture ? (
           <MenuItem onClick={actions.toggleNativePictureInPicture} disabled={disabled}>
             {nativePictureInPicture
-              ? "Close separate preview window"
-              : "Open separate preview window"}
+              ? t("Close separate preview window")
+              : t("Open separate preview window")}
           </MenuItem>
         ) : null}
         {move ? <MenuItem onClick={move.onMove}>{move.label}</MenuItem> : null}
         <MenuItem onClick={onToggleDeviceToolbar} disabled={disabled}>
-          {deviceToolbarVisible ? "Hide device toolbar" : "Show device toolbar"}
+          {deviceToolbarVisible ? t("Hide device toolbar") : t("Show device toolbar")}
         </MenuItem>
         <MenuSub>
           <MenuSubTrigger disabled={disabled}>{t("Appearance")}</MenuSubTrigger>

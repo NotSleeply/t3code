@@ -308,13 +308,13 @@ export function WelcomePage({
                 <Button disabled={!agentReady || isImporting} onClick={start}>
                   {isImporting
                     ? selected.length > 0
-                      ? "Importing…"
-                      : "Starting…"
+                      ? t("Importing…")
+                      : t("Starting…")
                     : newCount > 0
                       ? `Import ${newCount} ${newCount === 1 ? "project" : "projects"} and start`
                       : selected.length > 0
-                        ? "Import threads and start"
-                        : "Start"}
+                        ? t("Import threads and start")
+                        : t("Start")}
                 </Button>
               </div>
             </div>
@@ -330,8 +330,8 @@ function TelemetryNotice({ environmentId }: { readonly environmentId: Environmen
   const telemetryOff = managedTelemetryOffMessage(useManagedPolicy(environmentId));
   return (
     <p className="mt-auto pt-12 text-2xs leading-relaxed text-muted-foreground/70">
-      {telemetryOff ?? "T3 Code collects anonymous usage data to improve the app."}{" "}
-      {telemetryOff === undefined ? "To opt out, see the" : "See the"}{" "}
+      {telemetryOff ?? t("T3 Code collects anonymous usage data to improve the app.")}{" "}
+      {telemetryOff === undefined ? t("To opt out, see the") : t("See the")}{" "}
       <a
         className="underline decoration-current/40 underline-offset-2 hover:text-muted-foreground"
         href={PRIVACY_POLICY_URL}
@@ -644,7 +644,7 @@ function AgentsSection({
               found.length > 0 ? "text-muted-foreground" : "text-foreground",
             )}
           >
-            {found.length > 0 ? "Add more agents" : "Set up an agent"}
+            {found.length > 0 ? t("Add more agents") : t("Set up an agent")}
           </span>
           {showMore ? null : <AgentLogoStack providers={available} acp={acpAllowed} />}
           <ChevronDownIcon className="ml-auto size-4 text-muted-foreground group-data-panel-open:rotate-180" />
@@ -832,7 +832,7 @@ function ProjectsSection({
             <span className="block text-sm font-medium text-foreground">
               {canWrite && selected.length > 0
                 ? `Import ${selected.length} ${selected.length === 1 ? "project" : "projects"} and their threads`
-                : "Import projects and their threads"}
+                : t("Import projects and their threads")}
             </span>
             <span className="block text-xs text-muted-foreground">
               {t("From your {0} history", [IMPORT_SOURCES_LABEL])}
@@ -846,7 +846,7 @@ function ProjectsSection({
             aria-expanded={reviewing}
             onClick={() => setReviewing((open) => !open)}
           >
-            {reviewing ? "Hide" : `Review all ${candidates.length}`}
+            {reviewing ? t("Hide") : `Review all ${candidates.length}`}
             <ChevronDownIcon className={cn("size-3.5", reviewing && "rotate-180")} />
           </Button>
         ) : null}
@@ -922,7 +922,7 @@ function PhoneSection({ environmentId }: { readonly environmentId: EnvironmentId
             {t("Use T3 Code on your phone")}
           </span>
           <CollapsibleTrigger render={<Button variant="ghost-muted" size="xs" />}>
-            {open ? "Hide" : "Set up"}
+            {open ? t("Hide") : t("Set up")}
             <ChevronDownIcon className={cn("size-3.5", open && "rotate-180")} />
           </CollapsibleTrigger>
         </div>
@@ -1022,8 +1022,8 @@ function PhoneConnectLink({ environmentId }: { readonly environmentId: Environme
       <>
         <p className="text-sm text-foreground">
           {shared
-            ? "T3 Connect is on, but the app cannot reach this computer."
-            : "Signed in. Share this computer so the app can reach it."}
+            ? t("T3 Connect is on, but the app cannot reach this computer.")
+            : t("Signed in. Share this computer so the app can reach it.")}
         </p>
         {settingsLink(shared ? "Check T3 Connect" : "Set up T3 Connect")}
       </>
@@ -1302,18 +1302,18 @@ function AgentInstallTerminal({
       <div className="flex items-center justify-between border-b border-border/60 bg-background/60 px-3 py-1.5">
         <span className="text-2xs font-medium text-muted-foreground">
           {!canOperateTerminal ? (
-            "This connection cannot control terminals."
+            t("This connection cannot control terminals.")
           ) : setupState === "writeFailed" ? (
             <>
               {t("Run")} <code className="rounded bg-muted px-1 font-mono">{command}</code>{" "}
               {t("in this terminal.")}
             </>
           ) : setupState === "ready" ? (
-            "Review the command, then press Enter to run it."
+            t("Review the command, then press Enter to run it.")
           ) : setupState === "openFailed" ? (
-            "Could not open the setup terminal."
+            t("Could not open the setup terminal.")
           ) : (
-            "Preparing command..."
+            t("Preparing command...")
           )}
         </span>
         <div className="flex items-center gap-1">

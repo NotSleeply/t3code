@@ -458,8 +458,8 @@ export function ComposerAttachmentFileList({
             <span className="shrink-0 text-xs text-secondary-label">
               {needsReattach
                 ? canReattachFile
-                  ? "Attach again"
-                  : "Remove to send"
+                  ? t("Attach again")
+                  : t("Remove to send")
                 : upload?.status === "uploading"
                   ? formatAttachmentUploadProgress(upload.progress)
                   : formatAttachmentSize(file.sizeBytes)}

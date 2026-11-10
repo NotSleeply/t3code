@@ -93,13 +93,13 @@ function KeybindingPill({ value }: { value: string }) {
           {part === "mod"
             ? navigator.platform.toLowerCase().includes("mac")
               ? "⌘"
-              : "Ctrl"
+              : t("Ctrl")
             : part === "shift"
               ? "⇧"
               : part === "alt"
                 ? navigator.platform.toLowerCase().includes("mac")
                   ? "⌥"
-                  : "Alt"
+                  : t("Alt")
                 : part === "ctrl"
                   ? "⌃"
                   : part.length === 1
@@ -823,7 +823,7 @@ function KeybindingKeyControl({
           disabled={isSaving || keyDraft.trim().length === 0 || !isWhenDraftValid}
           onClick={save}
         >
-          {isSaving ? "Saving" : "Save"}
+          {isSaving ? t("Saving") : t("Save")}
         </Button>
       ) : null}
       {showPill ? (
@@ -848,7 +848,7 @@ function KeybindingKeyControl({
           autoFocus={isRecording}
           aria-label={t("Keybinding for {0}", [commandLabel(row.command)])}
           value={isRecording ? "" : keyDraft}
-          placeholder={isRecording ? "Press shortcut" : "Unassigned"}
+          placeholder={isRecording ? t("Press shortcut") : t("Unassigned")}
           size="sm"
           font="mono"
           className="w-44"
@@ -894,7 +894,7 @@ function WhenClauseControl({
         }
         aria-label={t("Edit when clause for {0}", [label])}
       >
-        <span className="truncate font-mono">{expression || "Always"}</span>
+        <span className="truncate font-mono">{expression || t("Always")}</span>
         <ChevronDownIcon className="size-3.5 shrink-0 opacity-60" />
       </PopoverTrigger>
       <PopoverContent align="start" sideOffset={6}>
@@ -1164,7 +1164,7 @@ function NewKeybindingKeyInput({
       autoFocus={autoFocus}
       aria-label={t("Keybinding for {0}", [draft.commandLabelText])}
       value={draft.isRecording ? "" : draft.keyDraft}
-      placeholder={draft.isRecording ? "Press shortcut" : "Unassigned"}
+      placeholder={draft.isRecording ? t("Press shortcut") : t("Unassigned")}
       size="sm"
       font="mono"
       className={className}
@@ -1247,7 +1247,7 @@ function NewKeybindingSettingsRow(props: NewKeybindingProps) {
           <KeybindingConflictWarning labels={draft.conflictLabels} />
           <NewKeybindingKeyInput draft={draft} className="w-44" />
           <Button size="sm" disabled={isSaving || !draft.canSave} onClick={draft.save}>
-            {isSaving ? "Saving" : "Save"}
+            {isSaving ? t("Saving") : t("Save")}
           </Button>
           <NewKeybindingCancelIcon isSaving={isSaving} onCancel={onCancel} />
         </div>
@@ -1514,8 +1514,8 @@ export function KeybindingsSettingsPanel() {
       {!canWriteSettings ? (
         <p className="text-xs text-muted-foreground">
           {connectedEnvironments.length === 0
-            ? "Connect an environment to change keybindings."
-            : "This connection can view keybindings but cannot change them."}
+            ? t("Connect an environment to change keybindings.")
+            : t("This connection can view keybindings but cannot change them.")}
         </p>
       ) : null}
       <div inert={!canWriteSettings} className="flex flex-col gap-8">

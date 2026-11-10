@@ -120,7 +120,7 @@ export function PullRequestComposer({
             >
               <Toggle value="comment">{t("Comment")}</Toggle>
               <Toggle value="review">
-                {pendingComments.length > 0 ? `Review (${pendingComments.length})` : "Review"}
+                {pendingComments.length > 0 ? `Review (${pendingComments.length})` : t("Review")}
               </Toggle>
             </ToggleGroup>
           ) : (

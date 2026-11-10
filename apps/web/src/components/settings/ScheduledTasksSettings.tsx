@@ -278,7 +278,7 @@ function WebhookFiltersField({
               <div className="grid min-w-0 flex-1 grid-cols-1">
                 <Input
                   aria-label={t("Filter {0} value", [index + 1])}
-                  placeholder={filter.op === "in" ? "opened, reopened" : "opened"}
+                  placeholder={filter.op === "in" ? t("opened, reopened") : "opened"}
                   value={filter.value}
                   onChange={(event) => update(index, { value: event.target.value })}
                 />
@@ -807,15 +807,15 @@ function ScheduledTaskRow({
             {task.blockedByPolicy !== undefined ? (
               task.blockedByPolicy
             ) : !task.enabled ? (
-              "Paused"
+              t("Paused")
             ) : isWebhook ? (
-              "Listening"
+              t("Listening")
             ) : task.nextRunAt ? (
               <>
                 {t("Next run")} <ScheduledRelativeLabel value={task.nextRunAt} />
               </>
             ) : (
-              "Not scheduled"
+              t("Not scheduled")
             )}
           </span>
           {task.lastRunStatus !== "never" ? (
@@ -899,7 +899,7 @@ function ScheduledTaskThreadLink({
       params={buildThreadRouteParams(ref)}
       className="max-w-64 truncate underline underline-offset-2 hover:text-foreground"
     >
-      {title || "Open thread"}
+      {title || t("Open thread")}
     </Link>
   );
 }
@@ -981,12 +981,12 @@ function WebhookDeliveriesDialog({
                 </p>
               ) : null}
               <DeliveryBlock
-                title={selected.pendingWindow ? "Scheduled run" : "Prompt sent to the agent"}
+                title={selected.pendingWindow ? t("Scheduled run") : t("Prompt sent to the agent")}
               >
                 {selected.renderedPrompt ??
                   (selected.pendingWindow
-                    ? "Run scheduled when the window closes; no run started yet."
-                    : "No run was started for this request.")}
+                    ? t("Run scheduled when the window closes; no run started yet.")
+                    : t("No run was started for this request."))}
               </DeliveryBlock>
               {selected.missingFields.length > 0 ? (
                 <p className="text-sm text-muted-foreground">
@@ -1001,8 +1001,8 @@ function WebhookDeliveriesDialog({
               {selected.query ? (
                 <DeliveryBlock title={t("Query")}>{selected.query}</DeliveryBlock>
               ) : null}
-              <DeliveryBlock title={selected.bodyTruncated ? "Body (truncated)" : "Body"}>
-                {selected.body || "(empty)"}
+              <DeliveryBlock title={selected.bodyTruncated ? t("Body (truncated)") : t("Body")}>
+                {selected.body || t("(empty)")}
               </DeliveryBlock>
             </div>
           ) : selectedId !== null ? null : deliveries === null ? (
@@ -1138,7 +1138,7 @@ function WebhookEndpointField({
           onClick={() => copyToClipboard(url, undefined)}
         >
           <CopyIcon />
-          {isCopied ? "Copied" : "Copy"}
+          {isCopied ? t("Copied") : t("Copy")}
         </Button>
         <Button
           size="sm"
@@ -1162,8 +1162,8 @@ function WebhookDeliveryMode({ environmentId }: { readonly environmentId: Enviro
   return (
     <p className="text-xs text-muted-foreground">
       {cloudLink.data.holdWebhooksWhileOffline
-        ? "Held for up to 24 hours while this environment is offline. "
-        : "Forwarded live. Requests fail while this environment is offline. "}
+        ? t("Held for up to 24 hours while this environment is offline.") + " "
+        : t("Forwarded live. Requests fail while this environment is offline.") + " "}
       <Link to="/settings/access" className="underline underline-offset-2">
         {t("Change in Sharing & access")}
       </Link>
@@ -1318,7 +1318,7 @@ function ScheduledTaskDestination({
                 ? "scheduled-task-destination-thread"
                 : "scheduled-task-destination"
             }
-            aria-label={onThreadModeChange ? "Destination thread" : undefined}
+            aria-label={onThreadModeChange ? t("Destination thread") : undefined}
             disabled={disabled}
             render={<Button variant="outline" size="sm" />}
             className="w-full justify-between"
@@ -1340,10 +1340,10 @@ function ScheduledTaskDestination({
                 <ComboboxItem key={value} index={index} value={value}>
                   <span className="block truncate">
                     {value === NEW_THREAD_DESTINATION
-                      ? "New thread each run"
+                      ? t("New thread each run")
                       : value === threadId
                         ? currentLabel
-                        : threads.find((row) => row.id === value)?.title || "Untitled thread"}
+                        : threads.find((row) => row.id === value)?.title || t("Untitled thread")}
                   </span>
                 </ComboboxItem>
               ))}
@@ -1576,7 +1576,7 @@ function ScheduledTaskEditorForm({
   return (
     <>
       <DialogHeader>
-        <DialogTitle>{draft.editingId ? "Edit task" : "New task"}</DialogTitle>
+        <DialogTitle>{draft.editingId ? t("Edit task") : t("New task")}</DialogTitle>
         <DialogDescription>
           {t(
             "Run a prompt automatically on an interval, at a fixed time, once at a set date, or when a webhook is called.",
@@ -1618,7 +1618,7 @@ function ScheduledTaskEditorForm({
                       kind={resolveEnvironmentMachineKind(environment?.serverConfig ?? null)}
                       className="size-4"
                     />
-                    {environment?.label ?? "Unavailable environment"}
+                    {environment?.label ?? t("Unavailable environment")}
                   </span>
                 </SelectValue>
               </SelectTrigger>
@@ -2047,8 +2047,8 @@ function ScheduledTaskEditorForm({
                         value={draft.signatureSecret}
                         placeholder={
                           liveTask?.schedule.type === "webhook" && liveTask.webhook?.hasSecret
-                            ? "Unchanged"
-                            : "Shared secret"
+                            ? t("Unchanged")
+                            : t("Shared secret")
                         }
                         onChange={(event) =>
                           setDraft((current) => ({
@@ -2165,7 +2165,7 @@ function ScheduledTaskEditorForm({
           }
           onClick={() => void submit()}
         >
-          {draft.editingId ? "Save task" : "Create task"}
+          {draft.editingId ? t("Save task") : t("Create task")}
         </Button>
       </DialogFooter>
     </>

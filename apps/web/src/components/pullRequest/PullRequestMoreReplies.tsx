@@ -12,7 +12,7 @@ export function PullRequestMoreReplies({
       <span>
         {moreReplies > 0
           ? `${moreReplies.toLocaleString()} more ${moreReplies === 1 ? "reply" : "replies"}`
-          : "More replies"}
+          : t("More replies")}
       </span>
       {url ? (
         <a

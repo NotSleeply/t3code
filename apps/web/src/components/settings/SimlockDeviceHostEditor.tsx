@@ -140,11 +140,17 @@ export function SimlockDeviceHostEditor(props: {
           }}
         >
           <DialogHeader>
-            <DialogTitle>{props.isNew ? "Add Simlock host" : "Edit Simlock host"}</DialogTitle>
+            <DialogTitle>
+              {props.isNew ? t("Add Simlock host") : t("Edit Simlock host")}
+            </DialogTitle>
             <DialogDescription>
               {several
-                ? "Each selected environment's server leases devices from your Simlock gateway with its own agent token, and releases them when they close."
-                : "The environment's server leases devices from your Simlock gateway and releases them when they close."}
+                ? t(
+                    "Each selected environment's server leases devices from your Simlock gateway with its own agent token, and releases them when they close.",
+                  )
+                : t(
+                    "The environment's server leases devices from your Simlock gateway and releases them when they close.",
+                  )}
             </DialogDescription>
           </DialogHeader>
           <DialogPanel>
@@ -183,7 +189,7 @@ export function SimlockDeviceHostEditor(props: {
                   environmentId={environment.environmentId}
                   hostId={props.isNew ? null : props.host.id}
                   gatewayUrl={checkUrl}
-                  label={several ? `Agent token · ${environment.label}` : "Agent token"}
+                  label={several ? `Agent token · ${environment.label}` : t("Agent token")}
                   token={tokens.get(environment.environmentId) ?? { kind: "cleared" }}
                   saved={savedValue(environment)}
                   busy={props.busy}
@@ -202,7 +208,7 @@ export function SimlockDeviceHostEditor(props: {
               ))}
               <p className="text-xs text-muted-foreground">
                 {t("Leases, drives, and streams devices. Create one")}
-                {several ? " per environment" : ""} with{" "}
+                {several ? " " + t("per environment") : ""} with{" "}
                 <code>{t("simlock --gateway token create --role agent")}</code>
                 {t(", or leave it blank to add it later. A blank token uses the machine's")}{" "}
                 <code>{t("AGENT_DEVICE_DAEMON_AUTH_TOKEN")}</code> {t("when its")}{" "}
@@ -215,7 +221,9 @@ export function SimlockDeviceHostEditor(props: {
             </div>
             <p className="text-xs text-muted-foreground">
               {t("A lease ends after the lease minutes even while in use.")}
-              {props.isNew ? null : " Saving restarts this host, which releases its devices."}
+              {props.isNew
+                ? null
+                : " " + t("Saving restarts this host, which releases its devices.")}
             </p>
             {problem === null || !gatewayUrl ? null : (
               <p className="text-xs text-destructive" role="alert">

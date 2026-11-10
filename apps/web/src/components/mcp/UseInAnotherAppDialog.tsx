@@ -91,8 +91,8 @@ function UseInAnotherAppDialog({ requested }: { readonly requested: EnvironmentI
               <GateMessage
                 title={
                   environment === null
-                    ? "Connect to an environment first."
-                    : "T3 Connect is not available in this build."
+                    ? t("Connect to an environment first.")
+                    : t("T3 Connect is not available in this build.")
                 }
               />
             </WizardPanel>
@@ -161,7 +161,9 @@ function Wizard({
                   selected={level === access}
                   disabledReason={levels.get(level)}
                   description={
-                    level === "full-access" ? "Runs commands and edits files without asking" : null
+                    level === "full-access"
+                      ? t("Runs commands and edits files without asking")
+                      : null
                   }
                 />
               ))}
@@ -453,7 +455,7 @@ function GateScreen({
           {turnOnHere.kind === "here" ? (
             <div className="space-y-2">
               <Button disabled={connecting} onClick={() => void turnOn()}>
-                {connecting ? "Connecting…" : "Turn on"}
+                {connecting ? t("Connecting…") : t("Turn on")}
               </Button>
               {operationError ? (
                 <p className="text-xs text-destructive-foreground">{operationError}</p>
@@ -603,7 +605,7 @@ function ConnectStep({
         {code}
         {app === null ? null : (
           <TextButton onClick={() => setAnotherWay(false)}>
-            {app.handoff.kind === "commands" ? "Back to commands" : "Back to one click"}
+            {app.handoff.kind === "commands" ? t("Back to commands") : t("Back to one click")}
           </TextButton>
         )}
         <LinkedLine environment={environment} access={access} />
@@ -759,7 +761,7 @@ function ApprovalCode({
         </span>
         {live ? null : (
           <Button size="sm" variant="outline" disabled={pending} onClick={() => void mint()}>
-            {pending ? "Getting code…" : code === null ? "Get code" : "New code"}
+            {pending ? t("Getting code…") : code === null ? t("Get code") : t("New code")}
           </Button>
         )}
       </div>

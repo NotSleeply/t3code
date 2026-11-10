@@ -248,7 +248,7 @@ function ModelCard(props: ModelCardProps) {
             </div>
             <p className="mt-1 text-2xs text-muted-foreground">
               {model.state === "verifying"
-                ? "Verifying download…"
+                ? t("Verifying download…")
                 : `${Math.round(progress)}% downloaded`}
             </p>
           </div>
@@ -432,11 +432,13 @@ function ProjectDictionaryRow() {
       serverScoped
       settingKeys={["speechProjectCustomWords"]}
       {...searchableSetting("speech-project-dictionary")}
-      title={isProjectScope ? "Project dictionary" : "Shared dictionary"}
+      title={isProjectScope ? t("Project dictionary") : t("Shared dictionary")}
       description={
         isProjectScope
           ? `Saved with ${scope.scope.label} on its environment. Everyone who dictates in this project gets these spellings, along with their own dictionary. Project spellings win when the two overlap.`
-          : "Saved on the environment and used in every project there, along with each person’s own dictionary. Pick a project above to limit these words to one project."
+          : t(
+              "Saved on the environment and used in every project there, along with each person’s own dictionary. Pick a project above to limit these words to one project.",
+            )
       }
       control={
         <span className="text-xs text-muted-foreground">
@@ -446,7 +448,7 @@ function ProjectDictionaryRow() {
     >
       <div className="mt-2 pb-3.5">
         <DictionaryEditor
-          label={isProjectScope ? "project dictionary" : "shared dictionary"}
+          label={isProjectScope ? t("project dictionary") : t("shared dictionary")}
           words={words}
           disabled={scope.connectedEnvironments.length === 0}
           onChange={(next) => updateScopedSettings({ speechProjectCustomWords: next })}
@@ -716,12 +718,12 @@ function AdvancedSpeechSettings({
             <SelectTrigger size="sm" aria-label={t("Transcription hardware")} className="max-w-72">
               <SelectValue>
                 {supported.acceleration === "auto"
-                  ? "Auto"
+                  ? t("Auto")
                   : supported.acceleration === "cpu"
                     ? "CPU"
                     : (supported.gpuDevices.find(
                         (device) => `gpu:${device.id}` === supported.acceleration,
-                      )?.name ?? "Selected GPU")}
+                      )?.name ?? t("Selected GPU"))}
               </SelectValue>
             </SelectTrigger>
             <SelectPopup align="end" alignItemWithTrigger={false}>
@@ -885,7 +887,7 @@ function SpeechModelBrowser(props: {
                 <p className="text-sm font-medium">
                   {selectedLanguages.length
                     ? "Models for " + selectedLanguages.map(languageLabel).join(", ")
-                    : "All models"}
+                    : t("All models")}
                 </p>
                 <InputGroup>
                   <InputGroupInput
@@ -1063,7 +1065,7 @@ function TranscriptionTest(props: {
               <span className="text-xs text-muted-foreground">
                 {speech.status?.supported === false
                   ? speech.status.reason
-                  : "Waiting for the environment to connect"}
+                  : t("Waiting for the environment to connect")}
               </span>
             )}
           </div>
@@ -1101,7 +1103,7 @@ function TranscriptionTest(props: {
                     <span className="text-muted-foreground">{speech.preview.tentative}</span>
                   </>
                 ) : (
-                  transcript || "No speech recognized. Try again."
+                  transcript || t("No speech recognized. Try again.")
                 )}
               </p>
             ) : null}
@@ -1356,12 +1358,12 @@ export function VoiceSettingsPanel() {
                         {destination.cloudProvider
                           ? CLOUD_SPEECH_LABELS[destination.cloudProvider]
                           : destination.environmentId
-                            ? (chosenEnvironment?.label ?? "Chosen environment (unavailable)")
-                            : "Off"}
+                            ? (chosenEnvironment?.label ?? t("Chosen environment (unavailable)"))
+                            : t("Off")}
                         {destination.cloudProvider && (
                           <span className="text-muted-foreground">
                             {" via "}
-                            {chosenEnvironment?.label ?? "unavailable environment"}
+                            {chosenEnvironment?.label ?? t("unavailable environment")}
                           </span>
                         )}
                       </span>
@@ -1473,10 +1475,12 @@ export function VoiceSettingsPanel() {
             title={t("Language")}
             description={
               destination.cloudProvider
-                ? "The cloud provider can detect your language automatically."
+                ? t("The cloud provider can detect your language automatically.")
                 : model
                   ? `${model.model} ${model.supportsLanguageDetection ? "detects the language automatically" : "uses one fixed language"}.`
-                  : "Choose an environment above to see the languages its transcription model supports."
+                  : t(
+                      "Choose an environment above to see the languages its transcription model supports.",
+                    )
             }
             control={
               <SpeechLanguageSelect
@@ -1520,8 +1524,10 @@ export function VoiceSettingsPanel() {
           title={t("Silence filtering")}
           description={
             destination.cloudProvider === "openai"
-              ? "OpenAI handles silence automatically."
-              : "Skip silence and other non-speech audio before transcription, keeping a short buffer so words aren’t cut off."
+              ? t("OpenAI handles silence automatically.")
+              : t(
+                  "Skip silence and other non-speech audio before transcription, keeping a short buffer so words aren’t cut off.",
+                )
           }
           control={
             <Switch
@@ -1609,7 +1615,9 @@ export function VoiceSettingsPanel() {
                   className="max-w-64"
                 >
                   <SelectValue>
-                    {settings.speechPostProcessingPrompt.mode === "custom" ? "Custom" : "Built-in"}
+                    {settings.speechPostProcessingPrompt.mode === "custom"
+                      ? t("Custom")
+                      : t("Built-in")}
                   </SelectValue>
                 </SelectTrigger>
                 <SelectPopup align="end" alignItemWithTrigger={false}>
