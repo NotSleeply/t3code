@@ -1,5 +1,6 @@
 // Simplified Chinese catalog. Keys are the English source strings passed to `t()`.
 // Keep {0}/{name} placeholders intact and do not translate product or provider names.
+// Generated from scripts/i18n/translations.zh-Hans.json by scripts/i18n/merge-catalog.mjs.
 export const zhHans: Readonly<Record<string, string>> = {
   "_No description provided._": "_未提供描述。_",
   ", before the latest commits": "，在最新提交之前",

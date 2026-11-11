@@ -46,5 +46,8 @@ node_modules/
 .env*
 !.env.example
 
+# Generated scratch space for `scripts/i18n` maintenance runs.
+scripts/i18n/.work/
+
 # pnpm content-addressable store; never belongs in the repo.
 .pnpm-store/
