@@ -35,6 +35,10 @@ interface AcpSessionProject {
   readonly workspaceRoot: string;
 }
 
+function needsImport(session: AcpRegistrySession) {
+  return session.importedThreadId === null || session.nativeHistoryPending === true;
+}
+
 function reportFailure(title: string, result: AtomCommandResult<unknown, unknown>) {
   if (result._tag !== "Failure" || isAtomCommandInterrupted(result)) return;
   const error = squashAtomCommandFailure(result);
@@ -224,7 +228,7 @@ function InstanceSessionManagement(
       setSessions((current) =>
         current.map((candidate) =>
           candidate.sessionId === session.sessionId
-            ? { ...candidate, importedThreadId: result.value.threadId }
+            ? { ...candidate, importedThreadId: result.value.threadId, nativeHistoryPending: false }
             : candidate,
         ),
       );
@@ -264,7 +268,6 @@ function InstanceSessionManagement(
       setSessions((current) =>
         current.filter((candidate) => candidate.sessionId !== session.sessionId),
       );
-      toastManager.add({ type: "success", title: t("ACP session deleted") });
       return;
     }
     reportFailure("Could not delete ACP session", result);
@@ -337,7 +340,6 @@ function InstanceSessionManagement(
     if (generation !== projectGeneration.current) return;
     setSavingProviderId(null);
     if (result._tag === "Success") {
-      toastManager.add({ type: "success", title: t("ACP provider configured") });
       await loadProviders(provider.providerId);
       return;
     }
@@ -366,7 +368,6 @@ function InstanceSessionManagement(
     if (generation !== projectGeneration.current) return;
     setSavingProviderId(null);
     if (result._tag === "Success") {
-      toastManager.add({ type: "success", title: t("ACP provider disabled") });
       await loadProviders(provider.providerId);
       return;
     }
@@ -384,7 +385,6 @@ function InstanceSessionManagement(
     if (result._tag === "Success") {
       setSessions([]);
       setNextCursor(null);
-      toastManager.add({ type: "success", title: t("Logged out of ACP agent") });
       return;
     }
     reportFailure("Could not log out of ACP agent", result);
@@ -483,12 +483,12 @@ function InstanceSessionManagement(
                         disabled={
                           !canOperate ||
                           !canImport ||
-                          session.importedThreadId !== null ||
+                          !needsImport(session) ||
                           importingSessionId !== null
                         }
                         onClick={() => void importNativeSession(session)}
                       >
-                        {session.importedThreadId !== null
+                        {!needsImport(session)
                           ? t("Imported")
                           : importingSessionId === session.sessionId
                             ? t("Importing")

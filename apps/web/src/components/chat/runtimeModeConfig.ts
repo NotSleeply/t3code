@@ -1,10 +1,16 @@
+import { t } from "~/i18n";
 import {
   managedRuntimeModeDenial,
   type ManagedPolicySummary,
   type RuntimeMode,
 } from "@t3tools/contracts";
-import { type LucideIcon, LockIcon, PenLineIcon, ShieldOffIcon, SparklesIcon } from "lucide-react";
-import { t } from "~/i18n";
+import {
+  type LucideIcon,
+  LockIcon,
+  PenLineIcon,
+  ShieldCheckIcon,
+  ShieldOffIcon,
+} from "lucide-react";
 
 export const runtimeModeConfig: Record<
   RuntimeMode,
@@ -23,7 +29,7 @@ export const runtimeModeConfig: Record<
   auto: {
     label: t("Auto"),
     description: t("Supported providers approve routine actions; others still ask."),
-    icon: SparklesIcon,
+    icon: ShieldCheckIcon,
   },
   "full-access": {
     label: t("Full access"),

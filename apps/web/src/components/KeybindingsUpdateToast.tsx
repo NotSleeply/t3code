@@ -6,21 +6,13 @@ import { createKeybindingsUpdateToastController } from "./KeybindingsUpdateToast
 import { stackedThreadToast, toastManager } from "./ui/toast";
 import { t } from "~/i18n";
 
-/** Toasts each keybindings reload the primary server reports. */
 export function startKeybindingsUpdateToasts(): () => void {
   const controller = createKeybindingsUpdateToastController({});
   return subscribeAtomChanges(primaryServerConfigEventAtom, (event) => {
     const decision = controller.handle(event);
     if (!decision) return;
 
-    if (decision._tag === "Success") {
-      toastManager.add({
-        type: "success",
-        title: t("Keybindings updated"),
-        description: t("Keybindings configuration reloaded successfully."),
-      });
-      return;
-    }
+    if (decision._tag === "Success") return;
 
     const serverConfig = appAtomRegistry.get(primaryServerConfigAtom);
     toastManager.add(

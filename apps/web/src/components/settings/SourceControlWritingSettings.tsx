@@ -7,7 +7,7 @@ import {
   textGeneratorForSelection,
 } from "@t3tools/contracts";
 import { DEFAULT_UNIFIED_SETTINGS } from "@t3tools/contracts/settings";
-import { createModelSelection } from "@t3tools/shared/model";
+import { createModelSelection, pickModelSelection } from "@t3tools/shared/model";
 import {
   resolveReviewGuideModelSelection,
   resolveSourceControlWriterModelSelection,
@@ -23,7 +23,7 @@ import { useSettingsScope } from "./SettingsScopeContext";
 import { providerInstanceEntriesFor } from "../../providerInstances";
 import { useTextGenerationTargets } from "../../textGenerators";
 import {
-  getCustomModelOptionsByInstance,
+  getTextGenerationModelOptionsByInstance,
   resolveAppModelSelectionState,
   selectsPlanAgent,
 } from "../../modelSelection";
@@ -156,13 +156,13 @@ export function SourceControlWritingSettingsSection() {
     (entry) =>
       entry.instanceId === defaultModelSelection.instanceId && entry.enabled && entry.isAvailable,
   );
-  const modelOptionsByInstance = getCustomModelOptionsByInstance(
+  const modelOptionsByInstance = getTextGenerationModelOptionsByInstance(
     settings,
     projectEffectiveTextGenerationProviders,
     activeSelection.instanceId,
     activeSelection.model,
   );
-  const writerModelDisabledReason = useScopedModelDisabledReason(settings, writerEntries);
+  const writerModelDisabledReason = useScopedModelDisabledReason(settings, writerEntries, true);
   const writerInstanceEntry = writerEntries.find(
     (entry) => entry.instanceId === activeSelection.instanceId,
   );
@@ -184,7 +184,7 @@ export function SourceControlWritingSettingsSection() {
     },
     projectAgentProviders,
   );
-  const reviewGuideModelOptionsByInstance = getCustomModelOptionsByInstance(
+  const reviewGuideModelOptionsByInstance = getTextGenerationModelOptionsByInstance(
     settings,
     projectAgentProviders,
     reviewGuideSelection.instanceId,
@@ -241,7 +241,7 @@ export function SourceControlWritingSettingsSection() {
             >
               <SelectValue>
                 {(value: SourceControlWritingStyleMode | null) =>
-                  value === null ? "Mixed" : MODE_OPTIONS[value].label
+                  value === null ? t("Mixed") : MODE_OPTIONS[value].label
                 }
               </SelectValue>
             </SelectTrigger>
@@ -378,7 +378,11 @@ export function SourceControlWritingSettingsSection() {
                           return;
                         }
                         updateSettings({
-                          reviewGuideModelSelection: createModelSelection(instanceId, model),
+                          reviewGuideModelSelection: pickModelSelection(
+                            mixedReviewGuideModel ? null : reviewGuideSelection,
+                            instanceId,
+                            model,
+                          ),
                         });
                       }}
                     />
@@ -583,7 +587,11 @@ export function SourceControlWritingSettingsSection() {
                         return;
                       }
                       updateSettings({
-                        sourceControlWriterModelSelection: createModelSelection(instanceId, model),
+                        sourceControlWriterModelSelection: pickModelSelection(
+                          mixedWriterModel ? null : activeSelection,
+                          instanceId,
+                          model,
+                        ),
                       });
                     }}
                   />
@@ -614,7 +622,21 @@ export function SourceControlWritingSettingsSection() {
                 <Switch
                   checked={usesDedicatedModel}
                   disabled={!usesDedicatedModel && !canEnableDedicatedModel}
-                  onCheckedChange={(checked) =>
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      const reason = writerModelDisabledReason(
+                        defaultModelSelection.instanceId,
+                        defaultModelSelection.model,
+                      );
+                      if (reason) {
+                        toastManager.add({
+                          type: "error",
+                          title: "Writer model not saved",
+                          description: reason,
+                        });
+                        return;
+                      }
+                    }
                     updateSettings({
                       sourceControlWriterModelSelection: checked
                         ? createModelSelection(
@@ -623,8 +645,8 @@ export function SourceControlWritingSettingsSection() {
                             defaultModelSelection.options,
                           )
                         : null,
-                    })
-                  }
+                    });
+                  }}
                   aria-label={t("Use a separate source control writer model")}
                 />
               </div>

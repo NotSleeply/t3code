@@ -21,13 +21,7 @@ import {
 import { useCustomThemes } from "../../hooks/useCustomThemes";
 import { useEnvironmentIdentificationMode } from "../../hooks/useSettings";
 import { useTheme } from "../../hooks/useTheme";
-import {
-  getLanguagePreference,
-  isLanguagePreference,
-  t,
-  type LanguagePreference,
-  writeLanguagePreference,
-} from "~/i18n";
+import { t } from "~/i18n";
 import { useScopedSettings, useUpdateScopedSettings } from "./useScopedSettings";
 import { Select, SelectItem, SelectPopup, SelectTrigger, SelectValue } from "../ui/select";
 import { Switch } from "../ui/switch";
@@ -91,12 +85,6 @@ const EFFORT_DISPLAY_LABELS: Record<EffortDisplay, string> = {
   bars: t("Bars"),
 };
 
-const LANGUAGE_LABELS: Record<LanguagePreference, string> = {
-  system: t("System default"),
-  en: "English",
-  "zh-Hans": "简体中文",
-};
-
 export function AppearanceSettingsPanel() {
   const {
     appearanceMode,
@@ -110,14 +98,6 @@ export function AppearanceSettingsPanel() {
   } = useTheme();
   const customThemes = useCustomThemes();
   const [isImportThemeOpen, setIsImportThemeOpen] = useState(false);
-  const [languagePreference, setLanguagePreference] =
-    useState<LanguagePreference>(getLanguagePreference);
-  const changeLanguage = (value: LanguagePreference | null) => {
-    if (!isLanguagePreference(value)) return;
-    writeLanguagePreference(value);
-    setLanguagePreference(value);
-    window.location.reload();
-  };
   const settings = useScopedSettings();
   const updateSettings = useUpdateScopedSettings();
   const environmentStageLabel = useEnvironmentStageLabel();
@@ -165,27 +145,6 @@ export function AppearanceSettingsPanel() {
 
   return (
     <SettingsPageContainer>
-      <SettingsSection id="language" title={t("Language")}>
-        <SettingsRow
-          {...searchableSetting("language")}
-          description={t("Choose the language of the interface. T3 Code reloads to apply it.")}
-          control={
-            <div className="w-full sm:w-40">
-              <Select value={languagePreference} onValueChange={changeLanguage}>
-                <SelectTrigger size="sm" className="w-full min-w-0" aria-label={t("Language")}>
-                  <SelectValue>{LANGUAGE_LABELS[languagePreference]}</SelectValue>
-                </SelectTrigger>
-                <SelectPopup align="end" alignItemWithTrigger={false}>
-                  <SelectItem value="system">{LANGUAGE_LABELS.system}</SelectItem>
-                  <SelectItem value="en">{LANGUAGE_LABELS.en}</SelectItem>
-                  <SelectItem value="zh-Hans">简体中文</SelectItem>
-                </SelectPopup>
-              </Select>
-            </div>
-          }
-        />
-      </SettingsSection>
-
       <SettingsSection id="appearance" title={t("Colors & themes")} variant="plain" hideTitle>
         <div id={searchableSetting("theme").id}>
           <ThemeLibrary

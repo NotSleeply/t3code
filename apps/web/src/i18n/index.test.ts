@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vite-plus/test";
+import { describe, expect, it, vi } from "vite-plus/test";
 
-import { resolveAppLocale, translate } from "./index";
+import { resolveAppLocale, synchronizeLegacyLocale, translate } from "./index";
 import { zhHans } from "./zh-Hans";
 
 describe("resolveAppLocale", () => {
@@ -20,6 +20,27 @@ describe("resolveAppLocale", () => {
     expect(resolveAppLocale("en", "zh-CN")).toBe("en");
     expect(resolveAppLocale("zh-Hans", "en-US")).toBe("zh-Hans");
   });
+});
+
+it("reloads legacy translations only when the active catalog language changes", () => {
+  const setItem = vi.fn();
+  const reload = vi.fn();
+  vi.stubGlobal("window", { localStorage: { setItem }, location: { reload } });
+  try {
+    expect(synchronizeLegacyLocale("en-US")).toBe(false);
+    expect(synchronizeLegacyLocale("de")).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+    expect(synchronizeLegacyLocale("zh")).toBe(true);
+    expect(setItem).toHaveBeenCalledWith("t3code:display-language", "zh-Hans");
+    expect(reload).toHaveBeenCalledOnce();
+    setItem.mockImplementationOnce(() => {
+      throw new Error("Storage blocked");
+    });
+    expect(synchronizeLegacyLocale("zh")).toBe(false);
+    expect(reload).toHaveBeenCalledOnce();
+  } finally {
+    vi.unstubAllGlobals();
+  }
 });
 
 describe("translate", () => {

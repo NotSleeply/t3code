@@ -2,6 +2,7 @@ import type {
   DeviceServiceState,
   EnvironmentId,
   MessageId,
+  OrchestrationV2ThreadProjection,
   ScopedThreadRef,
   ThreadId,
 } from "@t3tools/contracts";
@@ -24,6 +25,7 @@ import {
 import { Button } from "../ui/button";
 import { Dialog } from "../ui/dialog";
 import { WizardPopup } from "../ui/wizard";
+import { findRevertCheckpoint } from "../../session-logic";
 import { registerThreadOverlay } from "./threadOverlayRetention";
 import { t } from "~/i18n";
 
@@ -76,6 +78,7 @@ export function PullRequestThreadDialogHost(props: {
   readonly onPrepared: (input: {
     branch: string;
     worktreePath: string | null;
+    pullRequestUrl: string;
   }) => Promise<void> | void;
 }) {
   const state = useThreadOverlay(pullRequestThreadDialogAtom, props.threadKey);
@@ -194,11 +197,18 @@ export function openRevertConfirm(threadKey: string, pending: PendingRevert): vo
 
 export function RevertConfirmHost(props: {
   readonly threadKey: string;
+  readonly checkpoints: OrchestrationV2ThreadProjection["checkpoints"] | undefined;
+  readonly worktreePath: string | null;
   readonly onConfirm: (turnCount: number, messageId: MessageId, restoreFiles: boolean) => void;
 }) {
   const pending = useThreadOverlay(revertConfirmAtom, props.threadKey);
+  // The server refuses file restore outside an isolated worktree.
+  const canRestoreFiles =
+    pending !== null &&
+    props.worktreePath !== null &&
+    findRevertCheckpoint(props.checkpoints ?? [], pending.turnCount)?.status === "ready";
   const confirm = (restoreFiles: boolean) => {
-    if (pending === null) return;
+    if (pending === null || (restoreFiles && !canRestoreFiles)) return;
     closeThreadOverlay(revertConfirmAtom);
     props.onConfirm(pending.turnCount, pending.messageId, restoreFiles);
   };
@@ -220,7 +230,11 @@ export function RevertConfirmHost(props: {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogClose render={<Button variant="outline" />}>{t("Cancel")}</AlertDialogClose>
-          <Button variant="destructive-outline" onClick={() => confirm(true)}>
+          <Button
+            variant="destructive-outline"
+            disabled={!canRestoreFiles}
+            onClick={() => confirm(true)}
+          >
             {t("Revert files too")}
           </Button>
           <Button onClick={() => confirm(false)}>{t("Revert and keep changes")}</Button>

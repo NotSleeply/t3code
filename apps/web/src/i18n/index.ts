@@ -31,11 +31,12 @@ export function readLanguagePreference(): LanguagePreference {
 }
 
 /** Persists the choice. The locale is read once at boot, so callers reload the page. */
-export function writeLanguagePreference(preference: LanguagePreference): void {
+export function writeLanguagePreference(preference: LanguagePreference): boolean {
   try {
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, preference);
+    return true;
   } catch {
-    // A blocked storage must not stop the language switch from applying after a reload.
+    return false;
   }
 }
 
@@ -52,13 +53,13 @@ const currentLocale: AppLocale = TEST_MODE
 const catalog: Readonly<Record<string, string>> =
   !TEST_MODE && currentLocale === "zh-Hans" ? (await import("./zh-Hans")).zhHans : EMPTY_CATALOG;
 
-export function getLanguagePreference(): LanguagePreference {
-  return initialPreference;
-}
-
-export function applyDocumentLanguage(): void {
-  if (typeof document === "undefined") return;
-  document.documentElement.lang = currentLocale === "zh-Hans" ? "zh-CN" : "en";
+// Module-level legacy translations are fixed at boot, so language changes require a reload.
+export function synchronizeLegacyLocale(locale: string): boolean {
+  const nextLocale = resolveAppLocale("system", locale);
+  if (nextLocale === currentLocale) return false;
+  if (!writeLanguagePreference(nextLocale)) return false;
+  window.location.reload();
+  return true;
 }
 
 type TranslationValues = ReadonlyArray<string | number> | Readonly<Record<string, string | number>>;

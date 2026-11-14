@@ -217,23 +217,6 @@ const PairingLinkListRow = memo(function PairingLinkListRow({
     value: string;
     kind: "code" | "hosted-link" | "link";
   }>({
-    onCopy: ({ kind }) => {
-      toastManager.add({
-        type: "success",
-        title:
-          kind === "hosted-link"
-            ? t("Hosted app link copied")
-            : kind === "link"
-              ? t("Pairing URL copied")
-              : t("Pairing code copied"),
-        description:
-          kind === "hosted-link"
-            ? t("Open it in the browser on the device you want to connect.")
-            : kind === "link"
-              ? t("Open it in the client you want to pair to this environment.")
-              : t("Paste it into another client to finish pairing."),
-      });
-    },
     onError: (error, { value, kind }) => {
       // Captured per attempt so concurrent copies cannot make the dialog
       // reveal a different value than the one that failed.
@@ -268,7 +251,7 @@ const PairingLinkListRow = memo(function PairingLinkListRow({
 
   const expiresAbsolute = formatAccessTimestamp(pairingLink.expiresAt);
 
-  const primaryLabel = pairingLink.label ?? "Pairing link";
+  const primaryLabel = pairingLink.label ?? t("Pairing link");
   const selectedQrOption = selectQrEndpointOption(
     endpointCopyOptions,
     qrEndpointId,

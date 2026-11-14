@@ -10,6 +10,7 @@ import {
 } from "@t3tools/client-runtime/source-control-clients";
 import { DEFAULT_KEYBINDINGS } from "@t3tools/shared/keybindings";
 import * as Schema from "effect/Schema";
+import { msg } from "gt-react";
 import { TYPOGRAPHY_ADVANCED_STORAGE_KEY } from "../../appearanceFonts";
 import { writeLocalStorageValue } from "../../hooks/useLocalStorage";
 import { commandLabel } from "./KeybindingsSettings.logic";
@@ -93,38 +94,40 @@ export interface SettingsSearchAvailability {
 }
 
 export const SETTINGS_SECTION_LABELS: Readonly<Record<SettingsPath, string>> = {
-  "/settings/diagnostics": t("Diagnostics"),
-  "/settings/projects": t("Projects"),
-  "/settings/general": t("General"),
-  "/settings/appearance": t("Appearance"),
-  "/settings/chat": t("Chat"),
-  "/settings/diffs": t("Diffs & pull requests"),
-  "/settings/keybindings": t("Keybindings"),
-  "/settings/snap-shot": t("SnapShots"),
-  "/settings/providers": t("Providers"),
-  "/settings/threads": t("Threads"),
-  "/settings/browser": t("Browser"),
-  "/settings/devices": t("Devices"),
-  "/settings/scheduled-tasks": t("Scheduled tasks"),
-  "/settings/source-control": t("Source control"),
-  "/settings/worktrees": t("Worktrees"),
-  "/settings/connections": t("Environments"),
-  "/settings/access": t("Sharing & access"),
-  "/settings/secrets": t("Secrets"),
-  "/settings/maintenance": t("Maintenance"),
-  "/settings/labs": t("Labs"),
-  "/settings/about": t("About"),
-  "/settings/voice": t("Voice"),
-  "/settings/archived": t("Archive"),
+  "/settings/diagnostics": msg("Diagnostics"),
+  "/settings/projects": msg("Projects"),
+  "/settings/general": msg("General"),
+  "/settings/appearance": msg("Appearance"),
+  "/settings/chat": msg("Chat"),
+  "/settings/diffs": msg("Diffs & pull requests"),
+  "/settings/keybindings": msg("Keybindings"),
+  "/settings/snap-shot": msg("SnapShots"),
+  "/settings/providers": msg("Providers"),
+  "/settings/threads": msg("Threads"),
+  "/settings/browser": msg("Browser"),
+  "/settings/devices": msg("Devices"),
+  "/settings/scheduled-tasks": msg("Scheduled tasks"),
+  "/settings/source-control": msg("Source control"),
+  "/settings/worktrees": msg("Worktrees"),
+  "/settings/connections": msg("Environments"),
+  "/settings/access": msg("Sharing & access"),
+  "/settings/secrets": msg("Secrets"),
+  "/settings/maintenance": msg("Maintenance"),
+  "/settings/labs": msg("Labs"),
+  "/settings/about": msg("About"),
+  "/settings/voice": msg("Voice"),
+  "/settings/archived": msg("Archive"),
 };
 
-/** Sidebar order. A group without a heading is set apart by space alone. */
+/** Sidebar order. A group with a hidden heading is set apart on screen by space alone. */
 export const SETTINGS_NAV_GROUPS: ReadonlyArray<{
-  readonly heading: string | null;
+  readonly heading: string;
+  readonly headingHidden?: true;
   readonly paths: ReadonlyArray<SettingsPath>;
 }> = [
   {
-    heading: null,
+    heading: msg("Preferences"),
+    headingHidden: true,
     paths: [
       "/settings/general",
       "/settings/appearance",
@@ -136,7 +139,7 @@ export const SETTINGS_NAV_GROUPS: ReadonlyArray<{
     ],
   },
   {
-    heading: t("Agents"),
+    heading: msg("Agents"),
     paths: [
       "/settings/providers",
       "/settings/threads",
@@ -146,11 +149,11 @@ export const SETTINGS_NAV_GROUPS: ReadonlyArray<{
     ],
   },
   {
-    heading: t("Code"),
+    heading: msg("Code"),
     paths: ["/settings/projects", "/settings/source-control", "/settings/worktrees"],
   },
   {
-    heading: t("Connections"),
+    heading: msg("Connections"),
     paths: [
       "/settings/connections",
       "/settings/access",
@@ -158,7 +161,8 @@ export const SETTINGS_NAV_GROUPS: ReadonlyArray<{
     ],
   },
   {
-    heading: null,
+    heading: msg("More"),
+    headingHidden: true,
     paths: ["/settings/maintenance", "/settings/labs", "/settings/about", "/settings/archived"],
   },
 ];
@@ -319,13 +323,6 @@ export const SETTINGS_SEARCH_ITEMS = [
     targetId: "appearance",
   },
   {
-    id: "language",
-    title: t("Language"),
-    to: "/settings/appearance",
-    searchTerms: ["display language locale english chinese simplified 语言 中文 简体"],
-    targetId: "language",
-  },
-  {
     // Prefixed because the slider control already owns the `appearance-contrast` id.
     id: "setting-appearance-contrast",
     title: t("Contrast"),
@@ -433,13 +430,13 @@ export const SETTINGS_SEARCH_ITEMS = [
   },
   {
     id: "project-grouping",
-    title: t("Project grouping"),
+    title: msg("Project grouping"),
     to: "/settings/general",
     searchTerms: ["combine matching repositories environments sidebar"],
   },
   {
     id: "project-order",
-    title: t("Project order"),
+    title: msg("Project order"),
     to: "/settings/general",
     searchTerms: ["sort projects sidebar manual created recent"],
   },
@@ -465,7 +462,7 @@ export const SETTINGS_SEARCH_ITEMS = [
   },
   {
     id: "working-shelf",
-    title: t("Working section"),
+    title: msg("Working section"),
     to: "/settings/general",
     searchTerms: ["hide fold running monitoring threads inbox sidebar shelf"],
   },
@@ -489,6 +486,22 @@ export const SETTINGS_SEARCH_ITEMS = [
     to: "/settings/chat",
     searchTerms: [
       "hide tool calls commands edits searches work log activity quiet chat zen final answers only",
+    ],
+  },
+  {
+    id: "screen-reader-announcements",
+    title: "Screen reader announcements",
+    to: "/settings/chat",
+    searchTerms: [
+      "accessibility a11y screen reader nvda jaws voiceover orca narrator speech announce read aloud messages activity steps",
+    ],
+  },
+  {
+    id: "screen-reader-window-title",
+    title: "Screen reader window title",
+    to: "/settings/chat",
+    searchTerms: [
+      "accessibility a11y screen reader nvda jaws voiceover orca narrator window title tab title alt tab taskbar thread status order working approval",
     ],
   },
   {
@@ -539,7 +552,7 @@ export const SETTINGS_SEARCH_ITEMS = [
     id: "voice-microphone",
     title: t("Microphone"),
     to: "/settings/voice",
-    searchTerms: ["mic input audio device"],
+    searchTerms: ["mic input audio device order priority preferred"],
   },
   {
     id: "dictation-shortcut-mode",
@@ -674,13 +687,21 @@ export const SETTINGS_SEARCH_ITEMS = [
   },
   {
     id: "in-app-notifications",
-    title: t("In-app notifications"),
+    title: msg("In-app notifications"),
     to: "/settings/general",
     searchTerms: ["notification toast popup completion input approval failure"],
   },
   {
+    id: "language",
+    title: msg("Language"),
+    to: "/settings/general",
+    searchTerms: [
+      "locale translation english deutsch german español spanish français french português portuguese brasil brazilian chinese 中文 japanese 日本語 korean 한국어 russian русский sprache idioma langue 语言 言語 언어 язык",
+    ],
+  },
+  {
     id: "time-format",
-    title: t("Time format"),
+    title: msg("Time format"),
     to: "/settings/general",
     searchTerms: ["timestamp clock locale system browser os 12 hour 24 hour"],
   },
@@ -758,6 +779,13 @@ export const SETTINGS_SEARCH_ITEMS = [
     ],
   },
   {
+    id: "keep-awake-while-agents-work",
+    title: "Keep awake while agents work",
+    to: "/settings/maintenance",
+    scope: "environment-defaults",
+    searchTerms: ["caffeinate sleep prevent stay awake power laptop lid inhibit"],
+  },
+  {
     id: "background-activity",
     title: t("Background activity"),
     to: "/settings/maintenance",
@@ -803,25 +831,25 @@ export const SETTINGS_SEARCH_ITEMS = [
   },
   {
     id: "unpin-confirmation",
-    title: t("Unpin confirmation"),
+    title: msg("Unpin confirmation"),
     to: "/settings/general",
     searchTerms: ["ask before thread pinned section"],
   },
   {
     id: "archive-confirmation",
-    title: t("Archive confirmation"),
+    title: msg("Archive confirmation"),
     to: "/settings/general",
     searchTerms: ["ask before thread second click inline action"],
   },
   {
     id: "delete-confirmation",
-    title: t("Delete confirmation"),
+    title: msg("Delete confirmation"),
     to: "/settings/general",
     searchTerms: ["ask before thread chat history"],
   },
   {
     id: "quit-confirmation",
-    title: t("Quit shortcut"),
+    title: msg("Quit shortcut"),
     to: "/settings/general",
     searchTerms: ["confirmation desktop app exit direct hold double click press twice"],
     desktopOnly: true,
@@ -977,6 +1005,11 @@ export const SETTINGS_SEARCH_ITEMS = [
     to: "/settings/providers",
     searchTerms: ["refresh availability versions auth state models background probes seconds off"],
     providerSettingsOnly: true,
+  },
+  {
+    id: "scheduled-tasks",
+    title: t("Scheduled tasks"),
+    to: "/settings/scheduled-tasks",
   },
   {
     id: "agent-browser-access",
@@ -1251,6 +1284,15 @@ export const SETTINGS_SEARCH_ITEMS = [
     cloudOnly: true,
   },
   {
+    id: "connect-device-approval",
+    title: "Require approval for new devices",
+    to: "/settings/access",
+    targetId: "connections-environment",
+    searchTerms: ["t3 connect devices approve deny trust revoke pairing code security account"],
+    cloudOnly: true,
+    managedTunnelOnly: true,
+  },
+  {
     id: "hold-webhooks-while-offline",
     localEnvironmentOnly: true,
     title: t("Hold webhooks while offline"),
@@ -1506,6 +1548,7 @@ export function settingsForThisPlatform(
 export function searchSettings(
   query: string,
   items: ReadonlyArray<SettingsSearchItem> = SETTINGS_SEARCH_ITEMS,
+  translate: (message: string) => string = (message) => message,
 ): ReadonlyArray<SettingsSearchItem> {
   const normalizedQuery = normalizeSearchText(query);
   if (normalizedQuery.length === 0) return [];
@@ -1518,6 +1561,9 @@ export function searchSettings(
         title,
         normalizeSearchText(t(item.title)),
         normalizeSearchText(SETTINGS_SECTION_LABELS[item.to]),
+        // The labels as displayed, so search also works in the active language.
+        normalizeSearchText(translate(item.title)),
+        normalizeSearchText(translate(SETTINGS_SECTION_LABELS[item.to])),
         ...(item.searchTerms ?? []).map(normalizeSearchText),
       ];
       if (!queryTokens.every((token) => fields.some((field) => field.includes(token)))) return [];
