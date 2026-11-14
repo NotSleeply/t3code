@@ -547,6 +547,42 @@ it.layer(NodeServices.layer)("build-desktop-artifact", (it) => {
     ),
   );
 
+  it.effect("ad-hoc signs local macOS builds so privacy permissions can be granted", () =>
+    Effect.gen(function* () {
+      for (const signed of [false, true]) {
+        const config = yield* createBuildConfig(
+          "mac",
+          "dir",
+          "0.1.8",
+          signed,
+          false,
+          undefined,
+          undefined,
+        );
+        const mac = config.mac as {
+          identity?: string;
+          entitlements?: string;
+          entitlementsInherit?: string;
+        };
+        assert.equal(mac.identity, signed ? undefined : "-");
+        if (!signed) {
+          assert.isString(mac.entitlements);
+          assert.equal(mac.entitlementsInherit, mac.entitlements);
+          const fs = yield* FileSystem.FileSystem;
+          const entitlements = yield* fs.readFileString(mac.entitlements!);
+          assert.match(
+            entitlements,
+            /<key>com\.apple\.security\.device\.audio-input<\/key>\s*<true\/>/u,
+          );
+          assert.match(
+            entitlements,
+            /<key>com\.apple\.security\.cs\.disable-library-validation<\/key>\s*<true\/>/u,
+          );
+        }
+      }
+    }),
+  );
+
   it.effect("declares Calendar access for hosted commands in macOS builds", () =>
     Effect.gen(function* () {
       for (const version of ["0.1.0", "0.1.1-nightly.20261019.1"]) {

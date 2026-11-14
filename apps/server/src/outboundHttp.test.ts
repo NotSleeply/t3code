@@ -10,12 +10,13 @@ import * as Stream from "effect/Stream";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import { FetchHttpClient, HttpClient } from "effect/http";
 import * as Undici from "undici";
-import { afterAll, afterEach, beforeAll, describe, expect } from "vite-plus/test";
+import { afterAll, afterEach, beforeAll, describe, expect, vi } from "vite-plus/test";
 
 import {
   builtinFetchUsesHttp2,
   ignoreMacosTypeOfServiceEinval,
   installHttp1FetchDispatcher,
+  keepOutboundFetchOnHttp1,
 } from "./outboundHttp.ts";
 
 // Non-secret, self-signed 127.0.0.1 certificate, valid until 2126; ALPN h2 requires TLS.
@@ -55,6 +56,7 @@ beforeAll(async () => {
 });
 
 afterEach(() => {
+  vi.unstubAllEnvs();
   Undici.setGlobalDispatcher(defaultDispatcher);
   NodeNet.setDefaultAutoSelectFamilyAttemptTimeout(defaultAttemptTimeout);
 });
@@ -74,6 +76,9 @@ const versionViaBuiltinFetch = () =>
 
 describe("installHttp1FetchDispatcher", () => {
   it("makes the global dispatcher negotiate HTTP/1.1 and keeps the env proxy agent", async () => {
+    for (const name of ["http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY"]) {
+      vi.stubEnv(name, "");
+    }
     Undici.setGlobalDispatcher(new Undici.Agent());
     expect(await versionViaGlobalDispatcher()).toBe("2.0");
 
@@ -85,11 +90,20 @@ describe("installHttp1FetchDispatcher", () => {
     expect(Undici.getGlobalDispatcher()).toBeInstanceOf(Undici.EnvHttpProxyAgent);
   });
 
+  it("enables proxies discovered after fetch has already started", () => {
+    Undici.setGlobalDispatcher(new Undici.Agent());
+    vi.stubEnv("https_proxy", "http://127.0.0.1:7890");
+    keepOutboundFetchOnHttp1();
+    expect(Undici.getGlobalDispatcher()).toBeInstanceOf(Undici.EnvHttpProxyAgent);
+  });
+
   // Only bundled undici 8 (Node 26+) offers fetch h2 and can prove dispatcher replacement.
   it.effect.runIf(builtinFetchUsesHttp2(process.versions.undici))(
     "moves the built-in fetch off HTTP/2",
     () =>
       Effect.gen(function* () {
+        vi.stubEnv("NO_PROXY", "*");
+        vi.stubEnv("no_proxy", "*");
         expect(yield* versionViaBuiltinFetch()).toBe("2.0");
         installHttp1FetchDispatcher();
         expect(yield* versionViaBuiltinFetch()).toBe("1.1");

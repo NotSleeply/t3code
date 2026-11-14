@@ -36,6 +36,7 @@ import * as Ndjson from "effect/encoding/Ndjson";
 import { eventVersion as messageVersion } from "./NativeTelemetryClient.ts";
 import * as ServerConfig from "../config.ts";
 import * as ServerSettings from "../serverSettings.ts";
+import { installHttp1FetchDispatcher } from "../outboundHttp.ts";
 import { subscribeBeforeSnapshotWithoutMutex } from "../utils/subscribeBeforeSnapshot.ts";
 
 const INITIAL_SAMPLE_DEADLINE_MS = 90_000;
@@ -238,6 +239,10 @@ export function makeApplyDesktopShellEnvironmentSnapshot(
       });
     }
     applyShellEnvironment(environment, message.environment, platform);
+    if (Object.keys(message.environment).some((name) => /^(https?|all|no)_proxy$/i.test(name))) {
+      // Proxy URLs are captured by the dispatcher, so refresh it after shell discovery.
+      installHttp1FetchDispatcher();
+    }
     if (message.environment.NODE_EXTRA_CA_CERTS !== undefined) {
       yield* Effect.gen(function* () {
         const certificates = baseCertificates;

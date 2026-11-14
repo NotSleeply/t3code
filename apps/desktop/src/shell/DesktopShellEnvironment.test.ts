@@ -554,12 +554,23 @@ describe("DesktopShellEnvironment", () => {
     }),
   );
 
-  it.effect("hydrates missing CA trust variables from the login shell", () =>
+  it.effect("hydrates missing CA trust and proxy variables from the login shell", () =>
     Effect.gen(function* () {
+      const proxies = {
+        HTTP_PROXY: "http://proxy.test:7890",
+        HTTPS_PROXY: "http://proxy.test:7890",
+        ALL_PROXY: "socks5://proxy.test:1080",
+        NO_PROXY: "localhost,127.0.0.1",
+        http_proxy: "http://proxy.test:7890",
+        https_proxy: "http://proxy.test:7890",
+        all_proxy: "socks5://proxy.test:1080",
+        no_proxy: "localhost,127.0.0.1",
+      };
       const env: NodeJS.ProcessEnv = {
         SHELL: "/bin/zsh",
         PATH: "/usr/bin",
         SSL_CERT_DIR: "/etc/ssl/certs",
+        HTTPS_PROXY: "http://launcher.test:8080",
       };
 
       yield* runShellEnvironment({
@@ -571,12 +582,16 @@ describe("DesktopShellEnvironment", () => {
             SSL_CERT_FILE: "/opt/zerobrew/etc/ca-certificates/cacert.pem",
             SSL_CERT_DIR: "/opt/zerobrew/etc/ca-certificates",
             NODE_EXTRA_CA_CERTS: "/Users/me/corp-root.pem",
+            ...proxies,
           }),
       });
 
       assert.equal(env.SSL_CERT_FILE, "/opt/zerobrew/etc/ca-certificates/cacert.pem");
       assert.equal(env.SSL_CERT_DIR, "/etc/ssl/certs");
       assert.equal(env.NODE_EXTRA_CA_CERTS, "/Users/me/corp-root.pem");
+      for (const [name, value] of Object.entries(proxies)) {
+        assert.equal(env[name], name === "HTTPS_PROXY" ? "http://launcher.test:8080" : value);
+      }
     }),
   );
 

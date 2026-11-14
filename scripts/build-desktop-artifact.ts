@@ -2871,7 +2871,19 @@ export const createBuildConfig = Effect.fn("createBuildConfig")(function* (
           role: "Viewer",
         },
       ],
-      ...(signed ? { sign: path.join(repoRoot, "scripts/sign-macos.ts") } : {}),
+      ...(signed
+        ? { sign: path.join(repoRoot, "scripts/sign-macos.ts") }
+        : {
+            identity: "-",
+            entitlements: path.join(
+              repoRoot,
+              "apps/desktop/resources/entitlements.local.mac.plist",
+            ),
+            entitlementsInherit: path.join(
+              repoRoot,
+              "apps/desktop/resources/entitlements.local.mac.plist",
+            ),
+          }),
       ...(macPasskeySigning
         ? {
             entitlements: macPasskeySigning.entitlementsPath,
